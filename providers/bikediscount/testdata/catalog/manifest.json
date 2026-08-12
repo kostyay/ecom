@@ -1,0 +1,171 @@
+{
+  "schema_version": "1",
+  "provider": "bike-discount",
+  "capture_date": "2026-08-12",
+  "assembled_date": "2026-08-12",
+  "market": {
+    "country": "DE",
+    "language": "en",
+    "currency": "EUR"
+  },
+  "sanitization": {
+    "raw_archives_retained": false,
+    "removed": [
+      "cookies and session values",
+      "Cloudflare identifiers",
+      "analytics and tracking identifiers",
+      "personal data",
+      "shipping prices",
+      "unrelated page content"
+    ],
+    "note": "These small files preserve verified catalog facts and structural cases. They are not full page archives. Placeholder records are explicit and are not product claims."
+  },
+  "fixtures": [
+    {
+      "id": "llms-roots",
+      "path": "llms.txt",
+      "media_type": "text/plain",
+      "source_url": "https://www.bike-discount.de/en/llms.txt",
+      "final_url": "https://www.bike-discount.de/en/llms.txt",
+      "roles": ["llms_roots", "category_roots"],
+      "provenance": "direct_official_response",
+      "verification": "verified",
+      "contains_placeholders": false,
+      "sha256": "de850802083d4517d88972130467911951976897cc6235c6a7341103f03cecb3",
+      "notes": ["Only root names, public URLs, and navigation IDs are retained."]
+    },
+    {
+      "id": "category-tree",
+      "path": "category_tree.html",
+      "media_type": "text/html",
+      "source_url": "https://www.bike-discount.de/en/bike",
+      "roles": ["category_tree"],
+      "provenance": "sanitized_official_index_evidence",
+      "verification": "verified_structure",
+      "contains_placeholders": false,
+      "sha256": "23cddea7be14aed7b5bbdf157d994cf58508c822e5ec8cb4a7f5fb7912ab17fa",
+      "notes": ["The link labels and canonical paths are verified. CSS classes were not retained or inferred."]
+    },
+    {
+      "id": "listing-page-one",
+      "path": "listing_page_1.html",
+      "media_type": "text/html",
+      "source_url": "https://www.bike-discount.de/en/bike/sale?p=1&order=standard&n=48",
+      "roles": ["category_listing", "paging_page_1"],
+      "provenance": "sanitized_official_index_evidence",
+      "verification": "verified_facts_representative_markup",
+      "contains_placeholders": false,
+      "sha256": "c29eb74c72b7af982046d3107c009ad1135430b3a7c9b46615e4b654531a02c1",
+      "notes": ["The item name, URL, displayed prices, sale label, page grammar, and page size come from verified evidence."]
+    },
+    {
+      "id": "listing-page-two",
+      "path": "listing_page_2.html",
+      "media_type": "text/html",
+      "source_url": "https://www.bike-discount.de/en/bike/sale?p=2&order=standard&n=48",
+      "roles": ["paging_page_2"],
+      "provenance": "sanitized_structural_case",
+      "verification": "verified_request_shape_with_placeholder_product",
+      "contains_placeholders": true,
+      "sha256": "95021b500dd51828ffeb2841241a00a67b41bdc01734da6c6b3128bfbccfcf72",
+      "notes": ["The one-based page request and page size are verified. The product record is a marked test placeholder."]
+    },
+    {
+      "id": "legacy-search",
+      "path": "search_legacy.html",
+      "media_type": "text/html",
+      "source_url": "https://www.bike-discount.de/en/search?sSearch=aggressor",
+      "roles": ["search_listing"],
+      "provenance": "sanitized_official_index_evidence",
+      "verification": "verified_legacy_shape_unverified_query_semantics",
+      "contains_placeholders": true,
+      "sha256": "70a83ca3ca686bce4168ae1ede0129e29f9e931a43c05dbeee48eb0a0ed4d7fb",
+      "notes": ["The request shape and result heading are verified. The result count and query behavior are not stable. Production search must not use this file as proof that sSearch is honored."]
+    },
+    {
+      "id": "listing-controls",
+      "path": "listing_controls.html",
+      "media_type": "text/html",
+      "source_url": "https://www.bike-discount.de/en/bike/sale",
+      "roles": ["filters", "sort", "page_size"],
+      "provenance": "sanitized_structural_case",
+      "verification": "verified_groups_and_grammar_with_placeholder_values",
+      "contains_placeholders": true,
+      "sha256": "7631b7c90de1e5442f99d82b8cab4a9add490a7e47a6c9b1f4cb00d00d692c18",
+      "notes": ["The filter group labels, query names manufacturer and properties, standard sort value, and page size 48 are verified. Zero-based catalog IDs and the available query name are test placeholders and must not become production constants."]
+    },
+    {
+      "id": "brand-index",
+      "path": "brands.html",
+      "media_type": "text/html",
+      "source_url": "https://www.bike-discount.de/en/brands",
+      "roles": ["brands", "brand_listing"],
+      "provenance": "sanitized_official_index_evidence",
+      "verification": "verified",
+      "contains_placeholders": false,
+      "sha256": "3af5dfb428799d6b4eab894096db3d3627654410b51d411a505efcf5cca7f3ef",
+      "notes": ["The alphabetical groups and Shimano canonical slug are verified."]
+    },
+    {
+      "id": "deal-listing",
+      "path": "deals.html",
+      "media_type": "text/html",
+      "source_url": "https://www.bike-discount.de/en/bike/sale",
+      "roles": ["deals"],
+      "provenance": "sanitized_official_index_evidence",
+      "verification": "verified_facts_representative_markup",
+      "contains_placeholders": false,
+      "sha256": "a9534eda7f0659c91c8925072a7de16e336afa83bd130accfaa7ffcdfabe5f75",
+      "notes": ["Only displayed reduction facts are present. No discount is estimated."]
+    },
+    {
+      "id": "item-detail",
+      "path": "item.html",
+      "media_type": "text/html",
+      "source_url": "https://www.bike-discount.de/en/yamaha-500-wh-36v/13.6ah-frame-battery",
+      "final_url": "https://www.bike-discount.de/en/yamaha-500-wh-36v/13.6ah-frame-battery",
+      "roles": ["item"],
+      "provenance": "sanitized_official_index_evidence",
+      "verification": "verified_product_facts_representative_markup",
+      "contains_placeholders": true,
+      "sha256": "f5a40ad401192c90da239ff0f091b237bbfd0bcb79ea642104730ad65eb0cb25",
+      "notes": ["Name, item number, canonical URL, price text, and availability text are verified. Description, manufacturer number, and EAN values are marked placeholders."]
+    },
+    {
+      "id": "item-variants",
+      "path": "item_variants.html",
+      "media_type": "text/html",
+      "source_url": "research:docs/providers/bike-discount-research.md#items-and-variants",
+      "roles": ["variants"],
+      "provenance": "sanitized_structural_case",
+      "verification": "verified_visible_behavior_with_placeholder_product",
+      "contains_placeholders": true,
+      "sha256": "73ea5d408b1d9255bb67cd24c0ab8610d9dbccc5f7dc7e6caebf7976076fc472",
+      "notes": ["Size labels, selected state, unavailable values, and from-price behavior were verified. The product and input values are test placeholders. Internal variant IDs are not claimed."]
+    },
+    {
+      "id": "item-unavailable",
+      "path": "item_unavailable.html",
+      "media_type": "text/html",
+      "source_url": "research:docs/providers/bike-discount-research.md#items-and-variants",
+      "roles": ["unavailable_item"],
+      "provenance": "sanitized_structural_case",
+      "verification": "representative_unavailable_state",
+      "contains_placeholders": true,
+      "sha256": "dbff202648394a2c48392be0f4e823e061ac851540b77d7cd951e863aeb8fbdb",
+      "notes": ["This file is a parser boundary case. It does not assert that a named public product has this state."]
+    },
+    {
+      "id": "listing-partial",
+      "path": "listing_partial.html",
+      "media_type": "text/html",
+      "source_url": "https://www.bike-discount.de/en/bike/sale",
+      "roles": ["partial_parse"],
+      "provenance": "sanitized_structural_case",
+      "verification": "deliberately_malformed_test_case",
+      "contains_placeholders": true,
+      "sha256": "d82795c0c2f0056573c3d6258006f8a0a181ada313fd651edb84278c7bcaa618",
+      "notes": ["One verified product record stays useful. One marked record has no product name so that partial-result handling can be tested."]
+    }
+  ]
+}

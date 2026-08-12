@@ -1,0 +1,13 @@
+Provider:  bike-discount
+Market:    DE/en/EUR
+Cache:     hit, age 1h0m0s, TTL 24h0m0s
+
+ID   NAME                                        BRAND  PRICE      DISCOUNT         AVAILABILITY  URL
+p-1  Vélo helmet                                 Märké  €79.95     25%, was €99.95  in_stock      https://example.test/p-1
+p-2  界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界…  —      €10 – €20  —                —             https://example.test/long/long/long/long/long/long/lo…
+
+Page:  page 1, size 24, items 2, next no
+
+Warnings
+CODE             MESSAGE          ITEM
+partial_parsing  one card failed  p-3

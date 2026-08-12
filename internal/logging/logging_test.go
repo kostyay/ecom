@@ -39,3 +39,21 @@ func TestNewWritesJSON(t *testing.T) {
 		t.Errorf("message = %v, want test message", record["msg"])
 	}
 }
+
+func TestNewWithoutFileDoesNotCreateUserCacheDirectory(t *testing.T) {
+	cacheHome := filepath.Join(t.TempDir(), "cache-home")
+	t.Setenv("XDG_CACHE_HOME", cacheHome)
+
+	logger, closer, err := New(config.LogSettings{Level: "info"})
+	if err != nil {
+		t.Fatalf("New() error = %v", err)
+	}
+	if closer != nil {
+		t.Error("closer is not nil")
+	}
+	logger.Info("test message")
+
+	if _, err := os.Stat(cacheHome); !os.IsNotExist(err) {
+		t.Errorf("cache directory exists or stat failed unexpectedly: %v", err)
+	}
+}

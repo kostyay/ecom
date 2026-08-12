@@ -1,0 +1,22 @@
+{
+  "name": "bike-discount",
+  "active_capabilities": [
+    "search",
+    "categories",
+    "category_items",
+    "brands",
+    "brand_items",
+    "deals",
+    "filters",
+    "item",
+    "variant_selection"
+  ],
+  "planned_capabilities": [
+    "category_search",
+    "brand_search"
+  ],
+  "page_sizes": [48],
+  "countries": ["DE"],
+  "languages": ["en"],
+  "currencies": ["EUR"]
+}

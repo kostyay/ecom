@@ -1,0 +1,129 @@
+{
+  "name": "bike-discount",
+  "display_name": "Bike-Discount",
+  "description": "Find bicycle products and provider-shown deals.",
+  "capabilities": [
+    {
+      "name": "search",
+      "supported": true,
+      "description": "Search products."
+    },
+    {
+      "name": "brand_search",
+      "supported": false,
+      "notes": [
+        "Use local brand search."
+      ]
+    }
+  ],
+  "search": {
+    "query_required": true,
+    "syntax": "Plain product terms",
+    "examples": [
+      "Shimano XT M8100"
+    ],
+    "notes": [
+      "Search returns products only."
+    ]
+  },
+  "filters": [
+    {
+      "key": "brand",
+      "type": "enum",
+      "description": "Limit results to one or more brands.",
+      "repeatable": true,
+      "allowed_values": [
+        {
+          "value": "shimano",
+          "label": "Shimano",
+          "description": "Shimano products."
+        }
+      ],
+      "examples": [
+        "brand=shimano"
+      ],
+      "applies_to": [
+        "search",
+        "deals"
+      ],
+      "notes": [
+        "Use the provider brand ID."
+      ]
+    }
+  ],
+  "sort_modes": [
+    {
+      "value": "price-asc",
+      "label": "Lowest price",
+      "description": "Sort by displayed item price.",
+      "applies_to": [
+        "search",
+        "deals"
+      ]
+    }
+  ],
+  "pagination": {
+    "mode": "page_number",
+    "first_page": 1,
+    "default_page_size": 48,
+    "supported_page_sizes": [
+      24,
+      48,
+      96
+    ],
+    "reports_total_items": true,
+    "reports_total_pages": true,
+    "notes": [
+      "Each command returns one page."
+    ]
+  },
+  "markets": {
+    "countries": [
+      "DE",
+      "FR"
+    ],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "currencies": [
+      "EUR"
+    ],
+    "notes": [
+      "The site can return its actual currency."
+    ]
+  },
+  "access": {
+    "authentication": "none",
+    "browser": "fallback",
+    "supports_cdp": true,
+    "supports_interactive": true,
+    "notes": [
+      "A challenge can require manual action."
+    ]
+  },
+  "transport": [
+    {
+      "mode": "http",
+      "use_when": "Use for normal requests."
+    },
+    {
+      "mode": "browser",
+      "use_when": "Use when JavaScript is required.",
+      "notes": [
+        "The Core owns the browser."
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "code": "site_changes",
+      "message": "Site changes can affect extraction."
+    }
+  ],
+  "provider_data": {
+    "bike-discount": {
+      "catalog_id": "de"
+    }
+  }
+}

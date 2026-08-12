@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/kostyay/ecom/internal/cli"
+	_ "github.com/kostyay/ecom/providers/bikediscount"
 )
 
 func main() {
