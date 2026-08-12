@@ -3,12 +3,38 @@ package cli
 import (
 	"bytes"
 	"encoding/json"
+	"io"
+	"os"
 	"path/filepath"
 	"strings"
 	"testing"
 
 	"github.com/kostyay/ecom/internal/version"
+	"github.com/spf13/viper"
 )
+
+func TestProviderFlagOverridesConfiguration(t *testing.T) {
+	configPath := filepath.Join(t.TempDir(), "config.yaml")
+	if err := os.WriteFile(configPath, []byte("provider: from-config\n"), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	application := &application{viper: viper.New()}
+	command := application.newRootCommand(io.Discard, io.Discard)
+	command.SetArgs([]string{
+		"version", "--config", configPath, "--provider", "from-flag",
+		"--log-file", filepath.Join(t.TempDir(), "ecom.log"),
+	})
+	if err := command.ExecuteContext(t.Context()); err != nil {
+		t.Fatal(err)
+	}
+	defer application.logCloser.Close()
+	if application.settings.Provider != "from-flag" {
+		t.Errorf("provider = %q, want from-flag", application.settings.Provider)
+	}
+	if application.services != nil {
+		t.Error("provider-free version command initialized application services")
+	}
+}
 
 func TestRun(t *testing.T) {
 	tests := []struct {

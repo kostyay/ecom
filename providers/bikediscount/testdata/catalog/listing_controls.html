@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Bike sale controls</title></head>
+<body>
+<main>
+  <h1>Bike Sale</h1>
+  <form method="get" action="/en/bike/sale">
+    <fieldset><legend>In stock</legend><label><input type="checkbox" name="available" value="1"> In stock</label></fieldset>
+    <fieldset><legend>Brand</legend><label><input data-fixture-placeholder="true" type="checkbox" name="manufacturer" value="00000000000000000000000000000001"> Fixture brand</label></fieldset>
+    <fieldset><legend>Price</legend><label>Minimum <input name="min-price" inputmode="decimal"></label><label>Maximum <input name="max-price" inputmode="decimal"></label></fieldset>
+    <fieldset><legend>Label</legend><label><input data-fixture-placeholder="true" type="checkbox" name="properties" value="00000000000000000000000000000002"> Sale</label></fieldset>
+    <fieldset><legend>Colour</legend><label><input data-fixture-placeholder="true" type="checkbox" name="properties" value="00000000000000000000000000000003"> Black</label></fieldset>
+    <fieldset><legend>Minimum rating</legend><label><input type="radio" name="rating" value="4"> 4</label></fieldset>
+    <label>Sort
+      <select name="order"><option value="standard" selected>Standard</option></select>
+    </label>
+    <input type="hidden" name="p" value="1">
+    <input type="hidden" name="n" value="48">
+  </form>
+</main>
+</body>
+</html>

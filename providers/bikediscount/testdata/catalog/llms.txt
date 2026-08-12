@@ -1,0 +1,9 @@
+# Bike-Discount catalog navigation
+
+[Running](https://www.bike-discount.de/navigation/018c7eacc3e07089b55937edf7eb9e72)
+[Bike](https://www.bike-discount.de/navigation/018c7eacc99370f89d7947c78ee08b5b)
+[Streetwear](https://www.bike-discount.de/navigation/018c7ead02497042a9285a4a9883f748)
+[Ski](https://www.bike-discount.de/navigation/018c7ead0bef70a29aaac185ce6ee42f)
+[Triathlon](https://www.bike-discount.de/navigation/018c7eadb0427077a6df426a045d1c7f)
+[Outdoor](https://www.bike-discount.de/navigation/018c7eadd05e70bca25079f5cc8e2c88)
+[Brands](https://www.bike-discount.de/navigation/018ee59c43b577488595126670213482)

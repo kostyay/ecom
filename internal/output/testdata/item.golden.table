@@ -1,0 +1,21 @@
+Provider:  bike-discount
+Market:    DE/en/EUR
+
+Item
+ID:            p-1
+Name:          Trail bike
+Brand:         Acme
+Price:         —
+Discount:      —
+Availability:  —
+URL:           —
+Description:   A capable trail bike.
+
+Attributes
+NAME   VALUE
+Frame  Carbon
+
+Variants
+ID      ATTRIBUTES          PRICE    AVAILABILITY  SELECTED
+m-red   size=M, color=red   €999.00  in_stock      yes
+l-blue  size=L, color=blue  —        out_of_stock  no

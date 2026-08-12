@@ -14,8 +14,6 @@ import (
 )
 
 const (
-	logDirName    = "ecom"
-	logFileName   = "ecom.log"
 	maxSizeMB     = 10
 	maxBackups    = 3
 	maxAgeDays    = 7
@@ -31,11 +29,8 @@ func New(settings config.LogSettings) (*slog.Logger, io.Closer, error) {
 
 	logFile := settings.File
 	if logFile == "" {
-		cacheDir, err := os.UserCacheDir()
-		if err != nil {
-			return nil, nil, fmt.Errorf("find user cache directory: %w", err)
-		}
-		logFile = filepath.Join(cacheDir, logDirName, logFileName)
+		handler := slog.NewJSONHandler(io.Discard, &slog.HandlerOptions{Level: level})
+		return slog.New(handler), nil, nil
 	}
 
 	if err := os.MkdirAll(filepath.Dir(logFile), directoryMode); err != nil {
