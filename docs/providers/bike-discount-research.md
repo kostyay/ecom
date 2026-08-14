@@ -1,6 +1,6 @@
 # Bike-Discount Provider Research
 
-Status: controlled research on 2026-08-12
+Status: controlled research on 2026-08-13
 
 This note records the public discovery interfaces that were verified for the first
 Bike-Discount provider. It also records the limits of the research. The provider
@@ -43,6 +43,35 @@ endpoint or its response contract stable.
 
 ## Search
 
+Chrome inspection on 2026-08-13 verified the current search form:
+
+```http
+GET /en/search?search=powertube
+```
+
+The response title was `Search results for powertube` and the page contained 28
+current product cards. An exact category term can redirect to its canonical
+category page. For example, `search=helmet` redirected to `/en/helmets`.
+
+Typing in the search field sends this XHR request:
+
+```http
+GET /en/suggest?search=helmet
+```
+
+The XHR response has the `text/html` content type. It is an HTML suggestion
+fragment, not a JSON catalog response. Product cards contain a
+`data-product-information` JSON attribute with the internal catalog ID, name,
+brand, and numeric current price. The displayed SKU, URL, image, price text, and
+original price remain in card markup. No separate JSON search endpoint was
+observed in the storefront flow.
+
+Use the current `search` parameter for production search. Parse the embedded
+product information where it is present, and use the card markup for fields
+that the JSON attribute does not contain.
+
+### Legacy evidence
+
 The public index verifies this legacy search request shape:
 
 ```http
@@ -52,18 +81,6 @@ GET /en/search?sSearch=aggressor
 It produced a page titled `Search results for`. The indexed result count was not
 credible for the query. Thus, `sSearch` can be ignored by the current site. Do
 not use it as the only production search request without a new fixture.
-
-The current Shopware search form can use this candidate request:
-
-```http
-GET /en/search?search=powertube
-```
-
-The `search` parameter was not verified because the fresh browser and direct
-HTTP requests were blocked. Before the search parser is complete, capture the
-form `action` and input `name`, or capture the search navigation request in a
-working browser session. Product suggestions are server-rendered on item pages,
-but they are not a replacement for the search result page.
 
 Search results use the same listing cards, filters, sort control, and page
 control as category listings. Return products only. Do not return category or

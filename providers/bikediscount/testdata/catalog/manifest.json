@@ -1,8 +1,8 @@
 {
   "schema_version": "1",
   "provider": "bike-discount",
-  "capture_date": "2026-08-12",
-  "assembled_date": "2026-08-12",
+  "capture_date": "2026-08-13",
+  "assembled_date": "2026-08-13",
   "market": {
     "country": "DE",
     "language": "en",
@@ -81,6 +81,19 @@
       "contains_placeholders": true,
       "sha256": "70a83ca3ca686bce4168ae1ede0129e29f9e931a43c05dbeee48eb0a0ed4d7fb",
       "notes": ["The request shape and result heading are verified. The result count and query behavior are not stable. Production search must not use this file as proof that sSearch is honored."]
+    },
+    {
+      "id": "current-search",
+      "path": "search_current.html",
+      "media_type": "text/html",
+      "source_url": "https://www.bike-discount.de/en/search?search=powertube",
+      "final_url": "https://www.bike-discount.de/en/search?search=powertube",
+      "roles": ["search_listing"],
+      "provenance": "sanitized_direct_browser_response",
+      "verification": "verified_current_request_and_card_structure",
+      "contains_placeholders": false,
+      "sha256": "7c91256fad30470afa4162617e5f3a79d4e5b07231c9ac6697b5edc445ed94a5",
+      "notes": ["The search parameter, product-box container, embedded product information, displayed SKU, prices, image, links, and pagination relation were verified in Chrome."]
     },
     {
       "id": "listing-controls",

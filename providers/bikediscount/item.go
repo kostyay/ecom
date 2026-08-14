@@ -198,7 +198,7 @@ func extractVisibleVariants(article *htmlNode, itemPrice *provider.Money) []prov
 		}
 		for _, label := range descendants(fieldset, func(node *htmlNode) bool { return node.tag == "label" }) {
 			input := firstDescendant(label, func(node *htmlNode) bool { return node.tag == "input" })
-			value := normalizeText(label.text)
+			value := directText(label)
 			if input == nil || value == "" {
 				continue
 			}
