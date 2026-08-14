@@ -116,8 +116,8 @@ func (implementation) Help(_ context.Context, request provider.HelpRequest) (pro
 		Capabilities: []provider.CapabilityHelp{
 			{
 				Name: provider.CapabilitySearch, Supported: true,
-				Description: "Search products with the verified legacy request shape.",
-				Notes:       []string{"The website can ignore the legacy query parameter. Each result includes a search_semantics_unverified warning."},
+				Description: "Search products with the current verified storefront request.",
+				Notes:       []string{"The search form uses the search query parameter. An exact category term can redirect to its canonical category page."},
 			},
 			supported(provider.CapabilityCategories, "List roots from llms.txt and traverse verified canonical category links."),
 			unsupported(provider.CapabilityCategorySearch, "Category text search is planned over the cached category tree."),
@@ -153,7 +153,7 @@ func (implementation) Help(_ context.Context, request provider.HelpRequest) (pro
 			QueryRequired: true,
 			Syntax:        "plain product text",
 			Examples:      []string{"powertube"},
-			Notes:         []string{"Search uses the verified legacy sSearch request shape. Current query semantics are not verified, and the website can ignore the query."},
+			Notes:         []string{"Search uses the current verified search query parameter. An exact category term can redirect to its canonical category page."},
 		},
 		Markets: &provider.MarketRestrictions{
 			Countries: []string{"DE"}, Languages: []string{"en"}, Currencies: []string{"EUR"},
@@ -175,7 +175,6 @@ func (implementation) Help(_ context.Context, request provider.HelpRequest) (pro
 		Warnings: []provider.HelpWarning{
 			{Code: "site_challenge", Message: "Cloudflare can require manual browser action."},
 			{Code: "market_unverified", Message: "Only the DE/en/EUR market is verified."},
-			{Code: "search_semantics_unverified", Message: "The legacy search request is verified, but the website can ignore its query parameter."},
 		},
 		ProviderData: provider.Data{
 			Name: json.RawMessage(`{"base_url":"https://www.bike-discount.de","shipping_costs_included":false}`),

@@ -58,13 +58,13 @@ func TestItemNumberResolvesThroughSearchBeforeItemPage(t *testing.T) {
 	if result.Item.ID != "20166382" || len(service.requests) != 2 {
 		t.Fatalf("result = %#v; requests = %#v", result, service.requests)
 	}
-	if service.requests[0].URL != bikeDiscountBaseURL+"/en/search" || service.requests[0].Query[0].Name != "sSearch" || service.requests[0].Query[0].Values[0] != "20166382" {
+	if service.requests[0].URL != bikeDiscountBaseURL+"/en/search" || service.requests[0].Query[0].Name != "search" || service.requests[0].Query[0].Values[0] != "20166382" {
 		t.Errorf("numeric resolution request = %#v", service.requests[0])
 	}
 	if service.requests[1].URL != bikeDiscountBaseURL+"/en/yamaha-500-wh-36v/13.6ah-frame-battery" {
 		t.Errorf("item request URL = %q", service.requests[1].URL)
 	}
-	if len(result.Warnings) != 1 || result.Warnings[0].Code != provider.WarningCodeSearchSemanticsUnverified {
+	if len(result.Warnings) != 0 {
 		t.Errorf("resolution warnings = %#v", result.Warnings)
 	}
 }

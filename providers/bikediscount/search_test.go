@@ -9,13 +9,13 @@ import (
 	"github.com/kostyay/ecom/provider"
 )
 
-func TestSearchUsesVerifiedLegacyRequestAndListingParser(t *testing.T) {
+func TestSearchUsesCurrentRequestAndListingParser(t *testing.T) {
 	service := &fakeResourceService{responses: []provider.ResourceResponse{{
-		Body:     readCategoryFixture(t, "search_legacy.html"),
-		FinalURL: bikeDiscountBaseURL + "/en/search?sSearch=aggressor&p=2&n=48",
+		Body:     readCategoryFixture(t, "search_current.html"),
+		FinalURL: bikeDiscountBaseURL + "/en/search?search=powertube&p=2&n=48",
 	}}}
 	page, err := (implementation{}).Search(t.Context(), provider.SearchRequest{
-		Request: bikeDiscountRequest(service), Query: "  aggressor  ",
+		Request: bikeDiscountRequest(service), Query: "  powertube  ",
 		Page: provider.PageRequest{Number: 2, Size: 48}, Sort: &provider.Sort{Value: "standard"},
 		Filters: []provider.Filter{
 			{Key: "manufacturer", Value: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"},
@@ -26,17 +26,19 @@ func TestSearchUsesVerifiedLegacyRequestAndListingParser(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if len(page.Items) != 1 || page.Items[0].Name != "Fixture search product" || page.Items[0].Price == nil || page.Items[0].Price.Amount != "99.99" {
+	if len(page.Items) != 2 || page.Items[0].Name != "Cover Cap PowerTube For Charging Socket" || page.Items[0].ID != "20088648" ||
+		page.Items[0].Brand != "Bosch" || page.Items[0].Price == nil || page.Items[0].Price.Amount != "1.99" ||
+		page.Items[1].OriginalPrice == nil || page.Items[1].OriginalPrice.Amount != "899.00" {
 		t.Fatalf("search products = %#v", page.Items)
 	}
-	if page.Page.Number != 2 || page.Page.Size != 48 || page.Page.HasNext == nil || *page.Page.HasNext {
+	if page.Page.Number != 2 || page.Page.Size != 48 || page.Page.HasNext == nil || !*page.Page.HasNext {
 		t.Errorf("page info = %#v", page.Page)
 	}
-	if len(page.Warnings) != 1 || page.Warnings[0].Code != provider.WarningCodeSearchSemanticsUnverified {
+	if len(page.Warnings) != 0 {
 		t.Fatalf("search warnings = %#v", page.Warnings)
 	}
 	wantQuery := []provider.RequestValue{
-		{Name: "sSearch", Values: []string{"aggressor"}},
+		{Name: "search", Values: []string{"powertube"}},
 		{Name: "p", Values: []string{"2"}},
 		{Name: "n", Values: []string{"48"}},
 		{Name: "order", Values: []string{"standard"}},
@@ -49,7 +51,7 @@ func TestSearchUsesVerifiedLegacyRequestAndListingParser(t *testing.T) {
 }
 
 func TestSearchUsesVerifiedPagingDefaultsAndCurrencyWarning(t *testing.T) {
-	service := &fakeResourceService{responses: []provider.ResourceResponse{{Body: readCategoryFixture(t, "search_legacy.html")}}}
+	service := &fakeResourceService{responses: []provider.ResourceResponse{{Body: readCategoryFixture(t, "search_current.html")}}}
 	request := bikeDiscountRequest(service)
 	request.Market.Currency = "USD"
 	page, err := (implementation{}).Search(t.Context(), provider.SearchRequest{Request: request, Query: "battery"})
@@ -60,15 +62,15 @@ func TestSearchUsesVerifiedPagingDefaultsAndCurrencyWarning(t *testing.T) {
 		t.Errorf("default page = %#v", page.Page)
 	}
 	wantQuery := []provider.RequestValue{
-		{Name: "sSearch", Values: []string{"battery"}},
+		{Name: "search", Values: []string{"battery"}},
 		{Name: "p", Values: []string{"1"}},
 		{Name: "n", Values: []string{"48"}},
 	}
 	if !reflect.DeepEqual(service.requests[0].Query, wantQuery) {
 		t.Errorf("default query = %#v, want %#v", service.requests[0].Query, wantQuery)
 	}
-	if len(page.Warnings) != 2 || page.Warnings[0].Code != provider.WarningCodeSearchSemanticsUnverified ||
-		page.Warnings[1].Code != provider.WarningCodeCurrencyUnavailable || page.Warnings[1].RequestedCurrency != "USD" || page.Warnings[1].ActualCurrency != "EUR" {
+	if len(page.Warnings) != 1 || page.Warnings[0].Code != provider.WarningCodeCurrencyUnavailable ||
+		page.Warnings[0].RequestedCurrency != "USD" || page.Warnings[0].ActualCurrency != "EUR" {
 		t.Fatalf("warnings = %#v", page.Warnings)
 	}
 }

@@ -2,16 +2,16 @@ package bikediscount
 
 import (
 	"bytes"
-	"encoding/xml"
+	"encoding/json"
 	"errors"
 	"fmt"
-	"io"
 	"net/url"
 	"regexp"
 	"strings"
 	"unicode"
 
 	"github.com/kostyay/ecom/provider"
+	"golang.org/x/net/html"
 )
 
 const bikeDiscountBaseURL = "https://www.bike-discount.de"
@@ -29,9 +29,12 @@ var (
 // class hints. Fixture marker attributes are deliberately not selectors.
 var productExtractionSelectors = struct {
 	containerTags       map[string]bool
+	containerClasses    []string
 	nameTags            map[string]bool
 	linkTag             string
 	currentPriceTag     string
+	currentPriceClass   string
+	originalPriceClass  string
 	stockTags           map[string]bool
 	imageTag            string
 	canonicalTag        string
@@ -41,9 +44,12 @@ var productExtractionSelectors = struct {
 	imageAttributes     []string
 }{
 	containerTags:       map[string]bool{"article": true},
+	containerClasses:    []string{"product-box"},
 	nameTags:            map[string]bool{"h1": true, "h2": true, "h3": true},
 	linkTag:             "a",
 	currentPriceTag:     "strong",
+	currentPriceClass:   "product-price",
+	originalPriceClass:  "list-price-price",
 	stockTags:           map[string]bool{"p": true, "span": true, "div": true},
 	imageTag:            "img",
 	canonicalTag:        "link",
@@ -58,6 +64,12 @@ type htmlNode struct {
 	attrs    map[string]string
 	text     string
 	children []*htmlNode
+}
+
+type productCardInformation struct {
+	CatalogID string `json:"id"`
+	Name      string `json:"name"`
+	Brand     string `json:"brand"`
 }
 
 // ProductExtraction contains the useful product cards and recoverable parse warnings.
@@ -79,7 +91,7 @@ func ExtractProductSummaries(document []byte, pageURL string) (ProductExtraction
 func extractProductSummaries(root *htmlNode, pageURL string) ProductExtraction {
 	canonical := canonicalURL(root, pageURL)
 	containers := descendants(root, func(node *htmlNode) bool {
-		return productExtractionSelectors.containerTags[node.tag]
+		return productExtractionSelectors.containerTags[node.tag] || hasAnyClass(node, productExtractionSelectors.containerClasses)
 	})
 	products := make([]provider.ProductSummary, 0, len(containers))
 	for _, container := range containers {
@@ -113,13 +125,16 @@ func extractListing(document []byte, pageURL string) (ProductExtraction, *bool, 
 }
 
 func extractProduct(container *htmlNode, pageURL, canonical string, useCanonical bool) (provider.ProductSummary, bool) {
+	information := extractProductCardInformation(container)
 	link := firstDescendant(container, func(node *htmlNode) bool {
 		return node.tag == productExtractionSelectors.linkTag && strings.TrimSpace(node.attrs["href"]) != "" && nodeText(node) != ""
 	})
-	name := ""
+	name := information.Name
 	productURL := ""
 	if link != nil {
-		name = nodeText(link)
+		if name == "" {
+			name = nodeText(link)
+		}
 		productURL = absoluteURL(link.attrs["href"], pageURL)
 	}
 	if name == "" {
@@ -137,14 +152,24 @@ func extractProduct(container *htmlNode, pageURL, canonical string, useCanonical
 		productURL = canonical
 	}
 
+	brand := information.Brand
+	if brand == "" {
+		brand = extractBrand(container)
+	}
 	product := provider.ProductSummary{
 		ID:           extractItemID(container),
 		URL:          productURL,
 		Name:         name,
-		Brand:        extractBrand(container),
+		Brand:        brand,
 		ImageURL:     extractImageURL(container, pageURL),
 		DetailLevel:  provider.DetailLevelSummary,
 		Availability: provider.AvailabilityUnknown,
+	}
+	if information.CatalogID != "" {
+		encoded, _ := json.Marshal(struct {
+			CatalogID string `json:"catalog_id"`
+		}{CatalogID: information.CatalogID})
+		product.ProviderData = provider.Data{Name: encoded}
 	}
 	product.Price, product.OriginalPrice, product.DiscountAmount = extractPrices(container)
 	product.DiscountPercent = extractDiscountPercent(container)
@@ -152,10 +177,38 @@ func extractProduct(container *htmlNode, pageURL, canonical string, useCanonical
 	return product, true
 }
 
+func extractProductCardInformation(container *htmlNode) productCardInformation {
+	value := strings.TrimSpace(container.attrs["data-product-information"])
+	if value == "" {
+		return productCardInformation{}
+	}
+	var information productCardInformation
+	if err := json.Unmarshal([]byte(value), &information); err != nil {
+		return productCardInformation{}
+	}
+	information.CatalogID = normalizeText(information.CatalogID)
+	information.Name = normalizeText(information.Name)
+	information.Brand = normalizeText(information.Brand)
+	return information
+}
+
 func extractPrices(container *htmlNode) (current, original, discount *provider.Money) {
-	for _, node := range descendants(container, func(node *htmlNode) bool { return nodeText(node) != "" }) {
+	priceNodes := descendants(container, func(node *htmlNode) bool {
+		return hasClass(node, productExtractionSelectors.originalPriceClass) || hasClass(node, productExtractionSelectors.currentPriceClass) ||
+			node.tag == productExtractionSelectors.currentPriceTag || strings.TrimSpace(node.attrs["aria-label"]) != ""
+	})
+	for _, node := range priceNodes {
 		label := strings.ToLower(strings.TrimSpace(node.attrs["aria-label"]))
-		money := parseMoney(nodeText(node))
+		text := nodeText(node)
+		if hasClass(node, productExtractionSelectors.originalPriceClass) && original == nil {
+			original = parseSelectedMoney(text, false)
+			continue
+		}
+		if hasClass(node, productExtractionSelectors.currentPriceClass) && current == nil {
+			current = parseSelectedMoney(text, true)
+			continue
+		}
+		money := parseMoney(text)
 		if money == nil {
 			continue
 		}
@@ -173,6 +226,32 @@ func extractPrices(container *htmlNode) (current, original, discount *provider.M
 		}
 	}
 	return current, original, discount
+}
+
+func parseSelectedMoney(text string, last bool) *provider.Money {
+	display := normalizeText(text)
+	matches := pricePattern.FindAllStringIndex(display, -1)
+	if len(matches) == 0 {
+		return nil
+	}
+	selected := matches[0]
+	if last {
+		selected = matches[len(matches)-1]
+	}
+	candidate := display[selected[0]:selected[1]]
+	suffix := strings.TrimSpace(display[selected[1]:])
+	for _, marker := range []string{"€", "£", "$", "EUR", "GBP", "USD"} {
+		if strings.HasPrefix(suffix, marker) {
+			return parseMoney(candidate + " " + marker)
+		}
+	}
+	prefix := strings.TrimSpace(display[:selected[0]])
+	for _, marker := range []string{"€", "£", "$"} {
+		if strings.HasSuffix(prefix, marker) {
+			return parseMoney(marker + candidate)
+		}
+	}
+	return nil
 }
 
 func parseMoney(text string) *provider.Money {
@@ -282,6 +361,14 @@ func extractItemID(container *htmlNode) string {
 			return value
 		}
 	}
+	sku := firstDescendant(container, func(node *htmlNode) bool {
+		return node.tag == "input" && strings.EqualFold(strings.TrimSpace(node.attrs["name"]), "dtgs-gtm-product-sku")
+	})
+	if sku != nil {
+		if value := normalizeText(sku.attrs["value"]); value != "" {
+			return value
+		}
+	}
 	match := itemIDPattern.FindStringSubmatch(nodeText(container))
 	if len(match) == 2 {
 		return strings.TrimSpace(match[1])
@@ -320,38 +407,32 @@ func absoluteURL(reference, pageURL string) string {
 }
 
 func parseHTML(document []byte) (*htmlNode, error) {
-	root := &htmlNode{}
-	stack := []*htmlNode{root}
-	decoder := xml.NewDecoder(bytes.NewReader(document))
-	decoder.Strict = false
-	decoder.AutoClose = xml.HTMLAutoClose
-	decoder.Entity = xml.HTMLEntity
-	for {
-		token, err := decoder.Token()
-		if err != nil {
-			if errors.Is(err, io.EOF) {
-				break
-			}
-			return nil, err
-		}
-		switch value := token.(type) {
-		case xml.StartElement:
-			node := &htmlNode{tag: strings.ToLower(value.Name.Local), attrs: make(map[string]string)}
-			for _, attribute := range value.Attr {
-				node.attrs[strings.ToLower(attribute.Name.Local)] = attribute.Value
-			}
-			parent := stack[len(stack)-1]
-			parent.children = append(parent.children, node)
-			stack = append(stack, node)
-		case xml.EndElement:
-			if len(stack) > 1 {
-				stack = stack[:len(stack)-1]
-			}
-		case xml.CharData:
-			stack[len(stack)-1].text += string(value)
-		}
+	documentRoot, err := html.Parse(bytes.NewReader(document))
+	if err != nil {
+		return nil, err
 	}
-	return root, nil
+	return convertHTMLNode(documentRoot), nil
+}
+
+func convertHTMLNode(source *html.Node) *htmlNode {
+	node := &htmlNode{}
+	switch source.Type {
+	case html.ElementNode:
+		node.tag = strings.ToLower(source.Data)
+		node.attrs = make(map[string]string, len(source.Attr))
+		for _, attribute := range source.Attr {
+			node.attrs[strings.ToLower(attribute.Key)] = attribute.Val
+		}
+	case html.TextNode:
+		node.text = source.Data
+	}
+	for child := source.FirstChild; child != nil; child = child.NextSibling {
+		if child.Type != html.ElementNode && child.Type != html.TextNode && child.Type != html.DocumentNode {
+			continue
+		}
+		node.children = append(node.children, convertHTMLNode(child))
+	}
+	return node
 }
 
 func descendants(root *htmlNode, match func(*htmlNode) bool) []*htmlNode {
@@ -395,6 +476,17 @@ func nodeText(node *htmlNode) string {
 	return normalizeText(builder.String())
 }
 
+func directText(node *htmlNode) string {
+	var builder strings.Builder
+	for _, child := range node.children {
+		if child.tag == "" && child.text != "" {
+			builder.WriteString(child.text)
+			builder.WriteByte(' ')
+		}
+	}
+	return normalizeText(builder.String())
+}
+
 func normalizeText(value string) string {
 	return strings.Join(strings.FieldsFunc(value, unicode.IsSpace), " ")
 }
@@ -413,4 +505,22 @@ func hasHint(node *htmlNode, hints []string) bool {
 		node.attrs["class"], node.attrs["itemprop"], node.attrs["aria-label"], node.attrs["data-field"],
 	}, " "))
 	return containsAny(values, hints)
+}
+
+func hasClass(node *htmlNode, class string) bool {
+	for _, value := range strings.Fields(node.attrs["class"]) {
+		if value == class {
+			return true
+		}
+	}
+	return false
+}
+
+func hasAnyClass(node *htmlNode, classes []string) bool {
+	for _, class := range classes {
+		if hasClass(node, class) {
+			return true
+		}
+	}
+	return false
 }

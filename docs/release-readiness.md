@@ -83,8 +83,8 @@ These risks do not block the offline release:
 
 - Cloudflare can block direct HTTP and isolated browser access. A person can
   need interactive browser action or an existing Chrome CDP session.
-- The verified legacy Bike-Discount search request can ignore the query. Each
-  search result includes `search_semantics_unverified`.
+- Bike-Discount search uses the current verified `search` parameter. An exact
+  category term can redirect to its canonical category page.
 - Only the `DE/en/EUR` market, page size 48, and `standard` sort are verified.
 - Filter IDs must come from the current target listing. Static filter discovery
   cannot supply the site IDs for a live listing.

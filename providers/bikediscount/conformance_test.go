@@ -13,8 +13,8 @@ import (
 
 func TestProviderConformanceOffline(t *testing.T) {
 	resources := conformance.NewFixtureService(
-		conformanceFixture(t, "search_legacy.html", bikeDiscountBaseURL+"/en/search", []provider.RequestValue{
-			{Name: "sSearch", Values: []string{"aggressor"}},
+		conformanceFixture(t, "search_current.html", bikeDiscountBaseURL+"/en/search", []provider.RequestValue{
+			{Name: "search", Values: []string{"powertube"}},
 			{Name: "p", Values: []string{"1"}},
 			{Name: "n", Values: []string{"48"}},
 		}),
@@ -38,11 +38,11 @@ func TestProviderConformanceOffline(t *testing.T) {
 		Resources:    resources,
 		Cases: []conformance.OperationCase{
 			{
-				Name: "legacy product search", Capability: provider.CapabilitySearch,
+				Name: "current product search", Capability: provider.CapabilitySearch,
 				Invoke: func(ctx context.Context, implementation provider.Provider) (any, error) {
-					return implementation.Search(ctx, provider.SearchRequest{Request: request, Query: "aggressor"})
+					return implementation.Search(ctx, provider.SearchRequest{Request: request, Query: "powertube"})
 				},
-				Check: checkProductPage("Fixture search product"),
+				Check: checkProductPage("Cover Cap PowerTube For Charging Socket"),
 			},
 			{
 				Name: "llms root categories", Capability: provider.CapabilityCategories,
@@ -181,7 +181,7 @@ func listingQuery() []provider.RequestValue {
 func checkProductPage(wantName string) func(any) error {
 	return func(value any) error {
 		page := value.(provider.ProductPage)
-		if len(page.Items) != 1 || page.Items[0].Name != wantName {
+		if len(page.Items) == 0 || page.Items[0].Name != wantName {
 			return fmt.Errorf("products = %#v", page.Items)
 		}
 		return nil

@@ -30,7 +30,7 @@ ecom search "powertube"
 ecom search "powertube" --page 1 --page-size 48 -o table
 ```
 
-Bike-Discount uses a verified legacy search request. The site can ignore the query. Search results include the `search_semantics_unverified` warning. Check the product names before you use the result.
+Bike-Discount uses the current verified `search` request parameter. An exact category term can redirect to its canonical category page.
 
 ### Categories
 
@@ -343,7 +343,7 @@ Stable codes are:
 | `response_too_large` | A response is larger than the configured limit. |
 | `invalid_provider_result` | Provider output does not satisfy the SDK contract. |
 
-Warnings do not make a useful result fail. Read `warnings` on every successful JSON result. Important warning codes are `partial_parsing`, `currency_unavailable`, and `search_semantics_unverified`.
+Warnings do not make a useful result fail. Read `warnings` on every successful JSON result. Important warning codes include `partial_parsing` and `currency_unavailable`.
 
 ## Bike-Discount limits
 
@@ -352,7 +352,7 @@ Warnings do not make a useful result fail. Read `warnings` on every successful J
 - Prices exclude shipping and optional fees.
 - Page numbers start at 1. Page size 48 is the only verified size.
 - `standard` is the only verified sort value.
-- Search can ignore the legacy query parameter. Check returned products.
+- An exact search term can redirect to a canonical category page.
 - Category and brand text search run locally over provider listings.
 - Deals come only from the main bike sale page and only use site-shown reductions.
 - Filter IDs must come from the current target listing.
