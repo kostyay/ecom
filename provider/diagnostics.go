@@ -104,8 +104,8 @@ func (e *CodedError) Is(target error) bool {
 
 // ErrorCodeOf gets the first coded error code in an error chain.
 func ErrorCodeOf(err error) (ErrorCode, bool) {
-	var coded *CodedError
-	if !errors.As(err, &coded) || coded == nil {
+	coded, ok := errors.AsType[*CodedError](err)
+	if !ok || coded == nil {
 		return "", false
 	}
 	return coded.Code, true

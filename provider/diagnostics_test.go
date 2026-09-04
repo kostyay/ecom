@@ -61,8 +61,8 @@ func TestCodedErrorPreservesCauseAndSafeMessage(t *testing.T) {
 		t.Fatal("errors.Is matched a different stable code")
 	}
 
-	var got *CodedError
-	if !errors.As(err, &got) {
+	got, ok := errors.AsType[*CodedError](err)
+	if !ok {
 		t.Fatal("errors.As did not find CodedError")
 	}
 	if got != coded {

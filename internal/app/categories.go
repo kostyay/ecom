@@ -136,10 +136,8 @@ func (services *Services) CategoryItems(ctx context.Context, input CategoryItems
 		Refresh: input.Refresh, StaleIfError: input.StaleIfError,
 	}, input.Interactive)
 	result, err := services.Provider.CategoryItems(ctx, provider.CategoryItemsRequest{
-		Request: provider.Request{
-			Market: services.Market, Pricing: PricingFromConfig(services.Settings.Pricing),
-			Cache: collector.cache, Interactive: input.Interactive, Resources: collector,
-		},
+		Market: services.Market, Pricing: PricingFromConfig(services.Settings.Pricing),
+		Cache: collector.cache, Interactive: input.Interactive, Resources: collector,
 		CategoryID: input.CategoryID, Filters: filters, Sort: sortMode, Page: page,
 	})
 	if err != nil {
@@ -155,9 +153,8 @@ func (services *Services) selectedProviderHelp(ctx context.Context) (provider.He
 	if services == nil || services.Provider == nil {
 		return provider.Help{}, errors.New("application provider services are required")
 	}
-	result, err := services.Provider.Help(ctx, provider.HelpRequest{Request: provider.Request{
-		Market: services.Market, Pricing: PricingFromConfig(services.Settings.Pricing),
-	}})
+	result, err := services.Provider.Help(ctx, provider.HelpRequest{
+		Market: services.Market, Pricing: PricingFromConfig(services.Settings.Pricing)})
 	if err != nil {
 		return provider.Help{}, err
 	}

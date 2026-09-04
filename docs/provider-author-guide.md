@@ -272,7 +272,7 @@ package tinyshop
 
 import (
 	"context"
-	"encoding/json"
+	json "encoding/json/v2"
 	"fmt"
 	"net/http"
 	"strings"
@@ -297,7 +297,7 @@ func registration() provider.Registration {
 	}
 }
 
-func (implementation) ValidateConfig(configuration map[string]interface{}) error {
+func (implementation) ValidateConfig(configuration map[string]any) error {
 	for key := range configuration {
 		return provider.NewError(
 			provider.ErrorCodeInvalidProviderConfig,
@@ -350,8 +350,8 @@ type searchDocument struct {
 		Currency string `json:"currency"`
 		Display  string `json:"display"`
 	} `json:"products"`
-	Page       int  `json:"page"`
-	HasNext    bool `json:"has_next"`
+	Page       int  `json:"page,omitzero"`
+	HasNext    bool `json:"has_next,omitzero"`
 }
 
 func (implementation) Search(ctx context.Context, request provider.SearchRequest) (provider.ProductPage, error) {
@@ -487,10 +487,7 @@ func TestProviderConformance(t *testing.T) {
 			Name:       "search fixture",
 			Capability: provider.CapabilitySearch,
 			Invoke: func(ctx context.Context, registered provider.Provider) (any, error) {
-				return registered.Search(ctx, provider.SearchRequest{
-					Request: provider.Request{Resources: resources},
-					Query:   "helmet",
-				})
+				return registered.Search(ctx, provider.SearchRequest{Resources: resources, Query: "helmet"})
 			},
 		}},
 	})
@@ -522,4 +519,3 @@ go test ./...
 go test -race ./...
 go vet ./...
 ```
-

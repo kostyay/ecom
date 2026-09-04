@@ -57,7 +57,6 @@ func (r Report) Passed() bool {
 func Run(t *testing.T, suite Suite) {
 	t.Helper()
 	for _, check := range Check(t.Context(), suite).Checks {
-		check := check
 		t.Run(check.Name, func(t *testing.T) {
 			if check.Err != nil {
 				t.Error(check.Err)

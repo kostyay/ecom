@@ -20,7 +20,7 @@ func TestRawResponseRepositoryRoundTripAndAccessTime(t *testing.T) {
 	repository := openRawResponseRepository(t, 4096)
 	entry := testRawResponseEntry("v1:key", "bike-discount")
 
-	stored, err := repository.Put(context.Background(), entry)
+	stored, err := repository.Put(t.Context(), entry)
 	if err != nil {
 		t.Fatalf("Put: %v", err)
 	}
@@ -36,7 +36,7 @@ func TestRawResponseRepositoryRoundTripAndAccessTime(t *testing.T) {
 	}
 
 	accessedAt := entry.AccessedAt.Add(time.Hour)
-	got, err := repository.Get(context.Background(), entry.Key, accessedAt)
+	got, err := repository.Get(t.Context(), entry.Key, accessedAt)
 	if err != nil {
 		t.Fatalf("Get: %v", err)
 	}
@@ -47,7 +47,7 @@ func TestRawResponseRepositoryRoundTripAndAccessTime(t *testing.T) {
 	}
 
 	// A read with an older clock value must not make LRU metadata go backward.
-	got, err = repository.Get(context.Background(), entry.Key, entry.StoredAt)
+	got, err = repository.Get(t.Context(), entry.Key, entry.StoredAt)
 	if err != nil {
 		t.Fatalf("Get with old access time: %v", err)
 	}
@@ -68,7 +68,7 @@ func TestCacheServiceCompressesSQLiteAndRestoresProviderBody(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	got, _, err := service.Fetch(context.Background(), "v1:compressed", time.Hour, provider.CachePolicy{}, func(context.Context) (cache.Entry, error) {
+	got, _, err := service.Fetch(t.Context(), "v1:compressed", time.Hour, provider.CachePolicy{}, func(context.Context) (cache.Entry, error) {
 		entry := testRawResponseEntry("unused", "bike-discount")
 		entry.Body = append([]byte(nil), body...)
 		return entry, nil
@@ -79,7 +79,7 @@ func TestCacheServiceCompressesSQLiteAndRestoresProviderBody(t *testing.T) {
 	if got.Encoding != cache.EncodingIdentity || !reflect.DeepEqual(got.Body, body) {
 		t.Fatal("fresh service response differs from transport response")
 	}
-	stored, err := repository.ListByProvider(context.Background(), "bike-discount")
+	stored, err := repository.ListByProvider(t.Context(), "bike-discount")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -90,7 +90,7 @@ func TestCacheServiceCompressesSQLiteAndRestoresProviderBody(t *testing.T) {
 		t.Fatalf("stored entry encoding/body size = %q/%d", stored[0].Encoding, len(stored[0].Body))
 	}
 
-	got, metadata, err := service.Fetch(context.Background(), "v1:compressed", time.Hour, provider.CachePolicy{}, func(context.Context) (cache.Entry, error) {
+	got, metadata, err := service.Fetch(t.Context(), "v1:compressed", time.Hour, provider.CachePolicy{}, func(context.Context) (cache.Entry, error) {
 		t.Fatal("cache hit called fetch")
 		return cache.Entry{}, nil
 	})
@@ -105,7 +105,7 @@ func TestCacheServiceCompressesSQLiteAndRestoresProviderBody(t *testing.T) {
 func TestRawResponseRepositoryUpsert(t *testing.T) {
 	repository := openRawResponseRepository(t, 4096)
 	entry := testRawResponseEntry("v1:key", "bike-discount")
-	if _, err := repository.Put(context.Background(), entry); err != nil {
+	if _, err := repository.Put(t.Context(), entry); err != nil {
 		t.Fatal(err)
 	}
 
@@ -115,18 +115,18 @@ func TestRawResponseRepositoryUpsert(t *testing.T) {
 	replacement.StoredAt = entry.StoredAt.Add(time.Hour)
 	replacement.AccessedAt = replacement.StoredAt
 	replacement.ExpiresAt = replacement.StoredAt.Add(24 * time.Hour)
-	stored, err := repository.Put(context.Background(), replacement)
+	stored, err := repository.Put(t.Context(), replacement)
 	if err != nil {
 		t.Fatalf("Put replacement: %v", err)
 	}
-	got, err := repository.Get(context.Background(), entry.Key, replacement.AccessedAt)
+	got, err := repository.Get(t.Context(), entry.Key, replacement.AccessedAt)
 	if err != nil {
 		t.Fatal(err)
 	}
 	if !reflect.DeepEqual(got, stored) {
 		t.Errorf("Get replacement = %#v, want %#v", got, stored)
 	}
-	oldProvider, err := repository.ListByProvider(context.Background(), entry.Provider)
+	oldProvider, err := repository.ListByProvider(t.Context(), entry.Provider)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -137,7 +137,7 @@ func TestRawResponseRepositoryUpsert(t *testing.T) {
 
 func TestRawResponseRepositoryMissing(t *testing.T) {
 	repository := openRawResponseRepository(t, 4096)
-	_, err := repository.Get(context.Background(), "v1:missing", time.Now())
+	_, err := repository.Get(t.Context(), "v1:missing", time.Now())
 	if !errors.Is(err, cache.ErrEntryNotFound) {
 		t.Fatalf("Get error = %v, want ErrEntryNotFound", err)
 	}
@@ -151,12 +151,12 @@ func TestRawResponseRepositoryListsOneProvider(t *testing.T) {
 		testRawResponseEntry("v1:c", "other-provider"),
 	}
 	for _, entry := range entries {
-		if _, err := repository.Put(context.Background(), entry); err != nil {
+		if _, err := repository.Put(t.Context(), entry); err != nil {
 			t.Fatal(err)
 		}
 	}
 
-	got, err := repository.ListByProvider(context.Background(), "bike-discount")
+	got, err := repository.ListByProvider(t.Context(), "bike-discount")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -193,7 +193,7 @@ func TestRawResponseRepositoryRejectsInvalidEntries(t *testing.T) {
 			repository := openRawResponseRepository(t, 4096)
 			entry := cloneTestEntry(valid)
 			test.change(&entry)
-			_, err := repository.Put(context.Background(), entry)
+			_, err := repository.Put(t.Context(), entry)
 			if err == nil || !strings.Contains(err.Error(), test.want) {
 				t.Fatalf("Put error = %v, want text %q", err, test.want)
 			}
@@ -206,7 +206,7 @@ func TestRawResponseRepositoryRejectsOversizedBodyAndAccountsForEntry(t *testing
 		repository := openRawResponseRepository(t, 64)
 		entry := testRawResponseEntry("v1:key", "bike-discount")
 		entry.Body = make([]byte, 65)
-		_, err := repository.Put(context.Background(), entry)
+		_, err := repository.Put(t.Context(), entry)
 		if err == nil || !strings.Contains(err.Error(), "body size") {
 			t.Fatalf("Put error = %v, want body size error", err)
 		}
@@ -217,7 +217,7 @@ func TestRawResponseRepositoryRejectsOversizedBodyAndAccountsForEntry(t *testing
 		entry := testRawResponseEntry("v1:key", "bike-discount")
 		entry.Body = []byte("small")
 		entry.SafeHeaders = map[string][]string{"X-Large": {strings.Repeat("x", 128)}}
-		stored, err := repository.Put(context.Background(), entry)
+		stored, err := repository.Put(t.Context(), entry)
 		if err != nil {
 			t.Fatalf("Put: %v", err)
 		}
@@ -236,12 +236,12 @@ func TestRawResponseRepositoryDeleteExpiredUsesStableExpiryOrder(t *testing.T) {
 		if key == "v1:a" {
 			entry.ExpiresAt = now.Add(-2 * time.Hour) // Tie with v1:b; key decides.
 		}
-		if _, err := repository.Put(context.Background(), entry); err != nil {
+		if _, err := repository.Put(t.Context(), entry); err != nil {
 			t.Fatal(err)
 		}
 	}
 
-	result, err := repository.DeleteExpired(context.Background(), now, 1)
+	result, err := repository.DeleteExpired(t.Context(), now, 1)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -250,7 +250,7 @@ func TestRawResponseRepositoryDeleteExpiredUsesStableExpiryOrder(t *testing.T) {
 	}
 	assertRawResponseKeys(t, repository, []string{"v1:b", "v1:c"})
 
-	result, err = repository.DeleteExpired(context.Background(), now, 0)
+	result, err = repository.DeleteExpired(t.Context(), now, 0)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -271,7 +271,7 @@ func TestRawResponseRepositoryPruneToSizeUsesStableLRUOrder(t *testing.T) {
 		if key == "v1:c" {
 			entry.AccessedAt = base.Add(time.Hour)
 		}
-		stored, err := repository.Put(context.Background(), entry)
+		stored, err := repository.Put(t.Context(), entry)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -279,7 +279,7 @@ func TestRawResponseRepositoryPruneToSizeUsesStableLRUOrder(t *testing.T) {
 		oneSize = stored.SizeBytes
 	}
 
-	result, err := repository.PruneToSize(context.Background(), total-oneSize)
+	result, err := repository.PruneToSize(t.Context(), total-oneSize)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -288,7 +288,7 @@ func TestRawResponseRepositoryPruneToSizeUsesStableLRUOrder(t *testing.T) {
 	}
 	assertRawResponseKeys(t, repository, []string{"v1:b", "v1:c"})
 
-	result, err = repository.PruneToSize(context.Background(), oneSize)
+	result, err = repository.PruneToSize(t.Context(), oneSize)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -309,20 +309,20 @@ func TestRawResponsePruningKeepsBrowserSessions(t *testing.T) {
 		t.Fatal(err)
 	}
 	record := testBrowserSessionRecord("bike-discount", testSessionMarket())
-	if _, err := sessions.Put(context.Background(), record); err != nil {
+	if _, err := sessions.Put(t.Context(), record); err != nil {
 		t.Fatal(err)
 	}
 	entry := testRawResponseEntry("v1:expired", "bike-discount")
-	if _, err := repository.Put(context.Background(), entry); err != nil {
+	if _, err := repository.Put(t.Context(), entry); err != nil {
 		t.Fatal(err)
 	}
-	if _, err := repository.DeleteExpired(context.Background(), entry.ExpiresAt, 0); err != nil {
+	if _, err := repository.DeleteExpired(t.Context(), entry.ExpiresAt, 0); err != nil {
 		t.Fatal(err)
 	}
-	if _, err := repository.PruneToSize(context.Background(), 1); err != nil {
+	if _, err := repository.PruneToSize(t.Context(), 1); err != nil {
 		t.Fatal(err)
 	}
-	if _, err := sessions.Get(context.Background(), record.Provider, record.Market); err != nil {
+	if _, err := sessions.Get(t.Context(), record.Provider, record.Market); err != nil {
 		t.Fatalf("browser session after response pruning: %v", err)
 	}
 }
@@ -341,13 +341,13 @@ func TestRawResponseRepositoryPruneIsAtomicAndCountsBytes(t *testing.T) {
 
 	stored := make(map[string]cache.Entry)
 	for _, entry := range []cache.Entry{expired, freshOld, freshNew} {
-		got, err := repository.Put(context.Background(), entry)
+		got, err := repository.Put(t.Context(), entry)
 		if err != nil {
 			t.Fatal(err)
 		}
 		stored[entry.Key] = got
 	}
-	result, err := repository.Prune(context.Background(), now, stored["v1:new"].SizeBytes)
+	result, err := repository.Prune(t.Context(), now, stored["v1:new"].SizeBytes)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -357,7 +357,7 @@ func TestRawResponseRepositoryPruneIsAtomicAndCountsBytes(t *testing.T) {
 	}
 	assertRawResponseKeys(t, repository, []string{"v1:new"})
 
-	result, err = repository.Prune(context.Background(), now, stored["v1:new"].SizeBytes)
+	result, err = repository.Prune(t.Context(), now, stored["v1:new"].SizeBytes)
 	if err != nil || result != (cache.PruneResult{}) {
 		t.Fatalf("second Prune = %#v, %v", result, err)
 	}
@@ -373,12 +373,12 @@ func TestRawResponseRepositoryPruneRollsBackAllSteps(t *testing.T) {
 			entry.ExpiresAt = now.Add(time.Hour)
 			entry.AccessedAt = now.Add(-time.Hour)
 		}
-		if _, err := repository.Put(context.Background(), entry); err != nil {
+		if _, err := repository.Put(t.Context(), entry); err != nil {
 			t.Fatal(err)
 		}
 	}
 	repository.beforeCommit = func() error { return errors.New("test rollback") }
-	if _, err := repository.Prune(context.Background(), now, 1); err == nil {
+	if _, err := repository.Prune(t.Context(), now, 1); err == nil {
 		t.Fatal("Prune rollback error = nil")
 	}
 	assertRawResponseKeys(t, repository, []string{"v1:expired", "v1:fresh"})
@@ -395,32 +395,32 @@ func TestRawResponseRepositoryClearScopesAndKeepsSessions(t *testing.T) {
 		t.Fatal(err)
 	}
 	record := testBrowserSessionRecord("bike-discount", testSessionMarket())
-	if _, err := sessions.Put(context.Background(), record); err != nil {
+	if _, err := sessions.Put(t.Context(), record); err != nil {
 		t.Fatal(err)
 	}
 	stored := make(map[string]cache.Entry)
 	for _, pair := range [][2]string{{"v1:bike", "bike-discount"}, {"v1:other", "other-provider"}} {
-		entry, err := repository.Put(context.Background(), testRawResponseEntry(pair[0], pair[1]))
+		entry, err := repository.Put(t.Context(), testRawResponseEntry(pair[0], pair[1]))
 		if err != nil {
 			t.Fatal(err)
 		}
 		stored[pair[0]] = entry
 	}
-	result, err := repository.DeleteByProvider(context.Background(), "bike-discount")
+	result, err := repository.DeleteByProvider(t.Context(), "bike-discount")
 	if err != nil || result != (cache.PruneResult{EntriesDeleted: 1, BytesDeleted: stored["v1:bike"].SizeBytes}) {
 		t.Fatalf("DeleteByProvider = %#v, %v", result, err)
 	}
-	if entries, err := repository.ListByProvider(context.Background(), "other-provider"); err != nil || len(entries) != 1 {
+	if entries, err := repository.ListByProvider(t.Context(), "other-provider"); err != nil || len(entries) != 1 {
 		t.Fatalf("other provider entries = %d, %v", len(entries), err)
 	}
-	result, err = repository.DeleteAll(context.Background())
+	result, err = repository.DeleteAll(t.Context())
 	if err != nil || result != (cache.PruneResult{EntriesDeleted: 1, BytesDeleted: stored["v1:other"].SizeBytes}) {
 		t.Fatalf("DeleteAll = %#v, %v", result, err)
 	}
-	if _, err := sessions.Get(context.Background(), record.Provider, record.Market); err != nil {
+	if _, err := sessions.Get(t.Context(), record.Provider, record.Market); err != nil {
 		t.Fatalf("session after response clear: %v", err)
 	}
-	result, err = repository.DeleteAll(context.Background())
+	result, err = repository.DeleteAll(t.Context())
 	if err != nil || result != (cache.PruneResult{}) {
 		t.Fatalf("second DeleteAll = %#v, %v", result, err)
 	}
@@ -428,7 +428,7 @@ func TestRawResponseRepositoryClearScopesAndKeepsSessions(t *testing.T) {
 
 func TestRawResponseMaintenanceHonorsCancellation(t *testing.T) {
 	repository := openRawResponseRepository(t, 4096)
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	cancel()
 	if _, err := repository.DeleteAll(ctx); !errors.Is(err, context.Canceled) {
 		t.Fatalf("DeleteAll error = %v, want context.Canceled", err)
@@ -437,7 +437,7 @@ func TestRawResponseMaintenanceHonorsCancellation(t *testing.T) {
 
 func assertRawResponseKeys(t *testing.T, repository *RawResponseRepository, want []string) {
 	t.Helper()
-	entries, err := repository.ListByProvider(context.Background(), "shop")
+	entries, err := repository.ListByProvider(t.Context(), "shop")
 	if err != nil {
 		t.Fatal(err)
 	}

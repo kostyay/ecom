@@ -57,15 +57,15 @@ func TestServiceResponseOperations(t *testing.T) {
 	}
 	service := newTestService(t, responses, &fakeSessions{})
 
-	pruned, err := service.PruneResponses(context.Background())
+	pruned, err := service.PruneResponses(t.Context())
 	if err != nil || pruned != (ResponseResult{EntriesDeleted: 2, BytesReleased: 20}) {
 		t.Fatalf("PruneResponses = %#v, %v", pruned, err)
 	}
-	cleared, err := service.ClearResponses(context.Background())
+	cleared, err := service.ClearResponses(t.Context())
 	if err != nil || cleared != (ResponseResult{EntriesDeleted: 3, BytesReleased: 30}) {
 		t.Fatalf("ClearResponses = %#v, %v", cleared, err)
 	}
-	providerResult, err := service.ClearProviderResponses(context.Background(), "bike-discount")
+	providerResult, err := service.ClearProviderResponses(t.Context(), "bike-discount")
 	if err != nil || providerResult != (ResponseResult{EntriesDeleted: 1, BytesReleased: 10}) || responses.provider != "bike-discount" {
 		t.Fatalf("ClearProviderResponses = %#v, %v, provider %q", providerResult, err, responses.provider)
 	}
@@ -75,12 +75,12 @@ func TestServiceClearsExactSessionAndReportsIdempotence(t *testing.T) {
 	market := provider.Market{Country: "DE", Language: "en", Currency: "EUR"}
 	sessions := &fakeSessions{deleted: true}
 	service := newTestService(t, &fakeResponses{}, sessions)
-	result, err := service.ClearSession(context.Background(), "bike-discount", market)
+	result, err := service.ClearSession(t.Context(), "bike-discount", market)
 	if err != nil || !result.Deleted || sessions.provider != "bike-discount" || sessions.market != market {
 		t.Fatalf("ClearSession = %#v, %v; scope %q/%#v", result, err, sessions.provider, sessions.market)
 	}
 	sessions.deleted = false
-	result, err = service.ClearSession(context.Background(), "bike-discount", market)
+	result, err = service.ClearSession(t.Context(), "bike-discount", market)
 	if err != nil || result.Deleted {
 		t.Fatalf("second ClearSession = %#v, %v", result, err)
 	}
@@ -90,13 +90,13 @@ func TestServiceValidatesScopes(t *testing.T) {
 	responses := &fakeResponses{}
 	sessions := &fakeSessions{}
 	service := newTestService(t, responses, sessions)
-	if _, err := service.ClearProviderResponses(context.Background(), "Bike Discount"); err == nil {
+	if _, err := service.ClearProviderResponses(t.Context(), "Bike Discount"); err == nil {
 		t.Fatal("ClearProviderResponses invalid provider error = nil")
 	}
 	if responses.provider != "" {
 		t.Fatal("invalid provider reached response repository")
 	}
-	if _, err := service.ClearSession(context.Background(), "bike-discount", provider.Market{Country: "DE", Language: " en", Currency: "EUR"}); err == nil {
+	if _, err := service.ClearSession(t.Context(), "bike-discount", provider.Market{Country: "DE", Language: " en", Currency: "EUR"}); err == nil {
 		t.Fatal("ClearSession invalid market error = nil")
 	}
 	if sessions.provider != "" {
@@ -105,7 +105,7 @@ func TestServiceValidatesScopes(t *testing.T) {
 }
 
 func TestServicePreservesCancellationAndRepositoryErrors(t *testing.T) {
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	cancel()
 	responses := &fakeResponses{err: context.Canceled}
 	service := newTestService(t, responses, &fakeSessions{})
@@ -113,7 +113,7 @@ func TestServicePreservesCancellationAndRepositoryErrors(t *testing.T) {
 		t.Fatalf("PruneResponses error = %v", err)
 	}
 	responses.err = errTestRepository
-	if _, err := service.ClearResponses(context.Background()); !errors.Is(err, errTestRepository) {
+	if _, err := service.ClearResponses(t.Context()); !errors.Is(err, errTestRepository) {
 		t.Fatalf("ClearResponses error = %v", err)
 	}
 }

@@ -81,7 +81,7 @@ func TestTableRequiredResultTypes(t *testing.T) {
 		{"help", provider.HelpResult{Help: help}, []string{"Provider Help", "Capabilities", "Filters", "Sort modes", "Page sizes:", "Access notes"}},
 		{"categories", ListingData[provider.Category]{Items: []provider.Category{{ID: "c1", Name: "Bikes", Path: "Sports / Bikes", HasChildren: true}}}, []string{"ID  NAME", "Sports / Bikes"}},
 		{"brands", ListingData[provider.Brand]{Items: []provider.Brand{{ID: "b1", Name: "Shimano"}}}, []string{"ID  NAME", "Shimano"}},
-		{"deals", ListingData[provider.Deal]{Items: []provider.Deal{{Product: provider.ProductSummary{ID: "d1", Name: "Deal", DiscountPercent: intPointer(10)}}}}, []string{"ID  NAME", "10%"}},
+		{"deals", ListingData[provider.Deal]{Items: []provider.Deal{{Product: provider.ProductSummary{ID: "d1", Name: "Deal", DiscountPercent: new(10)}}}}, []string{"ID  NAME", "10%"}},
 		{"filters", provider.FiltersResult{Filters: help.Filters, SortModes: help.SortModes}, []string{"Filters", "Sort modes", "brand"}},
 		{"empty", ListingData[provider.ProductSummary]{Items: nil}, []string{"(no products)"}},
 	}

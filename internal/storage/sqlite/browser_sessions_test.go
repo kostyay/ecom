@@ -17,11 +17,11 @@ func TestBrowserSessionRepositoryRoundTrip(t *testing.T) {
 	repository, _ := openBrowserSessionRepository(t)
 	record := testBrowserSessionRecord("bike-discount", testSessionMarket())
 
-	stored, err := repository.Put(context.Background(), record)
+	stored, err := repository.Put(t.Context(), record)
 	if err != nil {
 		t.Fatalf("Put: %v", err)
 	}
-	got, err := repository.Get(context.Background(), record.Provider, record.Market)
+	got, err := repository.Get(t.Context(), record.Provider, record.Market)
 	if err != nil {
 		t.Fatalf("Get: %v", err)
 	}
@@ -39,7 +39,7 @@ func TestBrowserSessionRepositoryRoundTrip(t *testing.T) {
 func TestBrowserSessionRepositoryPutReplacesWholeState(t *testing.T) {
 	repository, _ := openBrowserSessionRepository(t)
 	record := testBrowserSessionRecord("bike-discount", testSessionMarket())
-	if _, err := repository.Put(context.Background(), record); err != nil {
+	if _, err := repository.Put(t.Context(), record); err != nil {
 		t.Fatal(err)
 	}
 
@@ -48,11 +48,11 @@ func TestBrowserSessionRepositoryPutReplacesWholeState(t *testing.T) {
 		Name: "replacement", Value: "value", Domain: "bike-discount.de", Path: "/", SameSite: session.SameSiteLax,
 	}}}
 	replacement.UpdatedAt = record.UpdatedAt.Add(time.Hour)
-	stored, err := repository.Put(context.Background(), replacement)
+	stored, err := repository.Put(t.Context(), replacement)
 	if err != nil {
 		t.Fatalf("Put replacement: %v", err)
 	}
-	got, err := repository.Get(context.Background(), record.Provider, record.Market)
+	got, err := repository.Get(t.Context(), record.Provider, record.Market)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -66,7 +66,7 @@ func TestBrowserSessionRepositoryPutReplacesWholeState(t *testing.T) {
 
 func TestBrowserSessionRepositoryMissing(t *testing.T) {
 	repository, _ := openBrowserSessionRepository(t)
-	_, err := repository.Get(context.Background(), "bike-discount", testSessionMarket())
+	_, err := repository.Get(t.Context(), "bike-discount", testSessionMarket())
 	if !errors.Is(err, session.ErrStateNotFound) {
 		t.Fatalf("Get error = %v, want ErrStateNotFound", err)
 	}
@@ -84,12 +84,12 @@ func TestBrowserSessionRepositoryIsolatesProviderAndExactMarket(t *testing.T) {
 	}
 	for index := range records {
 		records[index].State.Cookies[0].Value = records[index].Provider + records[index].Market.Language
-		if _, err := repository.Put(context.Background(), records[index]); err != nil {
+		if _, err := repository.Put(t.Context(), records[index]); err != nil {
 			t.Fatal(err)
 		}
 	}
 	for _, want := range records {
-		got, err := repository.Get(context.Background(), want.Provider, want.Market)
+		got, err := repository.Get(t.Context(), want.Provider, want.Market)
 		if err != nil {
 			t.Fatal(err)
 		}
@@ -123,7 +123,7 @@ func TestBrowserSessionRepositoryRejectsInvalidRecords(t *testing.T) {
 			repository, _ := openBrowserSessionRepository(t)
 			record := cloneSessionTestRecord(valid)
 			test.change(&record)
-			_, err := repository.Put(context.Background(), record)
+			_, err := repository.Put(t.Context(), record)
 			if err == nil || !strings.Contains(err.Error(), test.want) {
 				t.Fatalf("Put error = %v, want text %q", err, test.want)
 			}
@@ -141,27 +141,27 @@ func TestBrowserSessionRepositoryDeleteUsesExactScope(t *testing.T) {
 		testBrowserSessionRecord("bike-discount", otherMarket),
 		testBrowserSessionRecord("other-provider", market),
 	} {
-		if _, err := repository.Put(context.Background(), record); err != nil {
+		if _, err := repository.Put(t.Context(), record); err != nil {
 			t.Fatal(err)
 		}
 	}
 
-	deleted, err := repository.Delete(context.Background(), "bike-discount", market)
+	deleted, err := repository.Delete(t.Context(), "bike-discount", market)
 	if err != nil || !deleted {
 		t.Fatal(err)
 	}
-	if _, err := repository.Get(context.Background(), "bike-discount", market); !errors.Is(err, session.ErrStateNotFound) {
+	if _, err := repository.Get(t.Context(), "bike-discount", market); !errors.Is(err, session.ErrStateNotFound) {
 		t.Fatalf("deleted state error = %v, want ErrStateNotFound", err)
 	}
 	for _, scope := range []struct {
 		provider string
 		market   provider.Market
 	}{{"bike-discount", otherMarket}, {"other-provider", market}} {
-		if _, err := repository.Get(context.Background(), scope.provider, scope.market); err != nil {
+		if _, err := repository.Get(t.Context(), scope.provider, scope.market); err != nil {
 			t.Errorf("Get retained state: %v", err)
 		}
 	}
-	deleted, err = repository.Delete(context.Background(), "bike-discount", market)
+	deleted, err = repository.Delete(t.Context(), "bike-discount", market)
 	if err != nil || deleted {
 		t.Errorf("second Delete = %t, %v", deleted, err)
 	}
@@ -170,13 +170,13 @@ func TestBrowserSessionRepositoryDeleteUsesExactScope(t *testing.T) {
 func TestBrowserSessionRemainsAfterRawResponsesAreRemoved(t *testing.T) {
 	repository, database := openBrowserSessionRepository(t)
 	record := testBrowserSessionRecord("bike-discount", testSessionMarket())
-	if _, err := repository.Put(context.Background(), record); err != nil {
+	if _, err := repository.Put(t.Context(), record); err != nil {
 		t.Fatal(err)
 	}
-	if _, err := database.sql.ExecContext(context.Background(), "DELETE FROM raw_responses"); err != nil {
+	if _, err := database.sql.ExecContext(t.Context(), "DELETE FROM raw_responses"); err != nil {
 		t.Fatal(err)
 	}
-	if _, err := repository.Get(context.Background(), record.Provider, record.Market); err != nil {
+	if _, err := repository.Get(t.Context(), record.Provider, record.Market); err != nil {
 		t.Fatalf("Get after raw-response removal: %v", err)
 	}
 }
@@ -184,21 +184,21 @@ func TestBrowserSessionRemainsAfterRawResponsesAreRemoved(t *testing.T) {
 func TestBrowserSessionDeleteKeepsRawResponses(t *testing.T) {
 	repository, database := openBrowserSessionRepository(t)
 	record := testBrowserSessionRecord("bike-discount", testSessionMarket())
-	if _, err := repository.Put(context.Background(), record); err != nil {
+	if _, err := repository.Put(t.Context(), record); err != nil {
 		t.Fatal(err)
 	}
 	responses, err := NewRawResponseRepository(database, 4096)
 	if err != nil {
 		t.Fatal(err)
 	}
-	if _, err := responses.Put(context.Background(), testRawResponseEntry("v1:item", record.Provider)); err != nil {
+	if _, err := responses.Put(t.Context(), testRawResponseEntry("v1:item", record.Provider)); err != nil {
 		t.Fatal(err)
 	}
-	deleted, err := repository.Delete(context.Background(), record.Provider, record.Market)
+	deleted, err := repository.Delete(t.Context(), record.Provider, record.Market)
 	if err != nil || !deleted {
 		t.Fatalf("Delete = %t, %v", deleted, err)
 	}
-	entries, err := responses.ListByProvider(context.Background(), record.Provider)
+	entries, err := responses.ListByProvider(t.Context(), record.Provider)
 	if err != nil || len(entries) != 1 {
 		t.Fatalf("raw responses after session delete = %d, %v", len(entries), err)
 	}
@@ -206,7 +206,7 @@ func TestBrowserSessionDeleteKeepsRawResponses(t *testing.T) {
 
 func TestBrowserSessionDeleteHonorsCancellation(t *testing.T) {
 	repository, _ := openBrowserSessionRepository(t)
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	cancel()
 	deleted, err := repository.Delete(ctx, "bike-discount", testSessionMarket())
 	if !errors.Is(err, context.Canceled) || deleted {
@@ -217,7 +217,7 @@ func TestBrowserSessionDeleteHonorsCancellation(t *testing.T) {
 func TestBrowserSessionRepositoryRejectsUnknownStoredJSONFields(t *testing.T) {
 	repository, database := openBrowserSessionRepository(t)
 	market := testSessionMarket()
-	_, err := database.sql.ExecContext(context.Background(), `
+	_, err := database.sql.ExecContext(t.Context(), `
 INSERT INTO browser_sessions (
     provider, market_country, market_language, market_currency, state_json, updated_at
 ) VALUES (?, ?, ?, ?, ?, ?)`, "bike-discount", market.Country, market.Language, market.Currency,
@@ -225,7 +225,7 @@ INSERT INTO browser_sessions (
 	if err != nil {
 		t.Fatal(err)
 	}
-	_, err = repository.Get(context.Background(), "bike-discount", market)
+	_, err = repository.Get(t.Context(), "bike-discount", market)
 	if err == nil || !strings.Contains(err.Error(), "unknown field") {
 		t.Fatalf("Get error = %v, want unknown field error", err)
 	}

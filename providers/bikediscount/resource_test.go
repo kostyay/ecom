@@ -65,7 +65,7 @@ func TestFetchResourcePassesMarketPolicyAndTransportOrder(t *testing.T) {
 		DOM:   []provider.DOMExtraction{{Name: "products", Selector: "article", Kind: provider.DOMHTML, All: true}},
 	}
 
-	response, err := fetchResource(context.Background(), common, target)
+	response, err := fetchResource(t.Context(), common, target)
 	if err != nil || string(responseDocument(response)) != "page" || len(service.requests) != 1 {
 		t.Fatalf("fetchResource() = %#v, %v; requests = %d", response, err, len(service.requests))
 	}
@@ -81,7 +81,7 @@ func TestFetchResourcePassesMarketPolicyAndTransportOrder(t *testing.T) {
 	// as part of its cache and browser-session scope.
 	second := common
 	second.Market.Country = "DE"
-	if _, err := fetchResource(context.Background(), second, target); err != nil {
+	if _, err := fetchResource(t.Context(), second, target); err != nil {
 		t.Fatal(err)
 	}
 	if service.requests[0].Market == service.requests[1].Market {
@@ -103,7 +103,7 @@ func TestFetchResourceAcceptsHTTPBrowserAndCDPResponses(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			core := &fakeFallbackCore{failures: test.failures}
-			got, err := fetchResource(context.Background(), bikeDiscountRequest(core), resourceTarget{Path: "/bike/sale"})
+			got, err := fetchResource(t.Context(), bikeDiscountRequest(core), resourceTarget{Path: "/bike/sale"})
 			if err != nil || got.Transport != test.wantMode || len(responseDocument(got)) == 0 {
 				t.Fatalf("fetchResource() = %#v, %v", got, err)
 			}
@@ -119,7 +119,7 @@ func TestFetchResourceReturnsChallengeFromFallbackCore(t *testing.T) {
 		provider.TransportHTTP:    provider.ErrorCodeAccessBlocked,
 		provider.TransportBrowser: provider.ErrorCodeBrowserChallengeRequired,
 	}}
-	_, err := fetchResource(context.Background(), bikeDiscountRequest(core), resourceTarget{Path: "/bike/sale"})
+	_, err := fetchResource(t.Context(), bikeDiscountRequest(core), resourceTarget{Path: "/bike/sale"})
 	if !errors.Is(err, provider.ErrorCodeBrowserChallengeRequired) {
 		t.Fatalf("fetchResource() error = %v", err)
 	}
@@ -140,7 +140,7 @@ func TestFetchResourcePreservesStableTransportErrors(t *testing.T) {
 	} {
 		t.Run(string(code), func(t *testing.T) {
 			service := &fakeResourceService{errors: []error{provider.NewError(code, "safe failure", errors.New("internal"))}}
-			_, err := fetchResource(context.Background(), bikeDiscountRequest(service), resourceTarget{Path: "/bike/sale"})
+			_, err := fetchResource(t.Context(), bikeDiscountRequest(service), resourceTarget{Path: "/bike/sale"})
 			if !errors.Is(err, code) {
 				t.Fatalf("fetchResource() error = %v, want %s", err, code)
 			}
@@ -164,7 +164,7 @@ func TestFetchResourceValidatesBeforeServiceCall(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			_, err := fetchResource(context.Background(), test.request, test.target)
+			_, err := fetchResource(t.Context(), test.request, test.target)
 			if !errors.Is(err, provider.ErrorCodeInvalidResourceRequest) {
 				t.Fatalf("fetchResource() error = %v", err)
 			}
@@ -180,7 +180,7 @@ func TestFetchResourceRejectsShippingPolicyBeforeServiceCall(t *testing.T) {
 	request := bikeDiscountRequest(service)
 	request.Pricing.IncludeShipping = true
 
-	_, err := fetchResource(context.Background(), request, resourceTarget{Path: "/search"})
+	_, err := fetchResource(t.Context(), request, resourceTarget{Path: "/search"})
 	if !errors.Is(err, provider.ErrorCodeInvalidProviderConfig) {
 		t.Fatalf("fetchResource() error = %v, want invalid_provider_config", err)
 	}
@@ -209,7 +209,7 @@ func TestFetchResourceNormalizesUncodedFailures(t *testing.T) {
 		responses: []provider.ResourceResponse{{Transport: provider.TransportCDP}},
 		errors:    []error{errors.New("connector detail")},
 	}
-	_, err := fetchResource(context.Background(), bikeDiscountRequest(service), resourceTarget{Path: "/search"})
+	_, err := fetchResource(t.Context(), bikeDiscountRequest(service), resourceTarget{Path: "/search"})
 	if !errors.Is(err, provider.ErrorCodeBrowserFailure) || err.Error() != "the Bike-Discount resource request failed" {
 		t.Fatalf("fetchResource() error = %v", err)
 	}

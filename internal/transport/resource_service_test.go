@@ -38,7 +38,6 @@ func TestResourceServiceSucceedsAtEachStage(t *testing.T) {
 			var calls []provider.TransportMode
 			services := make(map[provider.TransportMode]provider.ResourceService)
 			for _, mode := range defaultTransportOrder {
-				mode := mode
 				services[mode] = selectorServiceFunc(func(_ context.Context, request provider.ResourceRequest) (provider.ResourceResponse, error) {
 					calls = append(calls, mode)
 					if request.Transport.Required != mode || len(request.Transport.Preferred) != 0 {
@@ -55,7 +54,7 @@ func TestResourceServiceSucceedsAtEachStage(t *testing.T) {
 				})
 			}
 			service := newSelector(t, services, ClockFunc(time.Now))
-			response, err := service.Fetch(context.Background(), selectorRequest())
+			response, err := service.Fetch(t.Context(), selectorRequest())
 			if err != nil || response.Transport != successMode {
 				t.Fatalf("Fetch() = %#v, %v", response, err)
 			}
@@ -83,12 +82,12 @@ func TestResourceServiceRequiredAndPreferredAreFullOrders(t *testing.T) {
 
 	request := selectorRequest()
 	request.Transport.Required = provider.TransportCDP
-	if _, err := service.Fetch(context.Background(), request); err != nil || !reflect.DeepEqual(calls, []provider.TransportMode{provider.TransportCDP}) {
+	if _, err := service.Fetch(t.Context(), request); err != nil || !reflect.DeepEqual(calls, []provider.TransportMode{provider.TransportCDP}) {
 		t.Fatalf("required calls/error = %v/%v", calls, err)
 	}
 	calls = nil
 	request.Transport = provider.TransportPolicy{Preferred: []provider.TransportMode{provider.TransportBrowser, provider.TransportCDP}}
-	if _, err := service.Fetch(context.Background(), request); err != nil || !reflect.DeepEqual(calls, []provider.TransportMode{provider.TransportBrowser, provider.TransportCDP}) {
+	if _, err := service.Fetch(t.Context(), request); err != nil || !reflect.DeepEqual(calls, []provider.TransportMode{provider.TransportBrowser, provider.TransportCDP}) {
 		t.Fatalf("preferred calls/error = %v/%v", calls, err)
 	}
 }
@@ -112,7 +111,7 @@ func TestResourceServiceRejectsInvalidPoliciesWithoutAttempt(t *testing.T) {
 	for _, policy := range tests {
 		request := selectorRequest()
 		request.Transport = policy
-		if _, err := service.Fetch(context.Background(), request); !errors.Is(err, provider.ErrorCodeInvalidResourceRequest) {
+		if _, err := service.Fetch(t.Context(), request); !errors.Is(err, provider.ErrorCodeInvalidResourceRequest) {
 			t.Fatalf("Fetch(%#v) error = %v", policy, err)
 		}
 	}
@@ -142,7 +141,7 @@ func TestResourceServiceDoesNotFallbackForTerminalClasses(t *testing.T) {
 				return provider.ResourceResponse{}, nil
 			})
 			service, _ := NewResourceService(httpService, unused, unused, ClockFunc(time.Now))
-			response, err := service.Fetch(context.Background(), selectorRequest())
+			response, err := service.Fetch(t.Context(), selectorRequest())
 			if !errors.Is(err, terminalErr) || calls != 1 || response.StatusCode != http.StatusNotFound || len(response.Attempts) != 1 {
 				t.Fatalf("Fetch() = %#v, %v; calls = %d", response, err, calls)
 			}
@@ -164,7 +163,7 @@ func TestResourceServiceBrowserFallbackClasses(t *testing.T) {
 				provider.TransportBrowser: browser,
 				provider.TransportCDP:     cdp,
 			}, ClockFunc(time.Now))
-			response, err := service.Fetch(context.Background(), selectorRequest())
+			response, err := service.Fetch(t.Context(), selectorRequest())
 			if err != nil || response.Transport != provider.TransportCDP || len(response.Attempts) != 3 {
 				t.Fatalf("Fetch() = %#v, %v", response, err)
 			}
@@ -191,7 +190,7 @@ func TestResourceServiceChallengeRequiredDoesNotSkipInteractiveBrowser(t *testin
 	}, ClockFunc(time.Now))
 	request := selectorRequest()
 	request.Interactive = true
-	_, err := service.Fetch(context.Background(), request)
+	_, err := service.Fetch(t.Context(), request)
 	if !errors.Is(err, provider.ErrorCodeBrowserChallengeRequired) || cdpCalls != 0 {
 		t.Fatalf("Fetch() error/CDP calls = %v/%d", err, cdpCalls)
 	}
@@ -206,7 +205,7 @@ func TestResourceServicePreservesLastUsefulResponseAndErrorWhenCDPUnavailable(t 
 		provider.TransportBrowser: failingService(provider.ErrorCodeBrowserFailure),
 		provider.TransportCDP:     failingService(provider.ErrorCodeTransportUnavailable),
 	}, ClockFunc(time.Now))
-	response, err := service.Fetch(context.Background(), selectorRequest())
+	response, err := service.Fetch(t.Context(), selectorRequest())
 	if !errors.Is(err, provider.ErrorCodeBrowserFailure) || string(response.Body) != "blocked" || len(response.Attempts) != 3 || response.Attempts[2].Outcome != provider.AttemptUnavailable {
 		t.Fatalf("Fetch() = %#v, %v", response, err)
 	}
@@ -217,7 +216,7 @@ func TestResourceServicePreservesLastUsefulResponseAndErrorWhenCDPUnavailable(t 
 }
 
 func TestResourceServiceCancelsBetweenAttemptsAndDoesNotMutateRequest(t *testing.T) {
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	request := selectorRequest()
 	original := cloneResourceRequest(request)
 	browserCalls := 0
@@ -253,7 +252,7 @@ func TestResourceServiceSharesRequestInputsAndAttemptDuration(t *testing.T) {
 	service := newSelector(t, map[provider.TransportMode]provider.ResourceService{
 		provider.TransportHTTP: httpService, provider.TransportBrowser: browser, provider.TransportCDP: browser,
 	}, clock)
-	response, err := service.Fetch(context.Background(), request)
+	response, err := service.Fetch(t.Context(), request)
 	if err != nil || browserRequest.Query[0].Values[0] != "one" || browserRequest.Headers[0].Values[0] != "value" || string(browserRequest.Body.Bytes) != "body" {
 		t.Fatalf("shared inputs = %#v, error = %v", browserRequest, err)
 	}
@@ -263,7 +262,7 @@ func TestResourceServiceSharesRequestInputsAndAttemptDuration(t *testing.T) {
 }
 
 func TestConfiguredResourceServiceSharesOneLimitManager(t *testing.T) {
-	database, err := sqlite.Open(context.Background(), filepath.Join(t.TempDir(), "state.db"))
+	database, err := sqlite.Open(t.Context(), filepath.Join(t.TempDir(), "state.db"))
 	if err != nil {
 		t.Fatal(err)
 	}

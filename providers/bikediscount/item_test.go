@@ -1,7 +1,6 @@
 package bikediscount
 
 import (
-	"context"
 	"errors"
 	"reflect"
 	"strings"
@@ -153,7 +152,7 @@ func TestItemRejectsInvalidIdentifiersBeforeNetwork(t *testing.T) {
 	for _, identifier := range tests {
 		t.Run(identifier, func(t *testing.T) {
 			service := &fakeResourceService{}
-			_, err := (implementation{}).Item(context.Background(), provider.ItemRequest{Request: bikeDiscountRequest(service), IDOrURL: identifier})
+			_, err := (implementation{}).Item(t.Context(), provider.ItemRequest{Request: bikeDiscountRequest(service), IDOrURL: identifier})
 			if !errors.Is(err, provider.ErrorCodeInvalidFilter) || len(service.requests) != 0 {
 				t.Fatalf("Item(%q) error = %v; requests = %d", identifier, err, len(service.requests))
 			}

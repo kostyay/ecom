@@ -1,7 +1,6 @@
 package maintenance_test
 
 import (
-	"context"
 	"path/filepath"
 	"testing"
 	"time"
@@ -19,7 +18,7 @@ type fixedClock time.Time
 func (clock fixedClock) Now() time.Time { return time.Time(clock) }
 
 func TestServiceWithSQLiteKeepsResponseAndSessionScopesSeparate(t *testing.T) {
-	ctx := context.Background()
+	ctx := t.Context()
 	service, responses, sessions, _ := openService(t)
 	market := testMarket()
 	putResponse(t, responses, "v1:bike", "bike-discount", market)
@@ -77,14 +76,14 @@ func TestServiceWithSQLitePrunesExpiredThenLRU(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	result, err := service.PruneResponses(context.Background())
+	result, err := service.PruneResponses(t.Context())
 	if err != nil {
 		t.Fatal(err)
 	}
 	if result.EntriesDeleted != 2 || result.BytesReleased != expired.SizeBytes+old.SizeBytes {
 		t.Fatalf("PruneResponses = %#v", result)
 	}
-	entries, err := responses.ListByProvider(context.Background(), "shop")
+	entries, err := responses.ListByProvider(t.Context(), "shop")
 	if err != nil || len(entries) != 1 || entries[0].Key != "v1:new" {
 		t.Fatalf("remaining responses = %#v, %v", entries, err)
 	}
@@ -92,7 +91,7 @@ func TestServiceWithSQLitePrunesExpiredThenLRU(t *testing.T) {
 
 func openService(t *testing.T) (*maintenance.Service, *sqlite.RawResponseRepository, *sqlite.BrowserSessionRepository, *sqlite.Database) {
 	t.Helper()
-	database, err := sqlite.Open(context.Background(), filepath.Join(t.TempDir(), "state.db"))
+	database, err := sqlite.Open(t.Context(), filepath.Join(t.TempDir(), "state.db"))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -124,7 +123,7 @@ func putResponse(t *testing.T, repository *sqlite.RawResponseRepository, key, pr
 
 func putResponseAt(t *testing.T, repository *sqlite.RawResponseRepository, key, providerName string, market provider.Market, storedAt, expiresAt time.Time) cache.Entry {
 	t.Helper()
-	entry, err := repository.Put(context.Background(), cache.Entry{
+	entry, err := repository.Put(t.Context(), cache.Entry{
 		Key: key, Provider: providerName, Market: market, Method: "GET",
 		URL: "https://example.test/item", StatusCode: 200,
 		SafeHeaders: map[string][]string{"Content-Type": {"text/html"}}, Body: []byte("body"),
@@ -138,7 +137,7 @@ func putResponseAt(t *testing.T, repository *sqlite.RawResponseRepository, key, 
 
 func putSession(t *testing.T, repository *sqlite.BrowserSessionRepository, providerName string, market provider.Market) {
 	t.Helper()
-	_, err := repository.Put(context.Background(), session.Record{
+	_, err := repository.Put(t.Context(), session.Record{
 		Provider: providerName, Market: market, State: session.State{}, UpdatedAt: time.Now().UTC(),
 	})
 	if err != nil {

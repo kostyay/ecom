@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"slices"
 
 	"github.com/kostyay/ecom/provider"
 )
@@ -124,10 +125,8 @@ func validatePage(page provider.PageInfo, help *provider.PaginationHelp) error {
 		return errors.New("page size must be positive for page-number pagination")
 	}
 	if len(help.SupportedPageSizes) > 0 {
-		for _, size := range help.SupportedPageSizes {
-			if page.Size == size {
-				return nil
-			}
+		if slices.Contains(help.SupportedPageSizes, page.Size) {
+			return nil
 		}
 		return fmt.Errorf("page size %d is not listed in provider help", page.Size)
 	}

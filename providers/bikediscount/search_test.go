@@ -1,7 +1,6 @@
 package bikediscount
 
 import (
-	"context"
 	"errors"
 	"reflect"
 	"testing"
@@ -102,7 +101,7 @@ func TestSearchRejectsInvalidInputsBeforeNetwork(t *testing.T) {
 			service := &fakeResourceService{}
 			request := provider.SearchRequest{Request: bikeDiscountRequest(service), Query: "bike"}
 			test.change(&request)
-			_, err := (implementation{}).Search(context.Background(), request)
+			_, err := (implementation{}).Search(t.Context(), request)
 			if !errors.Is(err, provider.ErrorCodeInvalidFilter) {
 				t.Fatalf("Search() error = %v", err)
 			}

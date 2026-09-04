@@ -8,7 +8,7 @@ import (
 	"math/big"
 	"net/url"
 	"regexp"
-	"sort"
+	"slices"
 	"strings"
 
 	"github.com/kostyay/ecom/provider"
@@ -243,10 +243,10 @@ func visiblePriceRange(variants []provider.Variant) *provider.PriceRange {
 	if len(priced) < 2 {
 		return nil
 	}
-	sort.SliceStable(priced, func(i, j int) bool {
-		left, _ := new(big.Rat).SetString(priced[i].Amount)
-		right, _ := new(big.Rat).SetString(priced[j].Amount)
-		return left.Cmp(right) < 0
+	slices.SortStableFunc(priced, func(leftMoney, rightMoney provider.Money) int {
+		left, _ := new(big.Rat).SetString(leftMoney.Amount)
+		right, _ := new(big.Rat).SetString(rightMoney.Amount)
+		return left.Cmp(right)
 	})
 	if priced[0].Currency != priced[len(priced)-1].Currency {
 		return nil
@@ -281,7 +281,7 @@ func selectVisibleVariant(variants []provider.Variant, selections []provider.Var
 			choices = append(choices, attribute.Name+"="+attribute.Value)
 		}
 	}
-	sort.Strings(choices)
+	slices.Sort(choices)
 	message := "the requested Bike-Discount variant was not found"
 	if len(choices) > 0 {
 		message += "; valid choices: " + strings.Join(choices, ", ")

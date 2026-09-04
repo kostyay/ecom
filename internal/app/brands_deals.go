@@ -144,10 +144,8 @@ func (services *Services) BrandItems(ctx context.Context, input BrandItemsInput)
 	}
 	collector := newMetadataResourceService(services.Resources, services.Market, provider.CachePolicy{Refresh: input.Refresh, StaleIfError: input.StaleIfError}, input.Interactive)
 	result, err := services.Provider.BrandItems(ctx, provider.BrandItemsRequest{
-		Request: provider.Request{
-			Market: services.Market, Pricing: PricingFromConfig(services.Settings.Pricing),
-			Cache: collector.cache, Interactive: input.Interactive, Resources: collector,
-		},
+		Market: services.Market, Pricing: PricingFromConfig(services.Settings.Pricing),
+		Cache: collector.cache, Interactive: input.Interactive, Resources: collector,
 		BrandID: input.BrandID, Filters: filters, Sort: sortMode, Page: page,
 	})
 	if err != nil {
@@ -174,10 +172,8 @@ func (services *Services) Deals(ctx context.Context, input DealsInput) (DealsRes
 	}
 	collector := newMetadataResourceService(services.Resources, services.Market, provider.CachePolicy{Refresh: input.Refresh, StaleIfError: input.StaleIfError}, input.Interactive)
 	result, err := services.Provider.Deals(ctx, provider.DealsRequest{
-		Request: provider.Request{
-			Market: services.Market, Pricing: PricingFromConfig(services.Settings.Pricing),
-			Cache: collector.cache, Interactive: input.Interactive, Resources: collector,
-		},
+		Market: services.Market, Pricing: PricingFromConfig(services.Settings.Pricing),
+		Cache: collector.cache, Interactive: input.Interactive, Resources: collector,
 		Filters: filters, Sort: sortMode, Page: page,
 	})
 	if err != nil {

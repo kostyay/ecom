@@ -108,26 +108,26 @@ func TestBrowserResourceServiceStoresAndReloadsSQLiteState(t *testing.T) {
 	permits := &fakeBrowserPermits{}
 	service := newBrowserResourceService(t, "bike-discount", browser, repository, permits, now)
 
-	response, err := service.Fetch(context.Background(), browserResourceRequest(market))
+	response, err := service.Fetch(t.Context(), browserResourceRequest(market))
 	if err != nil || response.StatusCode != http.StatusOK {
 		t.Fatalf("first Fetch() = %#v, %v", response, err)
 	}
 	if len(browser.states) != 1 || !reflect.DeepEqual(browser.states[0], session.State{}) {
 		t.Fatalf("first imported states = %#v", browser.states)
 	}
-	record, err := repository.Get(context.Background(), "bike-discount", market)
+	record, err := repository.Get(t.Context(), "bike-discount", market)
 	if err != nil || !reflect.DeepEqual(record.State, firstState) || !record.UpdatedAt.Equal(now) {
 		t.Fatalf("stored record = %#v, %v", record, err)
 	}
 
 	browser.navigation = successfulBrowserNavigation(secondState)
-	if _, err := service.Fetch(context.Background(), browserResourceRequest(market)); err != nil {
+	if _, err := service.Fetch(t.Context(), browserResourceRequest(market)); err != nil {
 		t.Fatalf("second Fetch() error = %v", err)
 	}
 	if len(browser.states) != 2 || !reflect.DeepEqual(browser.states[1], firstState) {
 		t.Fatalf("second imported state = %#v", browser.states)
 	}
-	record, err = repository.Get(context.Background(), "bike-discount", market)
+	record, err = repository.Get(t.Context(), "bike-discount", market)
 	if err != nil || !reflect.DeepEqual(record.State, secondState) {
 		t.Fatalf("updated record = %#v, %v", record, err)
 	}
@@ -149,7 +149,7 @@ func TestBrowserResourceServiceIsolatesProviderAndExactMarket(t *testing.T) {
 
 	browser := &fakeBrowserNavigator{navigation: successfulBrowserNavigation(browserResourceState("updated"))}
 	service := newBrowserResourceService(t, "bike-discount", browser, repository, &fakeBrowserPermits{}, now)
-	if _, err := service.Fetch(context.Background(), browserResourceRequest(market)); err != nil {
+	if _, err := service.Fetch(t.Context(), browserResourceRequest(market)); err != nil {
 		t.Fatalf("Fetch() error = %v", err)
 	}
 	if !reflect.DeepEqual(browser.states[0], browserResourceState("bike-en")) {
@@ -165,7 +165,7 @@ func TestBrowserResourceServiceStopsOnStateReadFailure(t *testing.T) {
 	permits := &fakeBrowserPermits{}
 	service := newBrowserResourceService(t, "bike-discount", browser, repository, permits, time.Now())
 
-	_, err := service.Fetch(context.Background(), browserResourceRequest(browserResourceMarket()))
+	_, err := service.Fetch(t.Context(), browserResourceRequest(browserResourceMarket()))
 	if !errors.Is(err, provider.ErrorCodeBrowserFailure) || strings.Contains(err.Error(), "secret") {
 		t.Fatalf("Fetch() error = %v", err)
 	}
@@ -180,7 +180,7 @@ func TestBrowserResourceServiceReportsStateWriteFailureWithoutSuccess(t *testing
 	permits := &fakeBrowserPermits{}
 	service := newBrowserResourceService(t, "bike-discount", browser, repository, permits, time.Now())
 
-	response, err := service.Fetch(context.Background(), browserResourceRequest(browserResourceMarket()))
+	response, err := service.Fetch(t.Context(), browserResourceRequest(browserResourceMarket()))
 	if !errors.Is(err, provider.ErrorCodeBrowserFailure) || strings.Contains(err.Error(), "secret") {
 		t.Fatalf("Fetch() = %#v, %v", response, err)
 	}
@@ -198,7 +198,7 @@ func TestBrowserResourceServiceReportsSQLiteReadAndWriteFailuresSafely(t *testin
 		browser := &fakeBrowserNavigator{}
 		service := newBrowserResourceService(t, "bike-discount", browser, repository, &fakeBrowserPermits{}, time.Now())
 
-		_, err := service.Fetch(context.Background(), browserResourceRequest(browserResourceMarket()))
+		_, err := service.Fetch(t.Context(), browserResourceRequest(browserResourceMarket()))
 		if !errors.Is(err, provider.ErrorCodeBrowserFailure) || strings.Contains(err.Error(), database.Path()) {
 			t.Fatalf("Fetch() error = %v", err)
 		}
@@ -213,7 +213,7 @@ func TestBrowserResourceServiceReportsSQLiteReadAndWriteFailuresSafely(t *testin
 		browser.onNavigate = func() { _ = database.Close() }
 		service := newBrowserResourceService(t, "bike-discount", browser, repository, &fakeBrowserPermits{}, time.Now())
 
-		response, err := service.Fetch(context.Background(), browserResourceRequest(browserResourceMarket()))
+		response, err := service.Fetch(t.Context(), browserResourceRequest(browserResourceMarket()))
 		if !errors.Is(err, provider.ErrorCodeBrowserFailure) || strings.Contains(err.Error(), database.Path()) {
 			t.Fatalf("Fetch() = %#v, %v", response, err)
 		}
@@ -224,7 +224,7 @@ func TestBrowserResourceServiceReportsSQLiteReadAndWriteFailuresSafely(t *testin
 }
 
 func TestBrowserResourceServicePreservesCancellation(t *testing.T) {
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	cancel()
 	repository := &fakeSessionRepository{}
 	browser := &fakeBrowserNavigator{}
@@ -238,7 +238,7 @@ func TestBrowserResourceServicePreservesCancellation(t *testing.T) {
 }
 
 func TestBrowserResourceServiceDoesNotSaveAfterNavigationCancelsContext(t *testing.T) {
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	repository := &fakeSessionRepository{getErr: session.ErrStateNotFound}
 	browser := &fakeBrowserNavigator{navigation: successfulBrowserNavigation(browserResourceState("new")), onNavigate: cancel}
 	service := newBrowserResourceService(t, "bike-discount", browser, repository, &fakeBrowserPermits{}, time.Now())
@@ -255,7 +255,7 @@ func TestBrowserResourceServiceReleasesPermitAfterNavigationFailure(t *testing.T
 	permits := &fakeBrowserPermits{}
 	service := newBrowserResourceService(t, "bike-discount", browser, repository, permits, time.Now())
 
-	_, _ = service.Fetch(context.Background(), browserResourceRequest(browserResourceMarket()))
+	_, _ = service.Fetch(t.Context(), browserResourceRequest(browserResourceMarket()))
 	if permits.acquires != 1 || permits.releases != 1 || repository.puts != 0 {
 		t.Fatalf("acquires/releases/puts = %d/%d/%d", permits.acquires, permits.releases, repository.puts)
 	}
@@ -282,7 +282,7 @@ func TestBrowserResourceServiceChallengeAndBlockStatePolicy(t *testing.T) {
 			}
 			service := newBrowserResourceService(t, "bike-discount", browser, repository, &fakeBrowserPermits{}, time.Now())
 
-			response, err := service.Fetch(context.Background(), browserResourceRequest(browserResourceMarket()))
+			response, err := service.Fetch(t.Context(), browserResourceRequest(browserResourceMarket()))
 			if !errors.Is(err, test.code) || response.Page == nil {
 				t.Fatalf("Fetch() = %#v, %v", response, err)
 			}
@@ -310,7 +310,7 @@ func TestBrowserResourceServiceInteractiveChallengeSuccess(t *testing.T) {
 	request := browserResourceRequest(browserResourceMarket())
 	request.Interactive = true
 
-	response, err := service.Fetch(context.Background(), request)
+	response, err := service.Fetch(t.Context(), request)
 	if err != nil || response.StatusCode != http.StatusOK {
 		t.Fatalf("Fetch() = %#v, %v", response, err)
 	}
@@ -334,7 +334,7 @@ func TestBrowserResourceServiceNonInteractiveChallengeReturnsImmediately(t *test
 	permits := &fakeBrowserPermits{}
 	service := newBrowserResourceService(t, "bike-discount", browser, repository, permits, time.Now())
 
-	_, err := service.Fetch(context.Background(), browserResourceRequest(browserResourceMarket()))
+	_, err := service.Fetch(t.Context(), browserResourceRequest(browserResourceMarket()))
 	if !errors.Is(err, provider.ErrorCodeBrowserChallengeRequired) || len(browser.states) != 1 || browser.headed[0] || repository.puts != 0 {
 		t.Fatalf("Fetch() error/calls/headed/puts = %v/%d/%#v/%d", err, len(browser.states), browser.headed, repository.puts)
 	}
@@ -355,7 +355,7 @@ func TestBrowserResourceServiceInteractiveChallengeTimeout(t *testing.T) {
 	request := browserResourceRequest(browserResourceMarket())
 	request.Interactive = true
 
-	_, err := service.Fetch(context.Background(), request)
+	_, err := service.Fetch(t.Context(), request)
 	if !errors.Is(err, provider.ErrorCodeBrowserChallengeTimeout) || repository.puts != 0 || permits.acquires != 1 || permits.releases != 1 {
 		t.Fatalf("Fetch() error/puts/permits = %v/%d/%d/%d", err, repository.puts, permits.acquires, permits.releases)
 	}
@@ -373,14 +373,14 @@ func TestBrowserResourceServiceInteractiveBlockIsNotSaved(t *testing.T) {
 	request := browserResourceRequest(browserResourceMarket())
 	request.Interactive = true
 
-	_, err := service.Fetch(context.Background(), request)
+	_, err := service.Fetch(t.Context(), request)
 	if !errors.Is(err, provider.ErrorCodeAccessBlocked) || repository.puts != 0 {
 		t.Fatalf("Fetch() error/puts = %v/%d", err, repository.puts)
 	}
 }
 
 func TestBrowserResourceServiceInteractiveCancellation(t *testing.T) {
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	repository := &fakeSessionRepository{getErr: session.ErrStateNotFound}
 	browser := &fakeBrowserNavigator{
 		navigation:      successfulBrowserNavigation(browserResourceState("challenge")),
@@ -415,7 +415,7 @@ func TestBrowserResourceServiceInteractiveWriteFailureDoesNotReturnFalseSuccess(
 
 	request := browserResourceRequest(browserResourceMarket())
 	request.Interactive = true
-	response, err := service.Fetch(context.Background(), request)
+	response, err := service.Fetch(t.Context(), request)
 	if !errors.Is(err, provider.ErrorCodeBrowserFailure) || errors.Is(err, provider.ErrorCodeBrowserChallengeRequired) || strings.Contains(err.Error(), "secret") || response.Page != nil {
 		t.Fatalf("Fetch() error = %v", err)
 	}
@@ -429,7 +429,7 @@ func TestBrowserResourceServiceRejectsWrongTransportAndInvalidMarketBeforeStorag
 		{URL: "https://shop.example", Market: provider.Market{Country: "DE", Language: "en", Currency: "eur"}},
 	}
 	for _, request := range tests {
-		_, err := service.Fetch(context.Background(), request)
+		_, err := service.Fetch(t.Context(), request)
 		if !errors.Is(err, provider.ErrorCodeInvalidResourceRequest) {
 			t.Fatalf("Fetch(%#v) error = %v", request, err)
 		}
@@ -440,7 +440,7 @@ func TestBrowserResourceServiceRejectsWrongTransportAndInvalidMarketBeforeStorag
 }
 
 func TestConfiguredBrowserResourceServiceUsesSQLiteWithoutResponseCache(t *testing.T) {
-	database, err := sqlite.Open(context.Background(), t.TempDir()+"/cache.db")
+	database, err := sqlite.Open(t.Context(), t.TempDir()+"/cache.db")
 	if err != nil {
 		t.Fatalf("sqlite.Open() error = %v", err)
 	}
@@ -459,7 +459,7 @@ func TestConfiguredBrowserResourceServiceUsesSQLiteWithoutResponseCache(t *testi
 
 func openBrowserResourceRepository(t *testing.T) (*sqlite.BrowserSessionRepository, *sqlite.Database) {
 	t.Helper()
-	database, err := sqlite.Open(context.Background(), t.TempDir()+"/cache.db")
+	database, err := sqlite.Open(t.Context(), t.TempDir()+"/cache.db")
 	if err != nil {
 		t.Fatalf("sqlite.Open() error = %v", err)
 	}
@@ -518,14 +518,14 @@ func putBrowserResourceState(
 	now time.Time,
 ) {
 	t.Helper()
-	if _, err := repository.Put(context.Background(), session.Record{Provider: providerName, Market: market, State: state, UpdatedAt: now}); err != nil {
+	if _, err := repository.Put(t.Context(), session.Record{Provider: providerName, Market: market, State: state, UpdatedAt: now}); err != nil {
 		t.Fatalf("Put() error = %v", err)
 	}
 }
 
 func assertBrowserResourceState(t *testing.T, repository *sqlite.BrowserSessionRepository, providerName string, market provider.Market, value string) {
 	t.Helper()
-	record, err := repository.Get(context.Background(), providerName, market)
+	record, err := repository.Get(t.Context(), providerName, market)
 	if err != nil || !reflect.DeepEqual(record.State, browserResourceState(value)) {
 		t.Fatalf("Get(%q, %#v) = %#v, %v", providerName, market, record, err)
 	}

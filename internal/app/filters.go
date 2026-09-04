@@ -54,10 +54,8 @@ func (services *Services) Filters(ctx context.Context, input FiltersInput) (Filt
 		Refresh: input.Refresh, StaleIfError: input.StaleIfError,
 	}, input.Interactive)
 	result, err := services.Provider.Filters(ctx, provider.FiltersRequest{
-		Request: provider.Request{
-			Market: services.Market, Pricing: PricingFromConfig(services.Settings.Pricing),
-			Cache: collector.cache, Interactive: input.Interactive, Resources: collector,
-		},
+		Market: services.Market, Pricing: PricingFromConfig(services.Settings.Pricing),
+		Cache: collector.cache, Interactive: input.Interactive, Resources: collector,
 		Capability: input.Capability, CategoryID: input.CategoryID, BrandID: input.BrandID,
 	})
 	if err != nil {

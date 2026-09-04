@@ -50,9 +50,8 @@ func (services *Services) Search(ctx context.Context, input SearchInput) (Search
 		return SearchResult{}, provider.NewError(provider.ErrorCodeInvalidFilter, "search query is required", nil)
 	}
 
-	helpResult, err := services.Provider.Help(ctx, provider.HelpRequest{Request: provider.Request{
-		Market: services.Market, Pricing: PricingFromConfig(services.Settings.Pricing),
-	}})
+	helpResult, err := services.Provider.Help(ctx, provider.HelpRequest{
+		Market: services.Market, Pricing: PricingFromConfig(services.Settings.Pricing)})
 	if err != nil {
 		return SearchResult{}, err
 	}
@@ -84,10 +83,8 @@ func (services *Services) Search(ctx context.Context, input SearchInput) (Search
 		Refresh: input.Refresh, StaleIfError: input.StaleIfError,
 	}, input.Interactive)
 	request := provider.SearchRequest{
-		Request: provider.Request{
-			Market: services.Market, Pricing: PricingFromConfig(services.Settings.Pricing),
-			Cache: collector.cache, Interactive: input.Interactive, Resources: collector,
-		},
+		Market: services.Market, Pricing: PricingFromConfig(services.Settings.Pricing),
+		Cache: collector.cache, Interactive: input.Interactive, Resources: collector,
 		Query: input.Query, Filters: filters, Sort: sort, Page: page,
 	}
 	result, err := services.Provider.Search(ctx, request)

@@ -88,7 +88,7 @@ type TransportAttempt struct {
 	Mode     TransportMode  `json:"mode"`
 	Outcome  AttemptOutcome `json:"outcome"`
 	Code     ErrorCode      `json:"code,omitempty"`
-	Duration time.Duration  `json:"duration,omitempty"`
+	Duration time.Duration  `json:"duration,omitzero"`
 }
 
 // AttemptOutcome identifies the result of one Core transport attempt.
@@ -118,7 +118,7 @@ type DOMExtraction struct {
 	Selector  string            `json:"selector"`
 	Kind      DOMExtractionKind `json:"kind"`
 	Attribute string            `json:"attribute,omitempty"`
-	All       bool              `json:"all,omitempty"`
+	All       bool              `json:"all,omitzero"`
 }
 
 // DOMExtractionKind selects the value read from matched elements.

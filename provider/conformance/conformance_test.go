@@ -103,10 +103,8 @@ func TestConformingProvider(t *testing.T) {
 				Name: "saved search response", Capability: provider.CapabilitySearch,
 				Invoke: func(ctx context.Context, p provider.Provider) (any, error) {
 					return p.Search(ctx, provider.SearchRequest{
-						Request: provider.Request{
-							Market: provider.Market{Country: "DE", Language: "en", Currency: "EUR"},
-							Cache:  provider.CachePolicy{Refresh: true, StaleIfError: true}, Interactive: true, Resources: resources,
-						},
+						Market: provider.Market{Country: "DE", Language: "en", Currency: "EUR"},
+						Cache:  provider.CachePolicy{Refresh: true, StaleIfError: true}, Interactive: true, Resources: resources,
 						Query: "helmet", Page: provider.PageRequest{Number: 1, Size: 24},
 					})
 				},
@@ -141,7 +139,7 @@ func TestCheckReportsDeliberateContractFailures(t *testing.T) {
 		Response: provider.ResourceResponse{Body: []byte("Trail Helmet")},
 	})
 	implementation := &fixtureProvider{resources: resources, helpName: "wrong-name", invalid: true}
-	report := conformance.Check(context.Background(), conformance.Suite{
+	report := conformance.Check(t.Context(), conformance.Suite{
 		Registration: provider.Registration{
 			Name: "fixture", SDKAPIVersion: provider.APIVersion, Implementation: implementation,
 			Capabilities: []provider.CapabilityName{provider.CapabilitySearch, provider.CapabilityFilters},
@@ -166,7 +164,7 @@ func TestCheckReportsDeliberateContractFailures(t *testing.T) {
 }
 
 func TestCheckReportsInvalidRegistrationWithoutCallingProvider(t *testing.T) {
-	report := conformance.Check(context.Background(), conformance.Suite{Registration: provider.Registration{
+	report := conformance.Check(t.Context(), conformance.Suite{Registration: provider.Registration{
 		Name: "Invalid Name", SDKAPIVersion: provider.APIVersion, Implementation: &fixtureProvider{},
 	}})
 	if report.Passed() || !hasFailure(report, "registration") {
@@ -176,14 +174,14 @@ func TestCheckReportsInvalidRegistrationWithoutCallingProvider(t *testing.T) {
 
 func TestFixtureServiceIsOfflineOrderedAndCancelable(t *testing.T) {
 	service := conformance.NewFixtureService(conformance.ResourceFixture{Response: provider.ResourceResponse{Body: []byte("first")}})
-	response, err := service.Fetch(context.Background(), provider.ResourceRequest{Method: "GET", URL: "https://shop.example/one"})
+	response, err := service.Fetch(t.Context(), provider.ResourceRequest{Method: "GET", URL: "https://shop.example/one"})
 	if err != nil || string(response.Body) != "first" {
 		t.Fatalf("first Fetch() = %q, %v", response.Body, err)
 	}
-	if _, err := service.Fetch(context.Background(), provider.ResourceRequest{Method: "GET", URL: "https://shop.example/two"}); err == nil || !strings.Contains(err.Error(), "no resource fixture") {
+	if _, err := service.Fetch(t.Context(), provider.ResourceRequest{Method: "GET", URL: "https://shop.example/two"}); err == nil || !strings.Contains(err.Error(), "no resource fixture") {
 		t.Fatalf("second Fetch() error = %v", err)
 	}
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	cancel()
 	if _, err := service.Fetch(ctx, provider.ResourceRequest{}); !errors.Is(err, context.Canceled) {
 		t.Fatalf("canceled Fetch() error = %v", err)

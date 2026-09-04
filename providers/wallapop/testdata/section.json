@@ -1,0 +1,29 @@
+{
+  "data": {
+    "section": {
+      "items": [
+        {
+          "id": "fixture-trek",
+          "title": "Trek Checkpoint ALR 4",
+          "category_id": 17000,
+          "price": {"amount": 875.0, "currency": "EUR"},
+          "images": [{"urls": {"big": "https://cdn.wallapop.com/trek.jpg"}}],
+          "reserved": {"flag": false},
+          "location": {"latitude": 42.511, "longitude": 1.547, "postal_code": "AD700", "city": "Escaldes", "region": "Escaldes-Engordany", "country_code": "AD"},
+          "shipping": {"item_is_shippable": true, "user_allows_shipping": true},
+          "web_slug": "trek-checkpoint-alr-4-100",
+          "created_at": 1786136628170
+        },
+        {
+          "id": "fixture-open",
+          "title": "OPEN U.P.",
+          "category_id": 17000,
+          "price": {"amount": 1800, "currency": "EUR"},
+          "location": {"latitude": 42.507, "longitude": 1.547, "city": "Escaldes", "country_code": "AD"},
+          "web_slug": "open-up-200"
+        }
+      ]
+    }
+  },
+  "meta": {"next_page": "fixture-cursor"}
+}

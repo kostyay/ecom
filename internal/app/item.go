@@ -59,10 +59,8 @@ func (services *Services) Item(ctx context.Context, input ItemInput) (ItemResult
 		Refresh: input.Refresh, StaleIfError: input.StaleIfError,
 	}, input.Interactive)
 	result, err := services.Provider.Item(ctx, provider.ItemRequest{
-		Request: provider.Request{
-			Market: services.Market, Pricing: PricingFromConfig(services.Settings.Pricing),
-			Cache: collector.cache, Interactive: input.Interactive, Resources: collector,
-		},
+		Market: services.Market, Pricing: PricingFromConfig(services.Settings.Pricing),
+		Cache: collector.cache, Interactive: input.Interactive, Resources: collector,
 		IDOrURL: identifier, Variants: variants,
 	})
 	if err != nil {

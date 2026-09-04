@@ -2,11 +2,11 @@
 
 `ecom` is a command-line tool for product discovery on one commerce provider at a time. It gives stable JSON to agents and scripts. It can also give tables to people.
 
-The first compiled provider is Bike-Discount. `ecom` does not compare shops. Run one command for each shop and compare the results in your own program.
+The compiled providers are Bike-Discount and Wallapop. `ecom` does not compare shops. Run one command for each shop and compare the results in your own program.
 
 ## Install
 
-Go 1.26.5 or newer is required.
+Go 1.27.0 or newer is required.
 
 ```sh
 go install github.com/kostyay/ecom@latest
@@ -29,17 +29,24 @@ ecom filters deals -o table
 ecom search "powertube" -o table
 ecom deals --page 1 --page-size 48
 ecom item "https://www.bike-discount.de/en/yamaha-500-wh-36v/13.6ah-frame-battery"
+ecom provider help wallapop -o table
+ecom search "gravel talla M" --provider wallapop --filter max_distance_km=100 --filter max_price=2000 --sort closest
 ```
 
 JSON is the default for data commands. Use `-o table` for a human-readable result. Use a kubectl-style JSONPath expression to select fields:
 
 ```sh
 ecom search "helmet" -o 'jsonpath={.data.items[*].price.display}'
+ecom search "helmet" | jq .
 ```
+
+The CLI does not include jq expressions or a pretty-JSON option. Pipe its compact JSON to `jq` when you need them.
 
 The returned price is the item price that the site shows. Shipping and optional fees are not included by default. `ecom` does not convert currency.
 
-See [the user guide](docs/user-guide.md) for all commands, configuration, browser setup, cache behavior, and Bike-Discount limits.
+Wallapop supports public `search` and `item` requests without authentication or a browser. Search uses Andorra la Vella as its default center. You can set `latitude`, `longitude`, `max_distance_km`, `min_price`, `max_price`, and `category_id` filters. Run `ecom provider help wallapop` for current sort and paging limits. Wallapop can change or limit its public endpoints.
+
+See [the user guide](docs/user-guide.md) for all commands, configuration, browser setup, cache behavior, and provider limits.
 
 ## Configuration
 
@@ -85,6 +92,7 @@ log:
 Flags override environment variables. Environment variables override the file. For example, `ECOM_MARKET_CURRENCY=EUR` sets `market.currency`.
 
 Bike-Discount supports only `pricing.include_shipping: false`. It returns `invalid_provider_config` before a network request if this value is `true`.
+Wallapop also requires `pricing.include_shipping: false` and does not accept provider-specific configuration values.
 
 ## Develop
 
@@ -100,7 +108,7 @@ build. The standard suite does not access a live website and does not start a
 browser. Tests read the checked-in fixtures but do not change them. Run
 `make fmt` separately when you want to change source formatting.
 
-`make build` writes `bin/ecom`. The provider is compiled by a blank Go import in `main.go`.
+`make build` writes `bin/ecom`. Providers are compiled by blank Go imports in `main.go`.
 See [the provider author guide](docs/provider-author-guide.md) to create and test an external provider with only the public SDK.
 
 ## License

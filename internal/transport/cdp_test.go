@@ -111,7 +111,7 @@ func TestCDPResourceServiceReturnsClosedPageSnapshot(t *testing.T) {
 		Transport: provider.TransportPolicy{Required: provider.TransportCDP},
 	}
 
-	response, err := service.Fetch(context.Background(), request)
+	response, err := service.Fetch(t.Context(), request)
 	if err != nil {
 		t.Fatalf("Fetch() error = %v", err)
 	}
@@ -143,7 +143,7 @@ func TestCDPResourceServiceReportsMissingConfigurationForFallback(t *testing.T) 
 	permits := &fakeCDPPermits{}
 	service := newTestCDPService(t, "", connector, permits, time.Now())
 
-	_, err := service.Fetch(context.Background(), provider.ResourceRequest{URL: "https://shop.example"})
+	_, err := service.Fetch(t.Context(), provider.ResourceRequest{URL: "https://shop.example"})
 	if !errors.Is(err, provider.ErrorCodeTransportUnavailable) || connector.connects != 0 || permits.acquires != 0 {
 		t.Fatalf("Fetch() = %v, connector calls %d, permit calls %d", err, connector.connects, permits.acquires)
 	}
@@ -163,7 +163,7 @@ func TestCDPResourceServiceSafelyReportsLifecycleFailures(t *testing.T) {
 		t.Run(test.name, func(t *testing.T) {
 			permits := &fakeCDPPermits{}
 			service := newTestCDPService(t, "ws://configured-private-address", test.connector, permits, time.Now())
-			_, err := service.Fetch(context.Background(), provider.ResourceRequest{URL: "https://shop.example"})
+			_, err := service.Fetch(t.Context(), provider.ResourceRequest{URL: "https://shop.example"})
 			if !errors.Is(err, provider.ErrorCodeBrowserFailure) || strings.Contains(err.Error(), "private") || strings.Contains(err.Error(), "secret") {
 				t.Fatalf("Fetch() error = %v", err)
 			}
@@ -185,7 +185,7 @@ func TestCDPResourceServicePreservesCancellationAndCleansUpNewTarget(t *testing.
 	connection := &fakeCDPConnection{target: target}
 	permits := &fakeCDPPermits{}
 	service := newTestCDPService(t, "http://127.0.0.1:9222", &fakeCDPConnector{connection: connection}, permits, time.Now())
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	done := make(chan error, 1)
 	go func() {
 		_, err := service.Fetch(ctx, provider.ResourceRequest{URL: "https://shop.example"})
@@ -218,7 +218,7 @@ func TestCDPResourceServiceClassifiesChallengesAndBlocks(t *testing.T) {
 				Headers: http.Header{"Content-Type": {"text/html"}},
 			}}
 			service := newTestCDPService(t, "http://127.0.0.1:9222", &fakeCDPConnector{connection: &fakeCDPConnection{target: target}}, &fakeCDPPermits{}, time.Now())
-			response, err := service.Fetch(context.Background(), provider.ResourceRequest{URL: "https://shop.example"})
+			response, err := service.Fetch(t.Context(), provider.ResourceRequest{URL: "https://shop.example"})
 			if !errors.Is(err, test.code) || response.Page == nil || response.Transport != provider.TransportCDP {
 				t.Fatalf("Fetch() = %#v, %v; want %s", response, err, test.code)
 			}
@@ -228,7 +228,7 @@ func TestCDPResourceServiceClassifiesChallengesAndBlocks(t *testing.T) {
 
 func TestCDPResourceServiceReportsPermitFailure(t *testing.T) {
 	service := newTestCDPService(t, "http://127.0.0.1:9222", &fakeCDPConnector{}, &fakeCDPPermits{err: errors.New("internal limit detail")}, time.Now())
-	_, err := service.Fetch(context.Background(), provider.ResourceRequest{URL: "https://shop.example"})
+	_, err := service.Fetch(t.Context(), provider.ResourceRequest{URL: "https://shop.example"})
 	if !errors.Is(err, provider.ErrorCodeBrowserFailure) || strings.Contains(err.Error(), "internal") {
 		t.Fatalf("Fetch() error = %v", err)
 	}

@@ -1,0 +1,13 @@
+{
+  "components": [
+    {
+      "type": "search_results",
+      "type_data": {
+        "query_params": {
+          "search_id": "fixture-search",
+          "category_id": 17000
+        }
+      }
+    }
+  ]
+}

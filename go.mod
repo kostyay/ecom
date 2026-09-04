@@ -1,6 +1,6 @@
 module github.com/kostyay/ecom
 
-go 1.26.5
+go 1.27.0
 
 require (
 	github.com/chromedp/cdproto v0.0.0-20250724212937-08a3db8b4327

@@ -7,6 +7,7 @@ import (
 
 	"github.com/kostyay/ecom/internal/cli"
 	_ "github.com/kostyay/ecom/providers/bikediscount"
+	_ "github.com/kostyay/ecom/providers/wallapop"
 )
 
 func main() {

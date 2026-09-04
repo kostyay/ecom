@@ -14,7 +14,7 @@ type Info struct {
 	GoVersion   string `json:"go_version"`
 	VCSRevision string `json:"vcs_revision,omitempty"`
 	VCSTime     string `json:"vcs_time,omitempty"`
-	VCSModified bool   `json:"vcs_modified,omitempty"`
+	VCSModified bool   `json:"vcs_modified,omitzero"`
 }
 
 // Current returns version data for the running executable.

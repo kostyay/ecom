@@ -56,7 +56,7 @@ func TestBrowserExecutorNavigatesAndReturnsClosedSnapshotAndState(t *testing.T) 
 		DOM:     []provider.DOMExtraction{{Name: "names", Selector: ".name", Kind: provider.DOMText, All: true}},
 	}
 
-	got, err := executor.Navigate(context.Background(), request, initial)
+	got, err := executor.Navigate(t.Context(), request, initial)
 	if err != nil {
 		t.Fatalf("Navigate() error = %v", err)
 	}
@@ -93,7 +93,7 @@ func TestConfiguredBrowserExecutorUsesBrowserSettings(t *testing.T) {
 func TestBrowserExecutorHonorsCancellation(t *testing.T) {
 	backend := &fakeBrowserBackend{wait: true, called: make(chan struct{})}
 	executor := newTestBrowserExecutor(t, backend, time.Now(), 1024, false)
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	done := make(chan error, 1)
 	go func() {
 		_, err := executor.Fetch(ctx, provider.ResourceRequest{URL: "https://shop.example"})
@@ -127,7 +127,7 @@ func TestBrowserExecutorRejectsInvalidRequestsAndResults(t *testing.T) {
 		t.Run(test.name, func(t *testing.T) {
 			backend := &fakeBrowserBackend{result: test.result}
 			executor := newTestBrowserExecutor(t, backend, time.Now(), 1024, false)
-			_, err := executor.Fetch(context.Background(), test.request)
+			_, err := executor.Fetch(t.Context(), test.request)
 			if !errors.Is(err, test.code) {
 				t.Fatalf("Fetch() error = %v, want %s", err, test.code)
 			}
@@ -151,7 +151,7 @@ func TestBrowserExecutorClassifiesChallengesAndBlocks(t *testing.T) {
 			result.StatusCode, result.HTML = test.status, []byte(test.body)
 			backend := &fakeBrowserBackend{result: result}
 			executor := newTestBrowserExecutor(t, backend, time.Now(), 4096, false)
-			navigation, err := executor.Navigate(context.Background(), provider.ResourceRequest{URL: "https://shop.example"}, session.State{})
+			navigation, err := executor.Navigate(t.Context(), provider.ResourceRequest{URL: "https://shop.example"}, session.State{})
 			if !errors.Is(err, test.code) || navigation.Response.Page == nil {
 				t.Fatalf("Navigate() = %#v, %v; want %s with snapshot", navigation, err, test.code)
 			}
@@ -163,13 +163,13 @@ func TestBrowserExecutorNavigationModes(t *testing.T) {
 	backend := &fakeBrowserBackend{result: validBrowserResult("https://shop.example")}
 	executor := newTestBrowserExecutor(t, backend, time.Now(), 1024, true)
 	request := provider.ResourceRequest{URL: "https://shop.example"}
-	if _, err := executor.NavigateHeadless(context.Background(), request, session.State{}); err != nil {
+	if _, err := executor.NavigateHeadless(t.Context(), request, session.State{}); err != nil {
 		t.Fatalf("NavigateHeadless() error = %v", err)
 	}
 	if backend.command.Headed || backend.command.WaitForChallenge {
 		t.Fatalf("headless command = %#v", backend.command)
 	}
-	if _, err := executor.NavigateInteractive(context.Background(), request, session.State{}); err != nil {
+	if _, err := executor.NavigateInteractive(t.Context(), request, session.State{}); err != nil {
 		t.Fatalf("NavigateInteractive() error = %v", err)
 	}
 	if !backend.command.Headed || !backend.command.WaitForChallenge {
@@ -180,7 +180,7 @@ func TestBrowserExecutorNavigationModes(t *testing.T) {
 func TestBrowserExecutorDoesNotExposeBackendErrorText(t *testing.T) {
 	backend := &fakeBrowserBackend{err: errors.New("cookie=private-secret")}
 	executor := newTestBrowserExecutor(t, backend, time.Now(), 1024, false)
-	_, err := executor.Fetch(context.Background(), provider.ResourceRequest{URL: "https://shop.example"})
+	_, err := executor.Fetch(t.Context(), provider.ResourceRequest{URL: "https://shop.example"})
 	if !errors.Is(err, provider.ErrorCodeBrowserFailure) || strings.Contains(err.Error(), "private-secret") {
 		t.Fatalf("Fetch() error = %v", err)
 	}
