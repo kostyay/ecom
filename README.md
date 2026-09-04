@@ -6,6 +6,10 @@
 
 The compiled providers are Bike-Discount and Wallapop. `ecom` does not compare shops. Run one command for each shop and compare the results in your own program.
 
+<p align="center">
+  <img src="docs/demo.gif" alt="ecom CLI demo" width="700">
+</p>
+
 ## Install
 
 Go 1.27.0 or newer is required.
