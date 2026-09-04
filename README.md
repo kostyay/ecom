@@ -1,5 +1,7 @@
 # ecom
 
+![Agents using the ecom CLI gateway to access ecommerce websites](docs/logo.png)
+
 `ecom` is a command-line tool for product discovery on one commerce provider at a time. It gives stable JSON to agents and scripts. It can also give tables to people.
 
 The compiled providers are Bike-Discount and Wallapop. `ecom` does not compare shops. Run one command for each shop and compare the results in your own program.
