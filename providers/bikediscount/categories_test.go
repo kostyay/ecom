@@ -1,7 +1,6 @@
 package bikediscount
 
 import (
-	"context"
 	"errors"
 	"os"
 	"reflect"
@@ -190,7 +189,7 @@ func TestCategoryOperationsRejectUnverifiedValues(t *testing.T) {
 	}
 	for index, request := range requests {
 		request.Request = bikeDiscountRequest(&fakeResourceService{})
-		_, err := implementation.CategoryItems(context.Background(), request)
+		_, err := implementation.CategoryItems(t.Context(), request)
 		if !errors.Is(err, provider.ErrorCodeInvalidFilter) {
 			t.Errorf("request %d error = %v", index, err)
 		}

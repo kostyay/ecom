@@ -48,7 +48,7 @@ func registration() provider.Registration {
 }
 
 // ValidateConfig validates the Bike-Discount configuration block.
-func (implementation) ValidateConfig(configuration map[string]interface{}) error {
+func (implementation) ValidateConfig(configuration map[string]any) error {
 	for key := range configuration {
 		if key != "page_size" {
 			return fmt.Errorf("unknown setting %q", key)
@@ -63,7 +63,7 @@ func (implementation) ValidateConfig(configuration map[string]interface{}) error
 	return nil
 }
 
-func integer(value interface{}) (int64, bool) {
+func integer(value any) (int64, bool) {
 	switch number := value.(type) {
 	case int:
 		return int64(number), true

@@ -175,26 +175,22 @@ func TestRegistrySupportsConcurrentRegistrationAndLookup(t *testing.T) {
 
 	var waitGroup sync.WaitGroup
 	for index := range providerCount {
-		waitGroup.Add(1)
-		go func() {
-			defer waitGroup.Done()
+		waitGroup.Go(func() {
 			name := fmt.Sprintf("provider-%d", index)
 			if err := registry.Register(provider.Registration{
 				Name: name, SDKAPIVersion: provider.APIVersion, Implementation: &testProvider{value: index},
 			}); err != nil {
 				t.Errorf("Register(%q) error = %v", name, err)
 			}
-		}()
+		})
 	}
 
 	for range providerCount {
-		waitGroup.Add(1)
-		go func() {
-			defer waitGroup.Done()
+		waitGroup.Go(func() {
 			for index := range providerCount {
 				registry.Lookup(fmt.Sprintf("provider-%d", index))
 			}
-		}()
+		})
 	}
 	waitGroup.Wait()
 
@@ -223,7 +219,7 @@ func TestPackageRegistrySupportsInitStyleRegistration(t *testing.T) {
 
 func providerDescription(t *testing.T, implementation provider.Provider) string {
 	t.Helper()
-	result, err := implementation.Help(context.Background(), provider.HelpRequest{})
+	result, err := implementation.Help(t.Context(), provider.HelpRequest{})
 	if err != nil {
 		t.Fatalf("Help() error = %v", err)
 	}

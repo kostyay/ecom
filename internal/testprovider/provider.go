@@ -52,7 +52,7 @@ func Registration() provider.Registration {
 
 type fixtureProvider struct{}
 
-func (*fixtureProvider) ValidateConfig(configuration map[string]interface{}) error {
+func (*fixtureProvider) ValidateConfig(configuration map[string]any) error {
 	for key, value := range configuration {
 		if key != "page_size" {
 			return provider.NewError(provider.ErrorCodeInvalidProviderConfig, fmt.Sprintf("unknown test fixture setting %q", key), nil)

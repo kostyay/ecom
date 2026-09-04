@@ -174,7 +174,7 @@ func TestServiceFetchStateTable(t *testing.T) {
 			clock := &fakeClock{now: now}
 			service := mustService(t, repository, clock)
 			fetchCalls := 0
-			entry, metadata, err := service.Fetch(context.Background(), "key", ttl, test.policy, func(context.Context) (Entry, error) {
+			entry, metadata, err := service.Fetch(t.Context(), "key", ttl, test.policy, func(context.Context) (Entry, error) {
 				fetchCalls++
 				return cloneForTest(test.fetchEntry), test.fetchErr
 			})
@@ -206,7 +206,7 @@ func TestServiceFetchClockSkewClampsAge(t *testing.T) {
 	repository := &fakeRepository{entry: entry, found: true}
 	service := mustService(t, repository, &fakeClock{now: now})
 
-	_, metadata, err := service.Fetch(context.Background(), "key", 24*time.Hour, provider.CachePolicy{}, unexpectedFetch(t))
+	_, metadata, err := service.Fetch(t.Context(), "key", 24*time.Hour, provider.CachePolicy{}, unexpectedFetch(t))
 	if err != nil {
 		t.Fatalf("Fetch() error = %v", err)
 	}
@@ -218,7 +218,7 @@ func TestServiceFetchClockSkewClampsAge(t *testing.T) {
 func TestServiceFetchRepositoryReadError(t *testing.T) {
 	repository := &fakeRepository{getErr: errRepository}
 	service := mustService(t, repository, &fakeClock{now: time.Now()})
-	_, _, err := service.Fetch(context.Background(), "key", time.Hour, provider.CachePolicy{}, unexpectedFetch(t))
+	_, _, err := service.Fetch(t.Context(), "key", time.Hour, provider.CachePolicy{}, unexpectedFetch(t))
 	if !errors.Is(err, errRepository) {
 		t.Fatalf("Fetch() error = %v, want repository error", err)
 	}
@@ -232,7 +232,7 @@ func TestServiceFetchCancellation(t *testing.T) {
 	expired := testServiceEntry(now.Add(-24*time.Hour), 24*time.Hour, []byte("stale"), EncodingIdentity)
 	repository := &fakeRepository{entry: expired, found: true}
 	service := mustService(t, repository, &fakeClock{now: now})
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 
 	_, _, err := service.Fetch(ctx, "key", 24*time.Hour, provider.CachePolicy{StaleIfError: true}, func(context.Context) (Entry, error) {
 		cancel()
@@ -252,7 +252,7 @@ func TestServiceFetchDoesNotHideFetchCancellationWithStaleEntry(t *testing.T) {
 	repository := &fakeRepository{entry: expired, found: true}
 	service := mustService(t, repository, &fakeClock{now: now})
 
-	_, _, err := service.Fetch(context.Background(), "key", 24*time.Hour, provider.CachePolicy{StaleIfError: true}, func(context.Context) (Entry, error) {
+	_, _, err := service.Fetch(t.Context(), "key", 24*time.Hour, provider.CachePolicy{StaleIfError: true}, func(context.Context) (Entry, error) {
 		return Entry{}, context.DeadlineExceeded
 	})
 	if !errors.Is(err, context.DeadlineExceeded) {
@@ -263,7 +263,7 @@ func TestServiceFetchDoesNotHideFetchCancellationWithStaleEntry(t *testing.T) {
 func TestServiceFetchCanceledBeforeRead(t *testing.T) {
 	repository := &fakeRepository{}
 	service := mustService(t, repository, &fakeClock{now: time.Now()})
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	cancel()
 	_, _, err := service.Fetch(ctx, "key", time.Hour, provider.CachePolicy{}, unexpectedFetch(t))
 	if !errors.Is(err, context.Canceled) || repository.getCalls != 0 {
@@ -277,7 +277,7 @@ func TestServiceFetchWriteFailurePreservesPriorEntry(t *testing.T) {
 	repository := &fakeRepository{entry: prior, found: true, putErr: errWrite}
 	service := mustService(t, repository, &fakeClock{now: now})
 
-	_, _, err := service.Fetch(context.Background(), "key", 6*time.Hour, provider.CachePolicy{}, func(context.Context) (Entry, error) {
+	_, _, err := service.Fetch(t.Context(), "key", 6*time.Hour, provider.CachePolicy{}, func(context.Context) (Entry, error) {
 		return testServiceEntry(time.Time{}, time.Hour, []byte("replacement"), EncodingGzip), nil
 	})
 	if !errors.Is(err, errWrite) {
@@ -310,7 +310,7 @@ func TestServiceCompressesStorageAndReturnsExactIdentityResponse(t *testing.T) {
 	repository := &fakeRepository{}
 	service := mustService(t, repository, &fakeClock{now: now})
 
-	got, _, err := service.Fetch(context.Background(), "key", time.Hour, provider.CachePolicy{}, func(context.Context) (Entry, error) {
+	got, _, err := service.Fetch(t.Context(), "key", time.Hour, provider.CachePolicy{}, func(context.Context) (Entry, error) {
 		return testServiceEntry(time.Time{}, time.Hour, body, EncodingIdentity), nil
 	})
 	if err != nil {
@@ -337,7 +337,7 @@ func TestServiceUsesConfiguredPruneLimit(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	result, err := service.Prune(context.Background())
+	result, err := service.Prune(t.Context())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -352,15 +352,15 @@ func TestServiceUsesConfiguredPruneLimit(t *testing.T) {
 func TestServiceClearsAllAndProviderResponses(t *testing.T) {
 	repository := &fakeRepository{expired: PruneResult{EntriesDeleted: 2, BytesDeleted: 20}}
 	service := mustService(t, repository, &fakeClock{now: time.Now()})
-	result, err := service.Clear(context.Background())
+	result, err := service.Clear(t.Context())
 	if err != nil || result != repository.expired {
 		t.Fatalf("Clear = %#v, %v", result, err)
 	}
-	result, err = service.ClearProvider(context.Background(), "bike-discount")
+	result, err = service.ClearProvider(t.Context(), "bike-discount")
 	if err != nil || result != repository.expired || repository.provider != "bike-discount" {
 		t.Fatalf("ClearProvider = %#v, %v; provider %q", result, err, repository.provider)
 	}
-	if _, err := service.ClearProvider(context.Background(), " bike-discount"); err == nil {
+	if _, err := service.ClearProvider(t.Context(), " bike-discount"); err == nil {
 		t.Fatal("ClearProvider invalid scope error = nil")
 	}
 }
@@ -371,7 +371,7 @@ func TestServiceAppliesConfiguredResponseLimit(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	_, _, err = service.Fetch(context.Background(), "key", time.Hour, provider.CachePolicy{}, func(context.Context) (Entry, error) {
+	_, _, err = service.Fetch(t.Context(), "key", time.Hour, provider.CachePolicy{}, func(context.Context) (Entry, error) {
 		return testServiceEntry(time.Time{}, time.Hour, []byte("large"), EncodingIdentity), nil
 	})
 	if err == nil || !strings.Contains(err.Error(), "exceeds maximum 4") {
@@ -387,7 +387,7 @@ func TestServiceRejectsMalformedStoredGzip(t *testing.T) {
 	entry := testServiceEntry(now, time.Hour, []byte("not gzip"), EncodingGzip)
 	repository := &fakeRepository{entry: entry, found: true}
 	service := mustService(t, repository, &fakeClock{now: now})
-	_, _, err := service.Fetch(context.Background(), "key", time.Hour, provider.CachePolicy{}, unexpectedFetch(t))
+	_, _, err := service.Fetch(t.Context(), "key", time.Hour, provider.CachePolicy{}, unexpectedFetch(t))
 	if err == nil || !strings.Contains(err.Error(), "decode cache entry") {
 		t.Fatalf("Fetch error = %v, want decode error", err)
 	}

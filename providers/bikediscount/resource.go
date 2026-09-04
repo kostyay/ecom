@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"net/url"
 	"path"
-	"sort"
+	"slices"
 	"strings"
 
 	"github.com/kostyay/ecom/provider"
@@ -162,7 +162,7 @@ func currencyWarnings(requestedCurrency string, products ...provider.ProductSumm
 	for actualCurrency := range actualCurrencies {
 		orderedCurrencies = append(orderedCurrencies, actualCurrency)
 	}
-	sort.Strings(orderedCurrencies)
+	slices.Sort(orderedCurrencies)
 	warnings := make([]provider.Warning, 0, len(orderedCurrencies))
 	for _, actualCurrency := range orderedCurrencies {
 		if actualCurrency == requestedCurrency {

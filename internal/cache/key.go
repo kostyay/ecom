@@ -2,6 +2,7 @@
 package cache
 
 import (
+	"cmp"
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
@@ -9,7 +10,7 @@ import (
 	"fmt"
 	"net"
 	"net/url"
-	"sort"
+	"slices"
 	"strings"
 
 	"github.com/kostyay/ecom/provider"
@@ -56,7 +57,7 @@ type canonicalRequest struct {
 	Query          []canonicalValue   `json:"query,omitempty"`
 	Headers        []canonicalValue   `json:"headers,omitempty"`
 	BodyDigest     string             `json:"body_digest,omitempty"`
-	Transport      canonicalTransport `json:"transport,omitempty"`
+	Transport      canonicalTransport `json:"transport"`
 	DOM            []canonicalDOM     `json:"dom,omitempty"`
 	CachePartition string             `json:"cache_partition,omitempty"`
 }
@@ -82,7 +83,7 @@ type canonicalDOM struct {
 	Selector  string `json:"selector"`
 	Kind      string `json:"kind"`
 	Attribute string `json:"attribute,omitempty"`
-	All       bool   `json:"all,omitempty"`
+	All       bool   `json:"all,omitzero"`
 }
 
 func canonicalize(providerName string, request provider.ResourceRequest) (canonicalRequest, error) {
@@ -272,11 +273,11 @@ func mergeCanonicalValues(values []canonicalValue) []canonicalValue {
 	}
 	result := make([]canonicalValue, 0, len(merged))
 	for name, entries := range merged {
-		sort.Strings(entries)
+		slices.Sort(entries)
 		result = append(result, canonicalValue{Name: name, Values: entries})
 	}
-	sort.Slice(result, func(left, right int) bool {
-		return result[left].Name < result[right].Name
+	slices.SortFunc(result, func(left, right canonicalValue) int {
+		return cmp.Compare(left.Name, right.Name)
 	})
 	return result
 }

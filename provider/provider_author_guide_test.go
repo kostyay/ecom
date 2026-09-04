@@ -28,7 +28,7 @@ func TestProviderAuthorGuideExampleCompiles(t *testing.T) {
 
 	source := between(t, string(guide), providerExampleStart, providerExampleEnd)
 	temporary := t.TempDir()
-	module := "module example.com/ecom-tinyshop\n\ngo 1.26.5\n\n" +
+	module := "module example.com/ecom-tinyshop\n\ngo 1.27.0\n\n" +
 		"require github.com/kostyay/ecom v0.0.0\n\n" +
 		"replace github.com/kostyay/ecom => " + filepath.ToSlash(root) + "\n"
 	writeFile(t, filepath.Join(temporary, "go.mod"), module)
@@ -45,16 +45,15 @@ func TestProviderAuthorGuideExampleCompiles(t *testing.T) {
 
 func between(t *testing.T, text, start, end string) string {
 	t.Helper()
-	startIndex := strings.Index(text, start)
-	if startIndex < 0 {
+	_, text, found := strings.Cut(text, start)
+	if !found {
 		t.Fatalf("documentation does not contain %q", start)
 	}
-	startIndex += len(start)
-	endIndex := strings.Index(text[startIndex:], end)
-	if endIndex < 0 {
+	text, _, found = strings.Cut(text, end)
+	if !found {
 		t.Fatalf("documentation does not contain %q after example start", end)
 	}
-	return text[startIndex : startIndex+endIndex]
+	return text
 }
 
 func writeFile(t *testing.T, path, contents string) {

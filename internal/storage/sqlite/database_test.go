@@ -37,7 +37,7 @@ func TestOpenCreatesDatabaseAndAppliesMigrations(t *testing.T) {
 
 func TestOpenMigratesOldDatabase(t *testing.T) {
 	path := filepath.Join(t.TempDir(), "state.db")
-	oldDatabase, err := openWithMigrations(context.Background(), path, schemaMigrations[:1])
+	oldDatabase, err := openWithMigrations(t.Context(), path, schemaMigrations[:1])
 	if err != nil {
 		t.Fatalf("create old database: %v", err)
 	}
@@ -58,7 +58,7 @@ func TestMigrationFailureRollsBackSchemaAndVersion(t *testing.T) {
 		{version: 1, name: "base", sql: "CREATE TABLE stable (id INTEGER PRIMARY KEY);"},
 		{version: 2, name: "broken", sql: "CREATE TABLE partial (id INTEGER); INVALID SQL;"},
 	}
-	_, err := openWithMigrations(context.Background(), path, migrations)
+	_, err := openWithMigrations(t.Context(), path, migrations)
 	if err == nil || !strings.Contains(err.Error(), "run migration 2 (broken)") {
 		t.Fatalf("openWithMigrations error = %v, want migration failure", err)
 	}
@@ -72,7 +72,7 @@ func TestMigrationFailureRollsBackSchemaAndVersion(t *testing.T) {
 			t.Errorf("close raw database: %v", err)
 		}
 	})
-	version, err := readSchemaVersion(context.Background(), rawDatabase)
+	version, err := readSchemaVersion(t.Context(), rawDatabase)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -85,7 +85,7 @@ func TestMigrationFailureRollsBackSchemaAndVersion(t *testing.T) {
 
 func TestWALAllowsReadersDuringWrite(t *testing.T) {
 	database := openTestDatabase(t, filepath.Join(t.TempDir(), "state.db"))
-	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	ctx, cancel := context.WithTimeout(t.Context(), 2*time.Second)
 	defer cancel()
 
 	readerOne, err := database.sql.BeginTx(ctx, &sql.TxOptions{ReadOnly: true})
@@ -129,7 +129,7 @@ INSERT INTO raw_responses (
 }
 
 func TestOpenRejectsEmptyPath(t *testing.T) {
-	_, err := Open(context.Background(), "")
+	_, err := Open(t.Context(), "")
 	if err == nil || !strings.Contains(err.Error(), "path must not be empty") {
 		t.Fatalf("Open error = %v, want empty path error", err)
 	}
@@ -137,7 +137,7 @@ func TestOpenRejectsEmptyPath(t *testing.T) {
 
 func openTestDatabase(t *testing.T, path string) *Database {
 	t.Helper()
-	database, err := Open(context.Background(), path)
+	database, err := Open(t.Context(), path)
 	if err != nil {
 		t.Fatalf("Open: %v", err)
 	}
@@ -151,7 +151,7 @@ func openTestDatabase(t *testing.T, path string) *Database {
 
 func assertSchemaVersion(t *testing.T, database *Database, want int) {
 	t.Helper()
-	version, err := database.SchemaVersion(context.Background())
+	version, err := database.SchemaVersion(t.Context())
 	if err != nil {
 		t.Fatal(err)
 	}

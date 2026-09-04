@@ -25,10 +25,10 @@ func (*fixtureProvider) Help(context.Context, provider.HelpRequest) (provider.He
 
 type configValidatingProvider struct {
 	fixtureProvider
-	configuration map[string]interface{}
+	configuration map[string]any
 }
 
-func (p *configValidatingProvider) ValidateConfig(configuration map[string]interface{}) error {
+func (p *configValidatingProvider) ValidateConfig(configuration map[string]any) error {
 	p.configuration = configuration
 	return errors.New("invalid fixture configuration")
 }
@@ -101,7 +101,7 @@ func TestFactoryValidatesProviderConfiguration(t *testing.T) {
 		t.Fatal(err)
 	}
 	settings := validSettings(filepath.Join(t.TempDir(), "cache.db"))
-	settings.Providers = map[string]map[string]interface{}{"fixture": {"page_size": 48}}
+	settings.Providers = map[string]map[string]any{"fixture": {"page_size": 48}}
 
 	_, err := NewFactory(registry.Resolve).NewProviderContext(settings, "fixture", slog.Default())
 	if !errors.Is(err, provider.ErrorCodeInvalidProviderConfig) {

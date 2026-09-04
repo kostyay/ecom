@@ -20,7 +20,7 @@ func TestProviderConformance(t *testing.T) {
 				Name: "filtered second search page", Capability: provider.CapabilitySearch,
 				Invoke: func(ctx context.Context, selected provider.Provider) (any, error) {
 					return selected.Search(ctx, provider.SearchRequest{
-						Request: provider.Request{Market: market}, Query: "helmet",
+						Market: market, Query: "helmet",
 						Filters: []provider.Filter{{Key: "in-stock", Value: "true"}},
 						Sort:    &provider.Sort{Value: "price-asc"}, Page: provider.PageRequest{Number: 2, Size: 1},
 					})
@@ -35,7 +35,7 @@ func TestProviderConformance(t *testing.T) {
 			{
 				Name: "partial warning", Capability: provider.CapabilitySearch, WantPartialWarning: true,
 				Invoke: func(ctx context.Context, selected provider.Provider) (any, error) {
-					return selected.Search(ctx, provider.SearchRequest{Request: provider.Request{Market: market}, Query: "partial-warning"})
+					return selected.Search(ctx, provider.SearchRequest{Market: market, Query: "partial-warning"})
 				},
 			},
 			{
@@ -59,7 +59,7 @@ func TestProviderConformance(t *testing.T) {
 			{
 				Name: "category products", Capability: provider.CapabilityCategoryItems,
 				Invoke: func(ctx context.Context, selected provider.Provider) (any, error) {
-					return selected.CategoryItems(ctx, provider.CategoryItemsRequest{Request: provider.Request{Market: market}, CategoryID: "helmets"})
+					return selected.CategoryItems(ctx, provider.CategoryItemsRequest{Market: market, CategoryID: "helmets"})
 				},
 			},
 			{
@@ -77,13 +77,13 @@ func TestProviderConformance(t *testing.T) {
 			{
 				Name: "brand products", Capability: provider.CapabilityBrandItems,
 				Invoke: func(ctx context.Context, selected provider.Provider) (any, error) {
-					return selected.BrandItems(ctx, provider.BrandItemsRequest{Request: provider.Request{Market: market}, BrandID: "acme", Filters: []provider.Filter{{Key: "color", Value: "red"}}})
+					return selected.BrandItems(ctx, provider.BrandItemsRequest{Market: market, BrandID: "acme", Filters: []provider.Filter{{Key: "color", Value: "red"}}})
 				},
 			},
 			{
 				Name: "native deals", Capability: provider.CapabilityDeals,
 				Invoke: func(ctx context.Context, selected provider.Provider) (any, error) {
-					return selected.Deals(ctx, provider.DealsRequest{Request: provider.Request{Market: market}, Filters: []provider.Filter{{Key: "min-discount", Value: "20"}}})
+					return selected.Deals(ctx, provider.DealsRequest{Market: market, Filters: []provider.Filter{{Key: "min-discount", Value: "20"}}})
 				},
 			},
 			{
@@ -95,13 +95,13 @@ func TestProviderConformance(t *testing.T) {
 			{
 				Name: "item by URL", Capability: provider.CapabilityItem,
 				Invoke: func(ctx context.Context, selected provider.Provider) (any, error) {
-					return selected.Item(ctx, provider.ItemRequest{Request: provider.Request{Market: market}, IDOrURL: "https://fixture.invalid/items/trail-helmet"})
+					return selected.Item(ctx, provider.ItemRequest{Market: market, IDOrURL: "https://fixture.invalid/items/trail-helmet"})
 				},
 			},
 			{
 				Name: "exact variant", Capability: provider.CapabilityVariantSelection,
 				Invoke: func(ctx context.Context, selected provider.Provider) (any, error) {
-					return selected.Item(ctx, provider.ItemRequest{Request: provider.Request{Market: market}, IDOrURL: "trail-helmet", Variants: []provider.VariantSelection{{Key: "size", Value: "M"}, {Key: "color", Value: "black"}}})
+					return selected.Item(ctx, provider.ItemRequest{Market: market, IDOrURL: "trail-helmet", Variants: []provider.VariantSelection{{Key: "size", Value: "M"}, {Key: "color", Value: "black"}}})
 				},
 				Check: func(value any) error {
 					item := value.(provider.ItemResult).Item
@@ -146,7 +146,7 @@ func TestProviderSupportsWarningsAndStructuredErrors(t *testing.T) {
 	selected, _ := registry.Resolve(testprovider.Name)
 
 	page, err := selected.Search(t.Context(), provider.SearchRequest{
-		Request: provider.Request{Market: provider.Market{Currency: "USD"}}, Query: "partial-warning",
+		Market: provider.Market{Currency: "USD"}, Query: "partial-warning",
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -167,10 +167,10 @@ func TestConfigValidation(t *testing.T) {
 		t.Fatal(err)
 	}
 	selected, _ := registry.Resolve(testprovider.Name)
-	if err := selected.ValidateConfig(map[string]interface{}{"page_size": 1}); err != nil {
+	if err := selected.ValidateConfig(map[string]any{"page_size": 1}); err != nil {
 		t.Fatal(err)
 	}
-	if err := selected.ValidateConfig(map[string]interface{}{"page_size": 48}); !errors.Is(err, provider.ErrorCodeInvalidProviderConfig) {
+	if err := selected.ValidateConfig(map[string]any{"page_size": 48}); !errors.Is(err, provider.ErrorCodeInvalidProviderConfig) {
 		t.Fatalf("invalid config error = %v", err)
 	}
 }

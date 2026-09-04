@@ -117,16 +117,14 @@ func TestFullFixtureDeclaresAndDispatchesAllCapabilities(t *testing.T) {
 	}
 
 	request := provider.SearchRequest{
-		Request: provider.Request{
-			Market: provider.Market{Country: "DE", Language: "en", Currency: "EUR"},
-			Cache:  provider.CachePolicy{Refresh: true, StaleIfError: true}, Interactive: true,
-		},
+		Market: provider.Market{Country: "DE", Language: "en", Currency: "EUR"},
+		Cache:  provider.CachePolicy{Refresh: true, StaleIfError: true}, Interactive: true,
 		Query:   "helmet",
 		Filters: []provider.Filter{{Key: "discount", Value: "true"}},
 		Sort:    &provider.Sort{Value: "price-asc"},
 		Page:    provider.PageRequest{Number: 2, Size: 48},
 	}
-	result, err := registered.Search(context.Background(), request)
+	result, err := registered.Search(t.Context(), request)
 	if err != nil {
 		t.Fatalf("Search() error = %v", err)
 	}
@@ -209,7 +207,7 @@ func TestMinimalFixtureReturnsCapabilityUnavailableWithoutAssertions(t *testing.
 		t.Fatalf("minimal capabilities = %#v, want none", registered.Capabilities())
 	}
 
-	ctx := context.Background()
+	ctx := t.Context()
 	assertCapabilityUnavailable(t, provider.CapabilitySearch, func() error {
 		_, err := registered.Search(ctx, provider.SearchRequest{})
 		return err
@@ -288,7 +286,7 @@ func TestUndeclaredImplementedOperationIsUnavailable(t *testing.T) {
 		t.Fatalf("Register() error = %v", err)
 	}
 	registered, _ := registry.Lookup("undeclared")
-	_, err := registered.Search(context.Background(), provider.SearchRequest{})
+	_, err := registered.Search(t.Context(), provider.SearchRequest{})
 	if !errors.Is(err, provider.ErrorCodeCapabilityUnavailable) {
 		t.Fatalf("Search() error = %v, want capability_unavailable", err)
 	}
@@ -305,7 +303,7 @@ func TestItemRejectsUndeclaredVariantSelection(t *testing.T) {
 		t.Fatalf("Register() error = %v", err)
 	}
 	registered, _ := registry.Lookup("item-only")
-	_, err := registered.Item(context.Background(), provider.ItemRequest{
+	_, err := registered.Item(t.Context(), provider.ItemRequest{
 		Variants: []provider.VariantSelection{{Key: "size", Value: "M"}},
 	})
 	if !errors.Is(err, provider.ErrorCodeCapabilityUnavailable) {

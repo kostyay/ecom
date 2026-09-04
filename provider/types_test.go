@@ -119,13 +119,13 @@ func TestDomainValidation(t *testing.T) {
 		{name: "invalid provider data", valid: func() error {
 			return (ProductSummary{ProviderData: Data{"shop": json.RawMessage(`{`)}}).Validate()
 		}, wantErr: true},
-		{name: "deal with reduction", valid: func() error { return (Deal{Product: ProductSummary{DiscountPercent: intPointer(10)}}).Validate() }},
+		{name: "deal with reduction", valid: func() error { return (Deal{Product: ProductSummary{DiscountPercent: new(10)}}).Validate() }},
 		{name: "deal without reduction", valid: func() error { return (Deal{}).Validate() }, wantErr: true},
 		{name: "full item", valid: func() error {
-			return (ItemDetail{ProductSummary: ProductSummary{DetailLevel: DetailLevelFull}}).Validate()
+			return (ItemDetail{DetailLevel: DetailLevelFull}).Validate()
 		}},
 		{name: "summary item", valid: func() error {
-			return (ItemDetail{ProductSummary: ProductSummary{DetailLevel: DetailLevelSummary}}).Validate()
+			return (ItemDetail{DetailLevel: DetailLevelSummary}).Validate()
 		}, wantErr: true},
 	}
 
@@ -137,8 +137,4 @@ func TestDomainValidation(t *testing.T) {
 			}
 		})
 	}
-}
-
-func intPointer(value int) *int {
-	return &value
 }

@@ -125,7 +125,7 @@ type Variant struct {
 	Price        *Money       `json:"price,omitempty"`
 	Availability Availability `json:"availability,omitempty"`
 	StockText    string       `json:"stock_text,omitempty"`
-	Selected     bool         `json:"selected,omitempty"`
+	Selected     bool         `json:"selected,omitzero"`
 	ProviderData Data         `json:"provider_data,omitempty"`
 }
 
@@ -146,7 +146,7 @@ type ProductSummary struct {
 	Variants        []Variant    `json:"variants,omitempty"`
 	ImageURL        string       `json:"image_url,omitempty"`
 	Attributes      []Attribute  `json:"attributes,omitempty"`
-	RetrievedAt     time.Time    `json:"retrieved_at,omitempty,omitzero"`
+	RetrievedAt     time.Time    `json:"retrieved_at,omitzero"`
 	DetailLevel     DetailLevel  `json:"detail_level,omitempty"`
 	ProviderData    Data         `json:"provider_data,omitempty"`
 }

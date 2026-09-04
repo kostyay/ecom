@@ -213,14 +213,8 @@ func (service *Service) get(ctx context.Context, key string, now time.Time) (Ent
 }
 
 func metadata(entry Entry, now time.Time, hit, stale bool) provider.CacheMetadata {
-	age := now.Sub(entry.StoredAt)
-	if age < 0 {
-		age = 0
-	}
-	ttl := entry.ExpiresAt.Sub(entry.StoredAt)
-	if ttl < 0 {
-		ttl = 0
-	}
+	age := max(now.Sub(entry.StoredAt), 0)
+	ttl := max(entry.ExpiresAt.Sub(entry.StoredAt), 0)
 	return provider.CacheMetadata{
 		Hit:      hit,
 		Stale:    stale,

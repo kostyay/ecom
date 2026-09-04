@@ -72,10 +72,7 @@ func (s *FixtureService) Stats() (requests, remaining int) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	requests = len(s.requests)
-	remaining = len(s.fixtures) - requests
-	if remaining < 0 {
-		remaining = 0
-	}
+	remaining = max(len(s.fixtures)-requests, 0)
 	return requests, remaining
 }
 

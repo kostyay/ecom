@@ -47,13 +47,13 @@ type ResourceMetadata struct {
 // TTL is the smallest positive resource TTL.
 type CacheMetadata struct {
 	Hit           bool       `json:"hit"`
-	Stale         bool       `json:"stale,omitempty"`
+	Stale         bool       `json:"stale,omitzero"`
 	StoredAt      *time.Time `json:"stored_at,omitempty"`
 	AgeSeconds    int64      `json:"age_seconds"`
 	TTLSeconds    int64      `json:"ttl_seconds"`
 	ResourceCount int        `json:"resource_count"`
 	HitCount      int        `json:"hit_count"`
-	StaleCount    int        `json:"stale_count,omitempty"`
+	StaleCount    int        `json:"stale_count,omitzero"`
 }
 
 // TransportAttempt is the safe public form of a Core transport attempt.
@@ -61,7 +61,7 @@ type TransportAttempt struct {
 	Mode       provider.TransportMode  `json:"mode"`
 	Outcome    provider.AttemptOutcome `json:"outcome"`
 	Code       provider.ErrorCode      `json:"code,omitempty"`
-	DurationMS int64                   `json:"duration_ms,omitempty"`
+	DurationMS int64                   `json:"duration_ms,omitzero"`
 }
 
 // ListingData contains the typed entries in one result page.

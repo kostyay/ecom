@@ -32,7 +32,7 @@ type pipeline struct {
 func newPipeline(t *testing.T, retries int, respond func(context.Context, provider.ResourceRequest, int) (provider.ResourceResponse, error)) *pipeline {
 	t.Helper()
 	clock := &pipelineClock{now: time.Date(2026, 8, 12, 12, 0, 0, 0, time.UTC)}
-	database, err := sqlite.Open(context.Background(), filepath.Join(t.TempDir(), "state.db"))
+	database, err := sqlite.Open(t.Context(), filepath.Join(t.TempDir(), "state.db"))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -91,7 +91,7 @@ func TestCachedHTTPMissStoresThenHitAvoidsNetworkAndPermits(t *testing.T) {
 	})
 	request := pipelineRequest()
 
-	fresh, err := p.service.Fetch(context.Background(), request)
+	fresh, err := p.service.Fetch(t.Context(), request)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -102,7 +102,7 @@ func TestCachedHTTPMissStoresThenHitAvoidsNetworkAndPermits(t *testing.T) {
 		t.Fatalf("fresh transport metadata = %#v", fresh)
 	}
 	p.clock.now = p.clock.now.Add(time.Hour)
-	hit, err := p.service.Fetch(context.Background(), request)
+	hit, err := p.service.Fetch(t.Context(), request)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -116,7 +116,7 @@ func TestCachedHTTPMissStoresThenHitAvoidsNetworkAndPermits(t *testing.T) {
 		t.Fatal("cache changed response bytes")
 	}
 
-	entries, err := p.repository.ListByProvider(context.Background(), "bike-discount")
+	entries, err := p.repository.ListByProvider(t.Context(), "bike-discount")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -133,14 +133,14 @@ func TestCachedHTTPSeparatesMarkets(t *testing.T) {
 	fr := pipelineRequest()
 	fr.Market.Country = "FR"
 	for _, request := range []provider.ResourceRequest{de, fr, de, fr} {
-		if _, err := p.service.Fetch(context.Background(), request); err != nil {
+		if _, err := p.service.Fetch(t.Context(), request); err != nil {
 			t.Fatal(err)
 		}
 	}
 	if p.requests != 2 || p.permits.acquires != 2 {
 		t.Fatalf("network requests/permits = %d/%d, want 2/2", p.requests, p.permits.acquires)
 	}
-	entries, err := p.repository.ListByProvider(context.Background(), "bike-discount")
+	entries, err := p.repository.ListByProvider(t.Context(), "bike-discount")
 	if err != nil || len(entries) != 2 {
 		t.Fatalf("market entries = %d, error = %v", len(entries), err)
 	}
@@ -155,13 +155,13 @@ func TestCachedHTTPRefreshSuccessAndFailurePreserveEntry(t *testing.T) {
 		return successfulPipelineResponse(string(rune('0'+call)), pTime()), nil
 	})
 	request := pipelineRequest()
-	first, err := p.service.Fetch(context.Background(), request)
+	first, err := p.service.Fetch(t.Context(), request)
 	if err != nil {
 		t.Fatal(err)
 	}
 	p.clock.now = p.clock.now.Add(time.Hour)
 	request.Cache.Refresh = true
-	second, err := p.service.Fetch(context.Background(), request)
+	second, err := p.service.Fetch(t.Context(), request)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -170,12 +170,12 @@ func TestCachedHTTPRefreshSuccessAndFailurePreserveEntry(t *testing.T) {
 	}
 	failure = true
 	request.Cache.StaleIfError = true
-	if _, err := p.service.Fetch(context.Background(), request); !errors.Is(err, provider.ErrorCodeHTTPFailure) {
+	if _, err := p.service.Fetch(t.Context(), request); !errors.Is(err, provider.ErrorCodeHTTPFailure) {
 		t.Fatalf("failed valid refresh error = %v", err)
 	}
 	failure = false
 	request.Cache = provider.CachePolicy{}
-	stored, err := p.service.Fetch(context.Background(), request)
+	stored, err := p.service.Fetch(t.Context(), request)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -193,16 +193,16 @@ func TestCachedHTTPExpiredStaleRequiresOptIn(t *testing.T) {
 		return successfulPipelineResponse("old", pTime()), nil
 	})
 	request := pipelineRequest()
-	if _, err := p.service.Fetch(context.Background(), request); err != nil {
+	if _, err := p.service.Fetch(t.Context(), request); err != nil {
 		t.Fatal(err)
 	}
 	p.clock.now = p.clock.now.Add(24 * time.Hour)
 	failure = true
-	if _, err := p.service.Fetch(context.Background(), request); !errors.Is(err, provider.ErrorCodeAccessBlocked) {
+	if _, err := p.service.Fetch(t.Context(), request); !errors.Is(err, provider.ErrorCodeAccessBlocked) {
 		t.Fatalf("expired request error = %v", err)
 	}
 	request.Cache.StaleIfError = true
-	stale, err := p.service.Fetch(context.Background(), request)
+	stale, err := p.service.Fetch(t.Context(), request)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -219,10 +219,10 @@ func TestCachedHTTPRetriesThenStoresOnlySuccess(t *testing.T) {
 		return successfulPipelineResponse("success", pTime()), nil
 	})
 	request := pipelineRequest()
-	if _, err := p.service.Fetch(context.Background(), request); err != nil {
+	if _, err := p.service.Fetch(t.Context(), request); err != nil {
 		t.Fatal(err)
 	}
-	if _, err := p.service.Fetch(context.Background(), request); err != nil {
+	if _, err := p.service.Fetch(t.Context(), request); err != nil {
 		t.Fatal(err)
 	}
 	if p.requests != 2 || p.permits.acquires != 2 || p.permits.releases != 2 {
@@ -250,11 +250,11 @@ func TestCachedHTTPDoesNotCacheErrorsOrInvalidResponses(t *testing.T) {
 				return test.response, test.err
 			})
 			for range 2 {
-				if _, err := p.service.Fetch(context.Background(), pipelineRequest()); err == nil {
+				if _, err := p.service.Fetch(t.Context(), pipelineRequest()); err == nil {
 					t.Fatal("Fetch error = nil")
 				}
 			}
-			entries, err := p.repository.ListByProvider(context.Background(), "bike-discount")
+			entries, err := p.repository.ListByProvider(t.Context(), "bike-discount")
 			if err != nil || len(entries) != 0 || p.requests != 2 {
 				t.Fatalf("entries/requests/error = %d/%d/%v", len(entries), p.requests, err)
 			}
@@ -267,19 +267,19 @@ func TestCachedHTTPCancellationAndValidationAvoidNetwork(t *testing.T) {
 		t.Fatal("network called")
 		return provider.ResourceResponse{}, nil
 	})
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	cancel()
 	if _, err := p.service.Fetch(ctx, pipelineRequest()); !errors.Is(err, context.Canceled) {
 		t.Fatalf("canceled Fetch error = %v", err)
 	}
 	invalid := pipelineRequest()
 	invalid.Market = provider.Market{}
-	if _, err := p.service.Fetch(context.Background(), invalid); !errors.Is(err, provider.ErrorCodeInvalidResourceRequest) {
+	if _, err := p.service.Fetch(t.Context(), invalid); !errors.Is(err, provider.ErrorCodeInvalidResourceRequest) {
 		t.Fatalf("invalid market error = %v", err)
 	}
 	invalid = pipelineRequest()
 	invalid.Transport.Required = provider.TransportBrowser
-	if _, err := p.service.Fetch(context.Background(), invalid); !errors.Is(err, provider.ErrorCodeInvalidResourceRequest) {
+	if _, err := p.service.Fetch(t.Context(), invalid); !errors.Is(err, provider.ErrorCodeInvalidResourceRequest) {
 		t.Fatalf("required browser error = %v", err)
 	}
 	if p.requests != 0 || p.permits.acquires != 0 {
@@ -318,7 +318,7 @@ func TestCachedHTTPReturnsRepositoryReadErrorsWithoutNetwork(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if _, err := service.Fetch(context.Background(), pipelineRequest()); !errors.Is(err, repositoryErr) {
+	if _, err := service.Fetch(t.Context(), pipelineRequest()); !errors.Is(err, repositoryErr) {
 		t.Fatalf("Fetch error = %v", err)
 	}
 	if networkCalls != 0 {
@@ -340,7 +340,7 @@ func TestCachedHTTPReturnsRepositoryWriteErrorsAfterNetwork(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if _, err := service.Fetch(context.Background(), pipelineRequest()); !errors.Is(err, repositoryErr) {
+	if _, err := service.Fetch(t.Context(), pipelineRequest()); !errors.Is(err, repositoryErr) {
 		t.Fatalf("Fetch error = %v", err)
 	}
 	if networkCalls != 1 {
@@ -379,7 +379,7 @@ func pTime() time.Time {
 }
 
 func TestConfiguredHTTPResourceServiceWiresSQLite(t *testing.T) {
-	database, err := sqlite.Open(context.Background(), filepath.Join(t.TempDir(), "state.db"))
+	database, err := sqlite.Open(t.Context(), filepath.Join(t.TempDir(), "state.db"))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -395,7 +395,7 @@ func TestConfiguredHTTPResourceServiceWiresSQLite(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if response, err := service.Fetch(context.Background(), pipelineRequest()); err != nil || string(response.Body) != "body" {
+	if response, err := service.Fetch(t.Context(), pipelineRequest()); err != nil || string(response.Body) != "body" {
 		t.Fatalf("configured Fetch response/error = %q/%v", response.Body, err)
 	}
 }

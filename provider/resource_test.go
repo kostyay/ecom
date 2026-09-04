@@ -82,14 +82,12 @@ func TestProviderUsesFakeResourceServiceOffline(t *testing.T) {
 	}}
 	implementation := resourceFixtureProvider{resources: service}
 	request := provider.SearchRequest{
-		Request: provider.Request{
-			Market: provider.Market{Country: "DE", Language: "en", Currency: "EUR"},
-			Cache:  provider.CachePolicy{Refresh: true, StaleIfError: true}, Interactive: true, Resources: service,
-		},
+		Market: provider.Market{Country: "DE", Language: "en", Currency: "EUR"},
+		Cache:  provider.CachePolicy{Refresh: true, StaleIfError: true}, Interactive: true, Resources: service,
 		Query: "helmet",
 	}
 
-	result, err := implementation.Search(context.Background(), request)
+	result, err := implementation.Search(t.Context(), request)
 	if err != nil {
 		t.Fatalf("Search() error = %v", err)
 	}
@@ -121,7 +119,7 @@ func TestProviderUsesFakeResourceServiceOffline(t *testing.T) {
 func TestProviderPassesCancellationToResourceService(t *testing.T) {
 	service := &fakeResourceService{called: make(chan struct{})}
 	implementation := resourceFixtureProvider{resources: service}
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	result := make(chan error, 1)
 
 	go func() {

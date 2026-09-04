@@ -9,8 +9,8 @@ import (
 type Request struct {
 	Market      Market          `json:"market"`
 	Pricing     PricingPolicy   `json:"pricing"`
-	Cache       CachePolicy     `json:"cache,omitempty"`
-	Interactive bool            `json:"interactive,omitempty"`
+	Cache       CachePolicy     `json:"cache"`
+	Interactive bool            `json:"interactive,omitzero"`
 	Resources   ResourceService `json:"-"`
 }
 
@@ -35,15 +35,15 @@ type Sort struct {
 // PageRequest selects one provider result page. Zero values ask the provider
 // to use its documented defaults.
 type PageRequest struct {
-	Number int `json:"number,omitempty"`
-	Size   int `json:"size,omitempty"`
+	Number int `json:"number,omitzero"`
+	Size   int `json:"size,omitzero"`
 }
 
 // PageInfo describes the page that a provider returned. ProviderData contains
 // paging details that cannot be represented by the common page-number model.
 type PageInfo struct {
-	Number       int   `json:"number,omitempty"`
-	Size         int   `json:"size,omitempty"`
+	Number       int   `json:"number,omitzero"`
+	Size         int   `json:"size,omitzero"`
 	TotalItems   *int  `json:"total_items,omitempty"`
 	TotalPages   *int  `json:"total_pages,omitempty"`
 	HasNext      *bool `json:"has_next,omitempty"`
@@ -72,7 +72,7 @@ type SearchRequest struct {
 	Query   string      `json:"query"`
 	Filters []Filter    `json:"filters,omitempty"`
 	Sort    *Sort       `json:"sort,omitempty"`
-	Page    PageRequest `json:"page,omitempty"`
+	Page    PageRequest `json:"page"`
 }
 
 // CategoryListRequest lists top-level categories, children, or a recursive
@@ -80,15 +80,15 @@ type SearchRequest struct {
 type CategoryListRequest struct {
 	Request
 	ParentID  string      `json:"parent_id,omitempty"`
-	Recursive bool        `json:"recursive,omitempty"`
-	Page      PageRequest `json:"page,omitempty"`
+	Recursive bool        `json:"recursive,omitzero"`
+	Page      PageRequest `json:"page"`
 }
 
 // CategorySearchRequest finds categories by text.
 type CategorySearchRequest struct {
 	Request
 	Query string      `json:"query"`
-	Page  PageRequest `json:"page,omitempty"`
+	Page  PageRequest `json:"page"`
 }
 
 // CategoryItemsRequest lists products in one provider category.
@@ -97,20 +97,20 @@ type CategoryItemsRequest struct {
 	CategoryID string      `json:"category_id"`
 	Filters    []Filter    `json:"filters,omitempty"`
 	Sort       *Sort       `json:"sort,omitempty"`
-	Page       PageRequest `json:"page,omitempty"`
+	Page       PageRequest `json:"page"`
 }
 
 // BrandListRequest lists provider brands.
 type BrandListRequest struct {
 	Request
-	Page PageRequest `json:"page,omitempty"`
+	Page PageRequest `json:"page"`
 }
 
 // BrandSearchRequest finds provider brands by text.
 type BrandSearchRequest struct {
 	Request
 	Query string      `json:"query"`
-	Page  PageRequest `json:"page,omitempty"`
+	Page  PageRequest `json:"page"`
 }
 
 // BrandItemsRequest lists products for one provider brand.
@@ -119,7 +119,7 @@ type BrandItemsRequest struct {
 	BrandID string      `json:"brand_id"`
 	Filters []Filter    `json:"filters,omitempty"`
 	Sort    *Sort       `json:"sort,omitempty"`
-	Page    PageRequest `json:"page,omitempty"`
+	Page    PageRequest `json:"page"`
 }
 
 // DealsRequest lists products for which the provider shows a reduction.
@@ -127,7 +127,7 @@ type DealsRequest struct {
 	Request
 	Filters []Filter    `json:"filters,omitempty"`
 	Sort    *Sort       `json:"sort,omitempty"`
-	Page    PageRequest `json:"page,omitempty"`
+	Page    PageRequest `json:"page"`
 }
 
 // FiltersRequest asks for filters and sort modes that apply to an operation.
@@ -204,7 +204,7 @@ type HelpProvider interface {
 // ConfigValidator validates the provider-specific configuration block.
 // Implementations must accept a nil or empty configuration as their defaults.
 type ConfigValidator interface {
-	ValidateConfig(map[string]interface{}) error
+	ValidateConfig(map[string]any) error
 }
 
 // SearchProvider supports product search.
@@ -264,7 +264,7 @@ type Provider interface {
 	Name() string
 	Capabilities() []CapabilityName
 	Supports(CapabilityName) bool
-	ValidateConfig(map[string]interface{}) error
+	ValidateConfig(map[string]any) error
 	Help(context.Context, HelpRequest) (HelpResult, error)
 	Search(context.Context, SearchRequest) (ProductPage, error)
 	Categories(context.Context, CategoryListRequest) (CategoryPage, error)
@@ -283,7 +283,7 @@ type registeredProvider struct {
 	capabilities     []CapabilityName
 	supported        map[CapabilityName]struct{}
 	help             func(context.Context, HelpRequest) (HelpResult, error)
-	validateConfig   func(map[string]interface{}) error
+	validateConfig   func(map[string]any) error
 	search           func(context.Context, SearchRequest) (ProductPage, error)
 	categories       func(context.Context, CategoryListRequest) (CategoryPage, error)
 	searchCategories func(context.Context, CategorySearchRequest) (CategoryPage, error)
@@ -307,7 +307,7 @@ func (p *registeredProvider) Supports(capability CapabilityName) bool {
 	return ok
 }
 
-func (p *registeredProvider) ValidateConfig(configuration map[string]interface{}) error {
+func (p *registeredProvider) ValidateConfig(configuration map[string]any) error {
 	if p.validateConfig == nil {
 		return nil
 	}

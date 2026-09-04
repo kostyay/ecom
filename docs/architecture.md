@@ -2,7 +2,7 @@
 
 ## 1. Goal
 
-Build `ecom` as a machine-readable CLI for product discovery on one commerce provider at a time. The first provider is Bike-Discount. Future providers can use different website protocols while they expose common operations where practical.
+Build `ecom` as a machine-readable CLI for product discovery on one commerce provider at a time. The compiled providers are Bike-Discount and Wallapop. Each provider can use a different website protocol while it exposes common operations where practical.
 
 The principal agent workflow is:
 
@@ -237,8 +237,7 @@ providers:
 
 `pricing.include_shipping` is a global provider request policy. A provider must
 reject an unsupported value before it requests a website resource. The
-Bike-Discount provider supports only `false` and returns displayed item prices
-without shipping or optional fees.
+Bike-Discount and Wallapop support only `false`. They return displayed item prices without shipping or optional fees.
 
 The configured file remains in the operating system user configuration directory. Flags override environment variables, and environment variables override the file.
 
@@ -288,7 +287,9 @@ Prune a small number of expired entries during normal use. Explicit cache comman
 
 Store portable browser state, such as cookies and local storage, as JSON in SQLite. Create a temporary browser profile for a run. Do not store browser history, extensions, passwords, full profiles, or CDP-connected Chrome state. Cache maintenance does not remove session state.
 
-## 12. Bike-Discount Provider
+## 12. Providers
+
+### Bike-Discount
 
 Implement Bike-Discount as the first external provider module. Its discovery work must identify:
 
@@ -304,13 +305,19 @@ Implement Bike-Discount as the first external provider module. Its discovery wor
 
 The provider can use normal browser headers, cookies, JavaScript, Playwright-compatible automation, or CDP as required. It does not treat `robots.txt` as an access-control policy. The first version does not add CAPTCHA-solving services or proxy rotation.
 
+### Wallapop
+
+Wallapop supports public product search and item details. It uses the public search JSON endpoints and structured JSON from item pages through Core-owned HTTP transport. It supports coordinate, distance, price, and category search filters. It does not support categories, brands, deals, variants, browser transport, or provider-specific configuration.
+
+Wallapop search uses Andorra la Vella as its default center. It returns EUR prices without shipping or buyer fees. Page numbers are 1 to 10, and page size 40 is required. Later pages use temporary cursors that the provider gets from page 1.
+
 ## 13. Test Strategy
 
 Core tests must use temporary SQLite databases, fake clocks, fake HTTP services, and fake browser services. Test migrations, key separation by market, TTL behavior, refresh behavior, stale fallback, pruning, compression, concurrency, limits, retries, and cancellation.
 
 The SDK conformance kit must test registration, API version, declared capabilities, common fields, help, structured errors, partial results, pagination, filters, and Core transport integration.
 
-The Bike-Discount provider must use saved HTML and JSON fixtures for normal automated tests. Live website tests are optional and must be clearly separated because they are slow and unstable.
+Providers must use saved HTML and JSON fixtures for normal automated tests. Live website tests are optional and must be clearly separated because they are slow and unstable.
 
 ## 14. Delivery Sequence
 
@@ -319,6 +326,6 @@ The Bike-Discount provider must use saved HTML and JSON fixtures for normal auto
 3. Implement HTTP transport, limits, retries, cache policy, and test doubles.
 4. Add browser and CDP transport with portable session state.
 5. Add provider-neutral commands and output modes.
-6. Research and implement the Bike-Discount provider with fixtures.
+6. Research and implement compiled providers with fixtures.
 7. Add conformance, integration, and command tests.
 8. Update user and provider-author documentation.

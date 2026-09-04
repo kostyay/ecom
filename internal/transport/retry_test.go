@@ -88,7 +88,7 @@ func TestRetryExecutorRetriesClassifiedHTTPStatuses(t *testing.T) {
 			limits := &fakePermitAcquirer{}
 			scheduler := &fakeRetryScheduler{}
 			executor := mustRetryExecutor(t, httpExecutor, limits, 1, scheduler, RandomFunc(func() float64 { return 1 }))
-			response, err := executor.Fetch(context.Background(), provider.ResourceRequest{URL: "https://example.test/item"})
+			response, err := executor.Fetch(t.Context(), provider.ResourceRequest{URL: "https://example.test/item"})
 			if err != nil {
 				t.Fatalf("Fetch() error = %v", err)
 			}
@@ -119,7 +119,7 @@ func TestRetryExecutorDoesNotRetryOtherErrors(t *testing.T) {
 				return provider.ResourceResponse{StatusCode: 400}, test.err
 			})
 			executor := mustRetryExecutor(t, service, &fakePermitAcquirer{}, 3, &fakeRetryScheduler{}, RandomFunc(func() float64 { return 1 }))
-			_, err := executor.Fetch(context.Background(), provider.ResourceRequest{})
+			_, err := executor.Fetch(t.Context(), provider.ResourceRequest{})
 			if !errors.Is(err, test.err) {
 				t.Fatalf("Fetch() error = %v, want errors.Is(_, %v)", err, test.err)
 			}
@@ -139,7 +139,7 @@ func TestRetryExecutorConfiguredRetriesAreAfterFirstAttempt(t *testing.T) {
 				return provider.ResourceResponse{}, provider.NewError(provider.ErrorCodeRetryableHTTP, "retry", nil)
 			})
 			executor := mustRetryExecutor(t, service, &fakePermitAcquirer{}, retries, &fakeRetryScheduler{}, RandomFunc(func() float64 { return 1 }))
-			_, err := executor.Fetch(context.Background(), provider.ResourceRequest{})
+			_, err := executor.Fetch(t.Context(), provider.ResourceRequest{})
 			if !errors.Is(err, provider.ErrorCodeRetryableHTTP) {
 				t.Fatalf("Fetch() error = %v", err)
 			}
@@ -177,7 +177,7 @@ func TestRetryExecutorRetryAfter(t *testing.T) {
 			})
 			scheduler := &fakeRetryScheduler{now: now}
 			executor := mustRetryExecutor(t, service, &fakePermitAcquirer{}, 1, scheduler, RandomFunc(func() float64 { return test.random }))
-			if _, err := executor.Fetch(context.Background(), provider.ResourceRequest{}); err != nil {
+			if _, err := executor.Fetch(t.Context(), provider.ResourceRequest{}); err != nil {
 				t.Fatalf("Fetch() error = %v", err)
 			}
 			if len(scheduler.waits) != 1 || scheduler.waits[0] != test.want {
@@ -201,7 +201,7 @@ func TestRetryExecutorUsesExponentialDelayAndBoundedJitter(t *testing.T) {
 		randomIndex++
 		return value
 	}))
-	_, _ = executor.Fetch(context.Background(), provider.ResourceRequest{})
+	_, _ = executor.Fetch(t.Context(), provider.ResourceRequest{})
 	want := []time.Duration{500 * time.Millisecond, 1500 * time.Millisecond, 4 * time.Second}
 	if fmt.Sprint(scheduler.waits) != fmt.Sprint(want) {
 		t.Fatalf("waits = %v, want %v", scheduler.waits, want)
@@ -217,7 +217,7 @@ func TestRetryExecutorPreservesFinalResponseAndError(t *testing.T) {
 		return response, provider.NewError(provider.ErrorCodeRetryableHTTP, "retry", cause)
 	})
 	executor := mustRetryExecutor(t, service, &fakePermitAcquirer{}, 1, &fakeRetryScheduler{}, RandomFunc(func() float64 { return 1 }))
-	response, err := executor.Fetch(context.Background(), provider.ResourceRequest{})
+	response, err := executor.Fetch(t.Context(), provider.ResourceRequest{})
 	if response.StatusCode != 504 || response.FinalURL != "https://example.test/2" {
 		t.Fatalf("response = %#v", response)
 	}
@@ -227,7 +227,7 @@ func TestRetryExecutorPreservesFinalResponseAndError(t *testing.T) {
 }
 
 func TestRetryExecutorCancellationDuringDelay(t *testing.T) {
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	service := retryServiceFunc(func(context.Context, provider.ResourceRequest) (provider.ResourceResponse, error) {
 		return provider.ResourceResponse{StatusCode: 503}, provider.NewError(provider.ErrorCodeRetryableHTTP, "retry", nil)
 	})
@@ -243,7 +243,7 @@ func TestRetryExecutorCancellationDuringDelay(t *testing.T) {
 }
 
 func TestRetryExecutorCancellationDuringAcquire(t *testing.T) {
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	limits := &fakePermitAcquirer{acquire: func(_ context.Context, attempt int) error {
 		if attempt == 2 {
 			cancel()
@@ -262,7 +262,7 @@ func TestRetryExecutorCancellationDuringAcquire(t *testing.T) {
 }
 
 func TestRetryExecutorCancellationDuringAttempt(t *testing.T) {
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	service := retryServiceFunc(func(ctx context.Context, _ provider.ResourceRequest) (provider.ResourceResponse, error) {
 		cancel()
 		return provider.ResourceResponse{StatusCode: 503}, ctx.Err()

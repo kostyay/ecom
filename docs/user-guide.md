@@ -15,6 +15,7 @@ The default configuration selects `bike-discount`. There is no command that sear
 ```sh
 ecom provider help bike-discount
 ecom provider help bike-discount -o table
+ecom provider help wallapop
 ```
 
 Provider help is the source of truth for capabilities, filter keys, sort values, markets, page sizes, access limits, and known warnings.
@@ -31,6 +32,14 @@ ecom search "powertube" --page 1 --page-size 48 -o table
 ```
 
 Bike-Discount uses the current verified `search` request parameter. An exact category term can redirect to its canonical category page.
+
+Wallapop supports public listing search. A query is required. Its default search center is Andorra la Vella:
+
+```sh
+ecom search "gravel bike talla M" --provider wallapop
+ecom search "gravel bike" --provider wallapop \
+  --filter latitude=42.5063 --filter longitude=1.5218
+```
 
 ### Categories
 
@@ -101,6 +110,13 @@ ecom item 20166382 --variant 'Color=black' --variant 'Size=M'
 
 The key and value are case-sensitive provider values. A selection that does not exist returns `variant_not_found`.
 
+Wallapop accepts a listing slug or a complete Wallapop item URL. It does not support variants:
+
+```sh
+ecom item open-up-200 --provider wallapop
+ecom item "https://es.wallapop.com/item/open-up-200" --provider wallapop
+```
+
 ## Filters, sort, and pages
 
 Filter syntax is provider-specific. Each filter is `key=value`. Repeat `--filter` only if provider help marks the key as repeatable:
@@ -145,6 +161,15 @@ ecom search "helmet" --page 2 --page-size 48
 ```
 
 There is no `--all` flag. Read `page.has_next` when the provider reports it. Then request the next page.
+
+Wallapop supports these search filters:
+
+- `latitude` and `longitude`: use both values to change the search center.
+- `max_distance_km`: keep results inside a straight-line distance.
+- `min_price` and `max_price`: keep results inside a displayed-price range.
+- `category_id`: use a positive Wallapop category ID.
+
+Wallapop supports `most_relevance`, `closest`, `newest`, `price_low_to_high`, and `price_high_to_low`. Pages start at 1, stop at 10, and use size 40. To get a later page, the provider follows temporary cursors from page 1.
 
 ## Output
 
@@ -205,7 +230,9 @@ pricing:
 
 `ecom` preserves the site's displayed price text and decimal amount. It does not use a binary floating-point value for money. It does not convert currency. If the site returns another currency, the result keeps that currency and can include `currency_unavailable`.
 
-`pricing.include_shipping` is a global provider request policy. The default is `false`. Bike-Discount does not support shipping-inclusive prices. For Bike-Discount, `true` returns `invalid_provider_config` before a network request. With the supported value, all item and variant prices exclude shipping and optional fees.
+`pricing.include_shipping` is a global provider request policy. The default is `false`. Bike-Discount and Wallapop do not support shipping-inclusive prices. A value of `true` returns `invalid_provider_config` before a network request. With the supported value, prices exclude shipping and optional fees.
+
+Wallapop returns EUR. If another currency is requested, the result keeps EUR and includes a `currency_unavailable` warning.
 
 ## Configuration
 
@@ -253,6 +280,8 @@ Precedence is:
 4. Built-in defaults.
 
 Use `_` for nested environment keys. Examples are `ECOM_PROVIDER`, `ECOM_MARKET_COUNTRY`, `ECOM_PRICING_INCLUDE_SHIPPING`, `ECOM_CACHE_TTL`, and `ECOM_BROWSER_CDP_ADDRESS`.
+
+Wallapop does not accept provider-specific configuration values.
 
 `network.requests_per_second` limits starts of all requests for one provider. HTTP requests use `max_concurrent_http`. Browser and CDP work share `max_concurrent_browser`. `network.retries` is the number of HTTP retry attempts after the first attempt. Keep the default rate of one request per second for Bike-Discount unless the site gives a different limit.
 
@@ -309,6 +338,8 @@ ecom search "helmet" --interactive
 
 Interactive mode opens a headed isolated browser and waits up to `browser.interactive_timeout`. Complete the challenge in that browser. The command stores the resulting portable session state in SQLite. If time expires, it returns `browser_challenge_timeout`. Use `ecom provider session clear bike-discount` to remove the stored state.
 
+Wallapop uses its public HTTP endpoints. It does not use browser, CDP, or interactive transport.
+
 ## Error codes
 
 Data commands use JSON errors unless table output is selected:
@@ -358,3 +389,13 @@ Warnings do not make a useful result fail. Read `warnings` on every successful J
 - Filter IDs must come from the current target listing.
 - Cloudflare can require browser or manual action.
 - The tool does not solve CAPTCHAs or rotate proxies.
+
+## Wallapop limits
+
+- Only public `search` and `item` capabilities are supported.
+- Search position comes from filters, not from the market country.
+- EUR is the only supported currency. No currency conversion occurs.
+- Prices exclude shipping and buyer fees.
+- Page numbers are 1 to 10. Page size 40 is the only supported size.
+- Reserved listings are not returned.
+- Wallapop can change or limit its public endpoints.

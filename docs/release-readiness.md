@@ -1,15 +1,13 @@
 # Release Readiness Review
 
-Review date: 2026-08-13
+Review date: 2026-09-04
 
 ## Result
 
-The first version is ready for an offline release. All repository checks pass.
-The CLI, Provider SDK, Core transport, SQLite state, Bike-Discount fixtures,
-user guide, and provider author guide meet their parent epic acceptance
-criteria.
+The current version is ready for an offline release. All repository checks pass.
+The CLI, Provider SDK, Core transport, SQLite state, Bike-Discount and Wallapop fixtures, user guide, and provider author guide meet their acceptance criteria. The project requires Go 1.27.0 or newer.
 
-The review found and fixed two release defects:
+The first review found and fixed two release defects:
 
 - A command with an empty `log.file` created a log directory in the operating
   system user cache. Persistent logging is now disabled when this setting is
@@ -75,6 +73,7 @@ SQLite file as required.
 | Core transport services | Offline HTTP, retry, limit, browser, CDP, challenge, cancellation, and race tests pass. |
 | Provider-neutral CLI and output | All planned commands resolve. JSON, table, JSONPath, paging, filters, variants, refresh, stale fallback, and maintenance tests pass. |
 | Bike-Discount provider | Fixture parser tests and the complete offline conformance suite pass. |
+| Wallapop provider | Public search and item fixture tests and the offline conformance suite pass. |
 | Integration, documentation, and release readiness | End-to-end fixture workflow, documentation tests, quality checks, build, and binary smoke checks pass. |
 
 ## Remaining live-site risks
@@ -92,3 +91,4 @@ These risks do not block the offline release:
   search request is verified.
 - Live website tests are optional and were not part of this review. Saved,
   sanitized fixtures are the release test source.
+- Wallapop public endpoints can change or apply limits. Only search and item capabilities are supported.

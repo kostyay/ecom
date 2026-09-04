@@ -1,11 +1,11 @@
 package bikediscount_test
 
 import (
-	"context"
 	"encoding/json"
 	"errors"
 	"os"
 	"reflect"
+	"slices"
 	"testing"
 
 	"github.com/kostyay/ecom/provider"
@@ -52,9 +52,8 @@ func TestOfflineHelpMatchesFixture(t *testing.T) {
 	if !found {
 		t.Fatal("provider is not registered")
 	}
-	result, err := registered.Help(context.Background(), provider.HelpRequest{Request: provider.Request{
-		Market: provider.Market{Country: "DE", Language: "en", Currency: "EUR"},
-	}})
+	result, err := registered.Help(t.Context(), provider.HelpRequest{
+		Market: provider.Market{Country: "DE", Language: "en", Currency: "EUR"}})
 	if err != nil {
 		t.Fatalf("Help() error = %v", err)
 	}
@@ -94,22 +93,13 @@ func TestOfflineHelpMatchesFixture(t *testing.T) {
 		t.Error("help does not match the implemented search and product listing syntax")
 	}
 	for _, definition := range result.Help.Filters {
-		if !containsCapability(definition.AppliesTo, provider.CapabilityDeals) {
+		if !slices.Contains(definition.AppliesTo, provider.CapabilityDeals) {
 			t.Errorf("filter %q does not apply to deals", definition.Key)
 		}
 	}
-	if !containsCapability(result.Help.SortModes[0].AppliesTo, provider.CapabilityDeals) {
+	if !slices.Contains(result.Help.SortModes[0].AppliesTo, provider.CapabilityDeals) {
 		t.Error("standard sort does not apply to deals")
 	}
-}
-
-func containsCapability(values []provider.CapabilityName, want provider.CapabilityName) bool {
-	for _, value := range values {
-		if value == want {
-			return true
-		}
-	}
-	return false
 }
 
 func TestProviderConfigurationValidation(t *testing.T) {
@@ -117,7 +107,7 @@ func TestProviderConfigurationValidation(t *testing.T) {
 	if !found {
 		t.Fatal("provider is not registered")
 	}
-	for _, configuration := range []map[string]interface{}{
+	for _, configuration := range []map[string]any{
 		nil,
 		{},
 		{"page_size": 48},
@@ -128,7 +118,7 @@ func TestProviderConfigurationValidation(t *testing.T) {
 			t.Errorf("ValidateConfig(%v) error = %v", configuration, err)
 		}
 	}
-	for _, configuration := range []map[string]interface{}{
+	for _, configuration := range []map[string]any{
 		{"page_size": 24},
 		{"page_size": "48"},
 		{"unknown": true},
@@ -145,10 +135,9 @@ func TestProviderRejectsShippingPricePolicy(t *testing.T) {
 		t.Fatal("provider is not registered")
 	}
 
-	_, err := registered.Help(context.Background(), provider.HelpRequest{Request: provider.Request{
+	_, err := registered.Help(t.Context(), provider.HelpRequest{
 		Market:  provider.Market{Country: "DE", Language: "en", Currency: "EUR"},
-		Pricing: provider.PricingPolicy{IncludeShipping: true},
-	}})
+		Pricing: provider.PricingPolicy{IncludeShipping: true}})
 	if !errors.Is(err, provider.ErrorCodeInvalidProviderConfig) {
 		t.Fatalf("Help() error = %v, want invalid_provider_config", err)
 	}

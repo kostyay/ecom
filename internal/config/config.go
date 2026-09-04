@@ -31,14 +31,14 @@ const mebibyte = 1024 * 1024
 
 // Settings contains all application settings.
 type Settings struct {
-	Provider  string                            `mapstructure:"provider"`
-	Market    MarketSettings                    `mapstructure:"market"`
-	Pricing   PricingSettings                   `mapstructure:"pricing"`
-	Cache     CacheSettings                     `mapstructure:"cache"`
-	Network   NetworkSettings                   `mapstructure:"network"`
-	Browser   BrowserSettings                   `mapstructure:"browser"`
-	Providers map[string]map[string]interface{} `mapstructure:"providers"`
-	Log       LogSettings                       `mapstructure:"log"`
+	Provider  string                    `mapstructure:"provider"`
+	Market    MarketSettings            `mapstructure:"market"`
+	Pricing   PricingSettings           `mapstructure:"pricing"`
+	Cache     CacheSettings             `mapstructure:"cache"`
+	Network   NetworkSettings           `mapstructure:"network"`
+	Browser   BrowserSettings           `mapstructure:"browser"`
+	Providers map[string]map[string]any `mapstructure:"providers"`
+	Log       LogSettings               `mapstructure:"log"`
 }
 
 // PricingSettings controls which displayed price a provider must return.
@@ -148,7 +148,7 @@ func setDefaults(v *viper.Viper) {
 	v.SetDefault("browser.cdp_address", "")
 	v.SetDefault("browser.headed", false)
 	v.SetDefault("browser.interactive_timeout", 5*time.Minute)
-	v.SetDefault("providers", map[string]interface{}{})
+	v.SetDefault("providers", map[string]any{})
 	v.SetDefault("providers.bike-discount.page_size", 48)
 	v.SetDefault("log.level", "info")
 	v.SetDefault("log.file", "")
@@ -156,7 +156,7 @@ func setDefaults(v *viper.Viper) {
 
 func byteSizeDecodeHook() mapstructure.DecodeHookFuncType {
 	byteSizeType := reflect.TypeFor[ByteSize]()
-	return func(from, to reflect.Type, data interface{}) (interface{}, error) {
+	return func(from, to reflect.Type, data any) (any, error) {
 		if from.Kind() != reflect.String || to != byteSizeType {
 			return data, nil
 		}

@@ -75,7 +75,7 @@ func newTestLimitManager(t *testing.T, limits RequestLimits, scheduler WaitSched
 
 func acquireTestPermit(t *testing.T, manager *RequestLimitManager, providerName string, mode provider.TransportMode) *RequestPermit {
 	t.Helper()
-	permit, err := manager.Acquire(context.Background(), providerName, mode)
+	permit, err := manager.Acquire(t.Context(), providerName, mode)
 	if err != nil {
 		t.Fatalf("Acquire() error = %v", err)
 	}
@@ -138,7 +138,7 @@ func TestRequestLimitManagerEnforcesHTTPConcurrency(t *testing.T) {
 		t.Fatalf("used HTTP slots = %d, want capacity %d", got, want)
 	}
 
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	started := make(chan struct{})
 	result := make(chan error, 1)
 	go func() {
@@ -167,7 +167,7 @@ func TestRequestLimitManagerSharesBrowserAndCDPConcurrency(t *testing.T) {
 		t.Fatalf("used browser-family slots = %d, want capacity %d", got, want)
 	}
 
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	started := make(chan struct{})
 	result := make(chan error, 1)
 	go func() {
@@ -198,7 +198,7 @@ func TestRequestLimitManagerCancellationDuringRateWaitReleasesSlot(t *testing.T)
 	first := acquireTestPermit(t, manager, "bike-discount", provider.TransportHTTP)
 	first.Release()
 
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	result := make(chan error, 1)
 	go func() {
 		_, err := manager.Acquire(ctx, "bike-discount", provider.TransportHTTP)
@@ -271,7 +271,7 @@ func TestCacheHitPathDoesNotAcquireRequestLimit(t *testing.T) {
 		if cached {
 			return nil
 		}
-		permit, err := manager.Acquire(context.Background(), "bike-discount", provider.TransportHTTP)
+		permit, err := manager.Acquire(t.Context(), "bike-discount", provider.TransportHTTP)
 		if err != nil {
 			return err
 		}
@@ -294,7 +294,7 @@ func TestCacheHitPathDoesNotAcquireRequestLimit(t *testing.T) {
 
 func TestRequestLimitManagerRejectsUnknownTransport(t *testing.T) {
 	manager := newTestLimitManager(t, defaultTestLimits, newAdvancingScheduler())
-	if _, err := manager.Acquire(context.Background(), "bike-discount", provider.TransportMode("other")); err == nil {
+	if _, err := manager.Acquire(t.Context(), "bike-discount", provider.TransportMode("other")); err == nil {
 		t.Fatal("Acquire() error = nil")
 	}
 }

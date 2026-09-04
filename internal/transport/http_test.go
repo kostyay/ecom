@@ -38,7 +38,7 @@ func TestHTTPExecutorSendsRequestAndReturnsMetadata(t *testing.T) {
 	defer server.Close()
 
 	executor := mustHTTPExecutor(t, server.Client(), ClockFunc(func() time.Time { return retrievedAt }), 1024)
-	response, err := executor.Fetch(context.Background(), provider.ResourceRequest{
+	response, err := executor.Fetch(t.Context(), provider.ResourceRequest{
 		Method:  http.MethodPost,
 		URL:     server.URL + "/items?existing=yes",
 		Query:   []provider.RequestValue{{Name: "tag", Values: []string{"bike", "sale"}}},
@@ -73,7 +73,7 @@ func TestHTTPExecutorSendsSensitiveValuesWithoutReturningThem(t *testing.T) {
 	defer server.Close()
 
 	executor := mustHTTPExecutor(t, server.Client(), ClockFunc(time.Now), 1024)
-	_, err := executor.Fetch(context.Background(), provider.ResourceRequest{
+	_, err := executor.Fetch(t.Context(), provider.ResourceRequest{
 		URL:     server.URL,
 		Query:   []provider.RequestValue{{Name: "token", Values: []string{secret}, Sensitive: true}},
 		Headers: []provider.RequestValue{{Name: "Authorization", Values: []string{"Bearer " + secret}, Sensitive: true}},
@@ -84,8 +84,8 @@ func TestHTTPExecutorSendsSensitiveValuesWithoutReturningThem(t *testing.T) {
 	if strings.Contains(err.Error(), secret) {
 		t.Fatalf("safe error contains secret: %v", err)
 	}
-	var coded *provider.CodedError
-	if !errors.As(err, &coded) || strings.Contains(coded.Unwrap().Error(), secret) {
+	coded, ok := errors.AsType[*provider.CodedError](err)
+	if !ok || strings.Contains(coded.Unwrap().Error(), secret) {
 		t.Fatalf("internal error contains secret: %#v", coded)
 	}
 }
@@ -96,7 +96,7 @@ func TestHTTPExecutorRedactsSensitiveQueryInFinalURL(t *testing.T) {
 	}))
 	defer server.Close()
 	executor := mustHTTPExecutor(t, server.Client(), ClockFunc(time.Now), 1024)
-	response, err := executor.Fetch(context.Background(), provider.ResourceRequest{
+	response, err := executor.Fetch(t.Context(), provider.ResourceRequest{
 		URL:   server.URL,
 		Query: []provider.RequestValue{{Name: "token", Values: []string{"secret"}, Sensitive: true}},
 	})
@@ -134,11 +134,11 @@ func TestHTTPExecutorRedirectPolicy(t *testing.T) {
 	defer source.Close()
 
 	executor := mustHTTPExecutor(t, source.Client(), ClockFunc(time.Now), 1024)
-	response, err := executor.Fetch(context.Background(), provider.ResourceRequest{URL: source.URL + "/same-origin"})
+	response, err := executor.Fetch(t.Context(), provider.ResourceRequest{URL: source.URL + "/same-origin"})
 	if err != nil || string(response.Body) != "done" {
 		t.Fatalf("same-origin Fetch() = %#v, %v", response, err)
 	}
-	_, err = executor.Fetch(context.Background(), provider.ResourceRequest{
+	_, err = executor.Fetch(t.Context(), provider.ResourceRequest{
 		URL:     source.URL + "/cross-origin",
 		Headers: []provider.RequestValue{{Name: "Authorization", Values: []string{"Bearer secret"}, Sensitive: true}},
 	})
@@ -148,7 +148,7 @@ func TestHTTPExecutorRedirectPolicy(t *testing.T) {
 	if authorization != "" {
 		t.Fatalf("redirect leaked Authorization header %q", authorization)
 	}
-	_, err = executor.Fetch(context.Background(), provider.ResourceRequest{URL: source.URL + "/loop"})
+	_, err = executor.Fetch(t.Context(), provider.ResourceRequest{URL: source.URL + "/loop"})
 	if !errors.Is(err, provider.ErrorCodeHTTPFailure) {
 		t.Fatalf("redirect loop error = %v, want http_failure", err)
 	}
@@ -184,7 +184,7 @@ func TestHTTPExecutorClassifiesStatusesAndChallenges(t *testing.T) {
 			}))
 			defer server.Close()
 			executor := mustHTTPExecutor(t, server.Client(), ClockFunc(time.Now), 4096)
-			response, err := executor.Fetch(context.Background(), provider.ResourceRequest{URL: server.URL})
+			response, err := executor.Fetch(t.Context(), provider.ResourceRequest{URL: server.URL})
 			if !errors.Is(err, test.code) {
 				t.Fatalf("Fetch() error = %v, want %s", err, test.code)
 			}
@@ -207,7 +207,7 @@ func TestHTTPExecutorReturnsOnlySafeResponseHeaders(t *testing.T) {
 	}))
 	defer server.Close()
 	executor := mustHTTPExecutor(t, server.Client(), ClockFunc(time.Now), 1024)
-	response, err := executor.Fetch(context.Background(), provider.ResourceRequest{URL: server.URL})
+	response, err := executor.Fetch(t.Context(), provider.ResourceRequest{URL: server.URL})
 	if err != nil {
 		t.Fatalf("Fetch() error = %v", err)
 	}
@@ -237,7 +237,7 @@ func TestHTTPExecutorEnforcesBodyLimit(t *testing.T) {
 			}))
 			defer server.Close()
 			executor := mustHTTPExecutor(t, server.Client(), ClockFunc(time.Now), 4)
-			_, err := executor.Fetch(context.Background(), provider.ResourceRequest{URL: server.URL})
+			_, err := executor.Fetch(t.Context(), provider.ResourceRequest{URL: server.URL})
 			if !errors.Is(err, provider.ErrorCodeResponseTooLarge) {
 				t.Fatalf("Fetch() error = %v, want response_too_large", err)
 			}
@@ -254,7 +254,7 @@ func TestHTTPExecutorCancelsDuringBodyRead(t *testing.T) {
 	}))
 	defer server.Close()
 	executor := mustHTTPExecutor(t, server.Client(), ClockFunc(time.Now), 1024)
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(t.Context())
 	result := make(chan error, 1)
 	go func() {
 		_, err := executor.Fetch(ctx, provider.ResourceRequest{URL: server.URL})
@@ -284,7 +284,7 @@ func TestHTTPExecutorRejectsInvalidRequests(t *testing.T) {
 	}
 	executor := mustHTTPExecutor(t, nil, ClockFunc(time.Now), 1024)
 	for _, request := range tests {
-		if _, err := executor.Fetch(context.Background(), request); !errors.Is(err, provider.ErrorCodeInvalidResourceRequest) {
+		if _, err := executor.Fetch(t.Context(), request); !errors.Is(err, provider.ErrorCodeInvalidResourceRequest) {
 			t.Errorf("Fetch(%#v) error = %v, want invalid_resource_request", request, err)
 		}
 	}

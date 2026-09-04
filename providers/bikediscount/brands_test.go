@@ -1,7 +1,6 @@
 package bikediscount
 
 import (
-	"context"
 	"errors"
 	"reflect"
 	"strings"
@@ -143,13 +142,13 @@ func TestBrandOperationsRejectInvalidIdentifiersAndPages(t *testing.T) {
 		{Request: bikeDiscountRequest(&fakeResourceService{}), Page: provider.PageRequest{Number: 2, Size: 48}},
 		{Request: bikeDiscountRequest(&fakeResourceService{}), Page: provider.PageRequest{Number: 1, Size: 24}},
 	} {
-		_, err := implementation.Brands(context.Background(), request)
+		_, err := implementation.Brands(t.Context(), request)
 		if !errors.Is(err, provider.ErrorCodeInvalidFilter) {
 			t.Errorf("Brands(%#v) error = %v", request.Page, err)
 		}
 	}
 	for _, id := range []string{"", "/en/shimano", "shimano/deore", "shimano?x=1", "Shima no"} {
-		_, err := implementation.BrandItems(context.Background(), provider.BrandItemsRequest{
+		_, err := implementation.BrandItems(t.Context(), provider.BrandItemsRequest{
 			Request: bikeDiscountRequest(&fakeResourceService{}), BrandID: id,
 		})
 		if !errors.Is(err, provider.ErrorCodeInvalidFilter) {

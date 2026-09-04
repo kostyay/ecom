@@ -1,7 +1,6 @@
 package cli
 
 import (
-	"context"
 	"encoding/json"
 	"errors"
 	"path/filepath"
@@ -124,7 +123,7 @@ func seedMaintenanceData(t *testing.T, databasePath string) {
 	now := time.Now().UTC()
 	putCLIResponse(t, responses, "fixture-response", "fixture", now, now.Add(time.Hour))
 	putCLIResponse(t, responses, "other-response", "other", now, now.Add(time.Hour))
-	if _, err := sessions.Put(context.Background(), session.Record{
+	if _, err := sessions.Put(t.Context(), session.Record{
 		Provider: "fixture", Market: maintenanceMarket(), State: session.State{}, UpdatedAt: now,
 	}); err != nil {
 		t.Fatal(err)

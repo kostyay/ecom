@@ -64,8 +64,8 @@ func TestEnvelopeGoldens(t *testing.T) {
 					Code:        provider.WarningCodePartialParsing,
 					Message:     "one product card could not be parsed",
 					URL:         "https://www.bike-discount.de/en/broken",
-					FoundCount:  intPointer(2),
-					ParsedCount: intPointer(1),
+					FoundCount:  new(2),
+					ParsedCount: new(1),
 				}},
 			}, Metadata{}),
 		},
@@ -184,8 +184,6 @@ func TestParseMode(t *testing.T) {
 		t.Fatal("ParseMode accepted an empty JSONPath template")
 	}
 }
-
-func intPointer(value int) *int { return &value }
 
 type failingWriter struct{ err error }
 

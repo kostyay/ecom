@@ -1,13 +1,14 @@
 package transport
 
 import (
+	"cmp"
 	"context"
 	"encoding/json"
 	"errors"
 	"net/http"
 	"net/url"
 	"os"
-	"sort"
+	"slices"
 	"sync"
 	"time"
 
@@ -108,7 +109,6 @@ func runChromedpPage(pageContext context.Context, command BrowserCommand, export
 		chromedp.Location(&finalURL),
 	)
 	for _, operation := range command.DOM {
-		operation := operation
 		actions = append(actions, chromedp.ActionFunc(func(actionContext context.Context) error {
 			values, err := extractDOM(actionContext, operation)
 			if err == nil {
@@ -224,9 +224,8 @@ func exportChromeState(ctx context.Context, imported session.State, finalURL str
 		}
 		result.Cookies = append(result.Cookies, portable)
 	}
-	sort.Slice(result.Cookies, func(i, j int) bool {
-		left, right := result.Cookies[i], result.Cookies[j]
-		return left.Domain+"\x00"+left.Path+"\x00"+left.Name < right.Domain+"\x00"+right.Path+"\x00"+right.Name
+	slices.SortFunc(result.Cookies, func(left, right session.Cookie) int {
+		return cmp.Compare(left.Domain+"\x00"+left.Path+"\x00"+left.Name, right.Domain+"\x00"+right.Path+"\x00"+right.Name)
 	})
 
 	origin := originFromURL(finalURL)
@@ -234,7 +233,7 @@ func exportChromeState(ctx context.Context, imported session.State, finalURL str
 	for name, value := range storage {
 		entries = append(entries, session.StorageEntry{Name: name, Value: value})
 	}
-	sort.Slice(entries, func(i, j int) bool { return entries[i].Name < entries[j].Name })
+	slices.SortFunc(entries, func(left, right session.StorageEntry) int { return cmp.Compare(left.Name, right.Name) })
 	replaced := false
 	for index := range result.Origins {
 		if result.Origins[index].Origin == origin {

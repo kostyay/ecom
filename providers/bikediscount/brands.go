@@ -130,15 +130,15 @@ func canonicalBrandIdentity(reference, pageURL string) (string, string) {
 	if err != nil || parsed.Scheme != "https" || !strings.EqualFold(parsed.Host, "www.bike-discount.de") || parsed.RawQuery != "" || parsed.Fragment != "" {
 		return "", ""
 	}
-	prefix := "/en/"
-	if !strings.HasPrefix(parsed.Path, prefix) {
+	slug, ok := strings.CutPrefix(parsed.Path, "/en/")
+	if !ok {
 		return "", ""
 	}
-	slug := strings.ToLower(strings.TrimPrefix(parsed.Path, prefix))
+	slug = strings.ToLower(slug)
 	if !brandSlugPattern.MatchString(slug) {
 		return "", ""
 	}
-	return slug, bikeDiscountBaseURL + prefix + slug
+	return slug, bikeDiscountBaseURL + "/en/" + slug
 }
 
 func brandIndexPageInfo(request provider.PageRequest) (provider.PageInfo, error) {

@@ -66,7 +66,7 @@ type FilterDefinition struct {
 	Key           string           `json:"key"`
 	Type          FilterType       `json:"type"`
 	Description   string           `json:"description,omitempty"`
-	Repeatable    bool             `json:"repeatable,omitempty"`
+	Repeatable    bool             `json:"repeatable,omitzero"`
 	AllowedValues []FilterValue    `json:"allowed_values,omitempty"`
 	Examples      []string         `json:"examples,omitempty"`
 	AppliesTo     []CapabilityName `json:"applies_to,omitempty"`
@@ -94,11 +94,11 @@ const (
 // PaginationHelp describes provider paging rules.
 type PaginationHelp struct {
 	Mode               PaginationMode `json:"mode"`
-	FirstPage          int            `json:"first_page,omitempty"`
-	DefaultPageSize    int            `json:"default_page_size,omitempty"`
+	FirstPage          int            `json:"first_page,omitzero"`
+	DefaultPageSize    int            `json:"default_page_size,omitzero"`
 	SupportedPageSizes []int          `json:"supported_page_sizes,omitempty"`
-	ReportsTotalItems  bool           `json:"reports_total_items,omitempty"`
-	ReportsTotalPages  bool           `json:"reports_total_pages,omitempty"`
+	ReportsTotalItems  bool           `json:"reports_total_items,omitzero"`
+	ReportsTotalPages  bool           `json:"reports_total_pages,omitzero"`
 	Notes              []string       `json:"notes,omitempty"`
 }
 
@@ -135,8 +135,8 @@ const (
 type AccessRequirements struct {
 	Authentication      AuthenticationRequirement `json:"authentication"`
 	Browser             BrowserRequirement        `json:"browser"`
-	SupportsCDP         bool                      `json:"supports_cdp,omitempty"`
-	SupportsInteractive bool                      `json:"supports_interactive,omitempty"`
+	SupportsCDP         bool                      `json:"supports_cdp,omitzero"`
+	SupportsInteractive bool                      `json:"supports_interactive,omitzero"`
 	Notes               []string                  `json:"notes,omitempty"`
 }
 

@@ -273,20 +273,19 @@ func isBrowserChallenge(headers http.Header, body []byte) bool {
 }
 
 func titleText(lowerHTML string) string {
-	start := strings.Index(lowerHTML, "<title")
-	if start < 0 {
+	_, title, found := strings.Cut(lowerHTML, "<title")
+	if !found {
 		return ""
 	}
-	openEnd := strings.IndexByte(lowerHTML[start:], '>')
-	if openEnd < 0 {
+	_, title, found = strings.Cut(title, ">")
+	if !found {
 		return ""
 	}
-	start += openEnd + 1
-	end := strings.Index(lowerHTML[start:], "</title>")
-	if end < 0 {
+	title, _, found = strings.Cut(title, "</title>")
+	if !found {
 		return ""
 	}
-	return strings.Join(strings.Fields(lowerHTML[start:start+end]), " ")
+	return strings.Join(strings.Fields(title), " ")
 }
 
 func safeFinalURL(value *url.URL, sensitiveNames map[string]struct{}) string {
