@@ -1,0 +1,439 @@
+{
+  "schema_version": "1",
+  "provider": "buscocotxe",
+  "assembled_date": "2026-09-11",
+  "market": {
+    "country": "AD",
+    "language": "ca",
+    "currency": "EUR"
+  },
+  "sanitization": [
+    "Keep listing card structure, headings, price overlays, em summary fields, body type, public car/image URLs, and pagination.",
+    "Remove page scripts, forms, cookies, navigation, dealer logos, seller IDs, favorites, descriptions, contact details, visit counts, timestamps, and unrelated CSS.",
+    "Retain kmk-seguiment=llistat and kmk-seguiment-iditem only as public card identifiers. Remove other tracking attributes.",
+    "Synthetic cases are labeled and do not represent real car offers."
+  ],
+  "fixtures": [
+    {
+      "id": "search_page_1",
+      "path": "search_page_1.html",
+      "source_url": "https://www.buscocotxe.ad/ca/search?search=BMW",
+      "final_url": "https://www.buscocotxe.ad/ca/search?search=BMW",
+      "source_file": "/tmp/ecom-buscocotxe-search.html",
+      "provenance": "direct_http_response",
+      "captured_at": "2026-09-11",
+      "capture_precision": "day",
+      "status_code": 200,
+      "requested_page": 1,
+      "expected": {
+        "card_count": 30,
+        "ids": [
+          "605610",
+          "605608",
+          "605579",
+          "604968",
+          "605559",
+          "605542",
+          "569236",
+          "598460",
+          "602494",
+          "605002",
+          "601616",
+          "597496",
+          "605510",
+          "602587",
+          "595096",
+          "603251",
+          "604915",
+          "605334",
+          "605463",
+          "599325",
+          "605435",
+          "592787",
+          "605303",
+          "602956",
+          "600582",
+          "603181",
+          "601586",
+          "605304",
+          "605411",
+          "605386"
+        ],
+        "price_on_request_ids": [
+          "604968",
+          "604915",
+          "605334",
+          "605411"
+        ],
+        "sold_ids": [],
+        "first_item": {
+          "id": "605610",
+          "url": "https://www.buscocotxe.ad/ca/cotxe/605610/bmw-x1-xdrive20i-sport-line-andorra-la-vella",
+          "name": "BMW X1 xDrive20i - Sport Line",
+          "price_display": "18.900 €",
+          "summary_text": "106.000 Km. 2017 Estoc"
+        },
+        "total_items": 1237,
+        "number": 1,
+        "total_pages": 42,
+        "has_next": true
+      },
+      "sha256": "491ee1b49760691079470164e8631a6d28e5b95aa892423903bd50512e24632b"
+    },
+    {
+      "id": "search_page_2",
+      "path": "search_page_2.html",
+      "source_url": "https://www.buscocotxe.ad/ca/search?search=BMW&pn=2",
+      "final_url": "https://www.buscocotxe.ad/ca/search?search=BMW&pn=2",
+      "source_file": "/tmp/ecom-buscocotxe-page2.html",
+      "provenance": "direct_http_response",
+      "captured_at": "2026-09-11",
+      "capture_precision": "day",
+      "status_code": 200,
+      "requested_page": 2,
+      "expected": {
+        "card_count": 30,
+        "ids": [
+          "603213",
+          "602912",
+          "598508",
+          "605372",
+          "598360",
+          "599000",
+          "603517",
+          "601359",
+          "605366",
+          "605360",
+          "599179",
+          "605347",
+          "605344",
+          "601336",
+          "599760",
+          "591057",
+          "602135",
+          "601792",
+          "601448",
+          "600527",
+          "605309",
+          "605306",
+          "601710",
+          "604272",
+          "605299",
+          "605298",
+          "601734",
+          "595909",
+          "603317",
+          "591993"
+        ],
+        "price_on_request_ids": [
+          "604272"
+        ],
+        "sold_ids": [],
+        "first_item": {
+          "id": "603213",
+          "url": "https://www.buscocotxe.ad/ca/cotxe/603213/bmw-x3-hbrid-xdrive-30e-292cv-andorra-la-vella",
+          "name": "BMW X3 HÍBRID XDRIVE 30e 292CV",
+          "price_display": "31.700 €",
+          "summary_text": "109.000 Km. 11/2021 Estoc"
+        },
+        "total_items": 1237,
+        "number": 2,
+        "total_pages": 42,
+        "has_next": true
+      },
+      "sha256": "908116a4673e93f11e2b1d7db730ee0f517db736be3ee5337a2273b148ff1f0e"
+    },
+    {
+      "id": "search_last",
+      "path": "search_last.html",
+      "source_url": "https://www.buscocotxe.ad/ca/search?search=BMW&pn=42",
+      "final_url": "https://www.buscocotxe.ad/ca/search?search=BMW&pn=42",
+      "source_file": "/tmp/ecom-buscocotxe-last.html",
+      "provenance": "direct_http_response",
+      "captured_at": "2026-09-11",
+      "capture_precision": "day",
+      "status_code": 200,
+      "requested_page": 42,
+      "expected": {
+        "card_count": 7,
+        "ids": [
+          "531183",
+          "519905",
+          "508542",
+          "576502",
+          "569317",
+          "538769",
+          "463138"
+        ],
+        "price_on_request_ids": [],
+        "sold_ids": [
+          "531183",
+          "519905",
+          "508542",
+          "576502",
+          "569317",
+          "538769",
+          "463138"
+        ],
+        "first_item": {
+          "id": "531183",
+          "url": "https://www.buscocotxe.ad/ca/cotxe/531183/bwm-x3-xdrive-20d-sant-julia-de-loria",
+          "name": "BWM X3 XDrive 20D",
+          "price_display": "VENUT",
+          "summary_text": "67.000 Km. 2017 VENUT"
+        },
+        "total_items": 1237,
+        "number": 42,
+        "total_pages": 42,
+        "has_next": false
+      },
+      "sha256": "3734a27e857bfabc4f72909e57525cde98198ece44819504d35f102058a0810a"
+    },
+    {
+      "id": "search_empty",
+      "path": "search_empty.html",
+      "source_url": "https://www.buscocotxe.ad/ca/search?search=zzzxxyy987654321",
+      "final_url": "https://www.buscocotxe.ad/ca/search?search=zzzxxyy987654321",
+      "source_file": "/tmp/ecom-buscocotxe-empty.html",
+      "provenance": "direct_http_response",
+      "captured_at": "2026-09-11",
+      "capture_precision": "day",
+      "status_code": 200,
+      "requested_page": 1,
+      "expected": {
+        "card_count": 0,
+        "ids": [],
+        "price_on_request_ids": [],
+        "sold_ids": [],
+        "total_items": 0,
+        "number": null,
+        "total_pages": null,
+        "has_next": false
+      },
+      "sha256": "aaa3f1946ac211918e7c78a960cde4c7dac1ab22b718a3abf791f0bb787ebd09"
+    },
+    {
+      "id": "search_out_of_range",
+      "path": "search_out_of_range.html",
+      "source_url": "https://www.buscocotxe.ad/ca/search?search=BMW&pn=43",
+      "final_url": "https://www.buscocotxe.ad/ca/search?search=BMW&pn=43",
+      "source_file": "/tmp/ecom-buscocotxe-out-of-range.html",
+      "provenance": "direct_http_response",
+      "captured_at": "2026-09-11T10:48:37.766309+00:00",
+      "capture_precision": "timestamp",
+      "status_code": 200,
+      "requested_page": 43,
+      "expected": {
+        "card_count": 7,
+        "ids": [
+          "531183",
+          "519905",
+          "508542",
+          "576502",
+          "569317",
+          "538769",
+          "463138"
+        ],
+        "price_on_request_ids": [],
+        "sold_ids": [
+          "531183",
+          "519905",
+          "508542",
+          "576502",
+          "569317",
+          "538769",
+          "463138"
+        ],
+        "first_item": {
+          "id": "531183",
+          "url": "https://www.buscocotxe.ad/ca/cotxe/531183/bwm-x3-xdrive-20d-sant-julia-de-loria",
+          "name": "BWM X3 XDrive 20D",
+          "price_display": "VENUT",
+          "summary_text": "67.000 Km. 2017 VENUT"
+        },
+        "total_items": 1237,
+        "number": 42,
+        "total_pages": 42,
+        "has_next": false
+      },
+      "note": "HTTP 200 and unchanged URL. Body returns page 42 for requested page 43. Provider must return a page-mismatch error.",
+      "sha256": "3734a27e857bfabc4f72909e57525cde98198ece44819504d35f102058a0810a"
+    },
+    {
+      "id": "carfinder_page_1",
+      "path": "carfinder_page_1.html",
+      "source_url": "https://www.buscocotxe.ad/ca/filter?ordreFiltres[]=dataDesc&pn=1",
+      "final_url": "https://www.buscocotxe.ad/ca/filter?ordreFiltres[]=dataDesc&pn=1",
+      "source_file": "/data/personal/carfinder/tests/fixtures/index_page_1.html",
+      "provenance": "carfinder_saved_fixture",
+      "captured_at": null,
+      "capture_precision": "unknown",
+      "status_code": null,
+      "requested_page": 1,
+      "expected": {
+        "card_count": 30,
+        "ids": [
+          "600010",
+          "600011",
+          "582483",
+          "599628",
+          "577923",
+          "600008",
+          "595731",
+          "600006",
+          "600004",
+          "597393",
+          "598608",
+          "597808",
+          "593543",
+          "591357",
+          "597085",
+          "584542",
+          "593641",
+          "596754",
+          "600003",
+          "583033",
+          "581512",
+          "594358",
+          "600001",
+          "580478",
+          "594360",
+          "598926",
+          "598927",
+          "598928",
+          "600002",
+          "600000"
+        ],
+        "price_on_request_ids": [
+          "599628"
+        ],
+        "sold_ids": [
+          "600011",
+          "600003",
+          "600002"
+        ],
+        "first_item": {
+          "id": "600010",
+          "url": "https://www.buscocotxe.ad/ca/cotxe/600010/bmw-x4-m-competition-510cv-escaldes-engordany",
+          "name": "Bmw X4 M Competition 510CV",
+          "price_display": "59.900 €",
+          "summary_text": "62.000 Km. 2021 Estoc"
+        },
+        "total_items": 7540,
+        "number": 1,
+        "total_pages": 252,
+        "has_next": true
+      },
+      "source_commit": "4e39366",
+      "sha256": "f6db71c2c72b2f9ea6d76bf219a2b30ba27c253d7255ea3805d2852909311d24"
+    },
+    {
+      "id": "carfinder_page_2",
+      "path": "carfinder_page_2.html",
+      "source_url": "https://www.buscocotxe.ad/ca/filter?ordreFiltres[]=dataDesc&pn=2",
+      "final_url": "https://www.buscocotxe.ad/ca/filter?ordreFiltres[]=dataDesc&pn=2",
+      "source_file": "/data/personal/carfinder/tests/fixtures/index_page_2.html",
+      "provenance": "carfinder_saved_fixture",
+      "captured_at": null,
+      "capture_precision": "unknown",
+      "status_code": null,
+      "requested_page": 2,
+      "expected": {
+        "card_count": 30,
+        "ids": [
+          "599997",
+          "599996",
+          "599995",
+          "599992",
+          "599975",
+          "599991",
+          "599989",
+          "598714",
+          "599754",
+          "599075",
+          "599011",
+          "599987",
+          "599985",
+          "599984",
+          "599983",
+          "599982",
+          "598143",
+          "598681",
+          "599194",
+          "579618",
+          "598868",
+          "599974",
+          "573656",
+          "599973",
+          "599239",
+          "599760",
+          "541505",
+          "599917",
+          "599886",
+          "597394"
+        ],
+        "price_on_request_ids": [],
+        "sold_ids": [],
+        "first_item": {
+          "id": "599997",
+          "url": "https://www.buscocotxe.ad/ca/cotxe/599997/bmw-m-340d-la-massana",
+          "name": "BMW M 340d",
+          "price_display": "44.000 €",
+          "summary_text": "89.000 Km. 2021 Estoc"
+        },
+        "total_items": 7540,
+        "number": 2,
+        "total_pages": 252,
+        "has_next": true
+      },
+      "source_commit": "4e39366",
+      "sha256": "fdad80d7232ccc69b6e004f658250e0a5911187d32361dba809b1441ea0712a5"
+    },
+    {
+      "id": "regressions",
+      "path": "regressions.html",
+      "provenance": "synthetic_regression",
+      "source_url": null,
+      "captured_at": null,
+      "expected": {
+        "card_count": 5,
+        "ids": [
+          "900001",
+          "900002",
+          "900003",
+          "invalid",
+          "900001"
+        ],
+        "unique_valid_items": 3,
+        "prices": {
+          "900001": "19999.50",
+          "900002": null,
+          "900003": "11900"
+        },
+        "invalid_ids": [
+          "invalid"
+        ],
+        "duplicate_ids": [
+          "900001"
+        ],
+        "excluded_banners": 1,
+        "warning": "partial_parsing",
+        "note": "Found/parsed counts must follow the Provider warning contract; one malformed card and one duplicate are different cases."
+      },
+      "sha256": "a6283a956920f232fe0d29ea6d9e1ec2750dfd9ced86492478de1e405439d7de"
+    },
+    {
+      "id": "unexpected",
+      "path": "unexpected.html",
+      "provenance": "synthetic_regression",
+      "source_url": null,
+      "captured_at": null,
+      "expected": {
+        "card_count": 0,
+        "ids": [],
+        "error": "unexpected page; not an empty search"
+      },
+      "sha256": "8d63629de5d5d248a0a7f1715b9aacaa3858ea0aa58aa1a37d5815c30d2557e9"
+    }
+  ]
+}

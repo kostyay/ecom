@@ -4,7 +4,7 @@
 
 `ecom` is a command-line tool for product discovery on one commerce provider at a time. It gives stable JSON to agents and scripts. It can also give tables to people.
 
-The compiled providers are Bike-Discount and Wallapop. `ecom` does not compare shops. Run one command for each shop and compare the results in your own program.
+The compiled providers are Bike24, Bike-Discount, BuscoCotxe, and Wallapop. `ecom` does not compare shops. Run one command for each shop and compare the results in your own program.
 
 <p align="center">
   <img src="docs/demo.gif" alt="ecom CLI demo" width="700">
@@ -35,6 +35,10 @@ ecom filters deals -o table
 ecom search "powertube" -o table
 ecom deals --page 1 --page-size 48
 ecom item "https://www.bike-discount.de/en/yamaha-500-wh-36v/13.6ah-frame-battery"
+ecom provider help bike24 -o table
+ecom search "Garmin Edge" --provider bike24 --page 1 --page-size 30
+ecom provider help buscocotxe -o table
+ecom search "BMW X3" --provider buscocotxe --page 1 --page-size 30
 ecom provider help wallapop -o table
 ecom search "gravel talla M" --provider wallapop --filter max_distance_km=100 --filter max_price=2000 --sort closest
 ```
@@ -50,7 +54,11 @@ The CLI does not include jq expressions or a pretty-JSON option. Pipe its compac
 
 The returned price is the item price that the site shows. Shipping and optional fees are not included by default. `ecom` does not convert currency.
 
+Bike24 supports public product search for the German market in English and EUR. Page size 30 is required. Filters, custom sorts, and item details are not supported. Bike24 can reject direct HTTP requests, so `ecom` can use browser or CDP transport as a fallback.
+
 Wallapop supports public `search` and `item` requests without authentication or a browser. Search uses Andorra la Vella as its default center. You can set `latitude`, `longitude`, `max_distance_km`, `min_price`, `max_price`, and `category_id` filters. Run `ecom provider help wallapop` for current sort and paging limits. Wallapop can change or limit its public endpoints.
+
+BuscoCotxe supports public car search without authentication or a browser. It uses the Andorra catalog in Catalan and returns 30 cars on a full page. Results can include sold cars and cars with no stated price. Filters, custom sorts, and item details are not supported.
 
 See [the user guide](docs/user-guide.md) for all commands, configuration, browser setup, cache behavior, and provider limits.
 
@@ -98,7 +106,9 @@ log:
 Flags override environment variables. Environment variables override the file. For example, `ECOM_MARKET_CURRENCY=EUR` sets `market.currency`.
 
 Bike-Discount supports only `pricing.include_shipping: false`. It returns `invalid_provider_config` before a network request if this value is `true`.
+Bike24 also requires `pricing.include_shipping: false` and does not accept provider-specific configuration values.
 Wallapop also requires `pricing.include_shipping: false` and does not accept provider-specific configuration values.
+BuscoCotxe has the same price policy and does not accept provider-specific configuration values.
 
 ## Develop
 

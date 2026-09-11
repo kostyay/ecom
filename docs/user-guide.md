@@ -15,6 +15,7 @@ The default configuration selects `bike-discount`. There is no command that sear
 ```sh
 ecom provider help bike-discount
 ecom provider help bike-discount -o table
+ecom provider help buscocotxe
 ecom provider help wallapop
 ```
 
@@ -32,6 +33,14 @@ ecom search "powertube" --page 1 --page-size 48 -o table
 ```
 
 Bike-Discount uses the current verified `search` request parameter. An exact category term can redirect to its canonical category page.
+
+BuscoCotxe searches public car listings in Andorra. The catalog and result text are in Catalan:
+
+```sh
+ecom search "BMW X3" --provider buscocotxe --page 1 --page-size 30
+```
+
+The website can match text in a title or description. Results keep the website order. They can include sold cars and cars with no stated price. BuscoCotxe does not support filters, custom sorts, or item details.
 
 Wallapop supports public listing search. A query is required. Its default search center is Andorra la Vella:
 
@@ -171,6 +180,8 @@ Wallapop supports these search filters:
 
 Wallapop supports `most_relevance`, `closest`, `newest`, `price_low_to_high`, and `price_high_to_low`. Pages start at 1, stop at 10, and use size 40. To get a later page, the provider follows temporary cursors from page 1.
 
+BuscoCotxe pages start at 1, and page size 30 is required. A nonempty result reports total items and total pages. An empty result reports the requested page and no total page count. The website can return its last page when a higher page is requested. The Provider detects this change and returns `invalid_provider_result`.
+
 ## Output
 
 ### JSON envelope
@@ -230,9 +241,10 @@ pricing:
 
 `ecom` preserves the site's displayed price text and decimal amount. It does not use a binary floating-point value for money. It does not convert currency. If the site returns another currency, the result keeps that currency and can include `currency_unavailable`.
 
-`pricing.include_shipping` is a global provider request policy. The default is `false`. Bike-Discount and Wallapop do not support shipping-inclusive prices. A value of `true` returns `invalid_provider_config` before a network request. With the supported value, prices exclude shipping and optional fees.
+`pricing.include_shipping` is a global provider request policy. The default is `false`. Bike-Discount, BuscoCotxe, and Wallapop do not support shipping-inclusive prices. A value of `true` returns `invalid_provider_config` before a network request. With the supported value, prices exclude shipping and optional fees.
 
 Wallapop returns EUR. If another currency is requested, the result keeps EUR and includes a `currency_unavailable` warning.
+BuscoCotxe has the same currency behavior.
 
 ## Configuration
 
@@ -282,6 +294,7 @@ Precedence is:
 Use `_` for nested environment keys. Examples are `ECOM_PROVIDER`, `ECOM_MARKET_COUNTRY`, `ECOM_PRICING_INCLUDE_SHIPPING`, `ECOM_CACHE_TTL`, and `ECOM_BROWSER_CDP_ADDRESS`.
 
 Wallapop does not accept provider-specific configuration values.
+BuscoCotxe also does not accept provider-specific configuration values.
 
 `network.requests_per_second` limits starts of all requests for one provider. HTTP requests use `max_concurrent_http`. Browser and CDP work share `max_concurrent_browser`. `network.retries` is the number of HTTP retry attempts after the first attempt. Keep the default rate of one request per second for Bike-Discount unless the site gives a different limit.
 
@@ -339,6 +352,7 @@ ecom search "helmet" --interactive
 Interactive mode opens a headed isolated browser and waits up to `browser.interactive_timeout`. Complete the challenge in that browser. The command stores the resulting portable session state in SQLite. If time expires, it returns `browser_challenge_timeout`. Use `ecom provider session clear bike-discount` to remove the stored state.
 
 Wallapop uses its public HTTP endpoints. It does not use browser, CDP, or interactive transport.
+BuscoCotxe uses public HTTP search pages. It does not use browser, CDP, or interactive transport.
 
 ## Error codes
 
@@ -399,3 +413,14 @@ Warnings do not make a useful result fail. Read `warnings` on every successful J
 - Page numbers are 1 to 10. Page size 40 is the only supported size.
 - Reserved listings are not returned.
 - Wallapop can change or limit its public endpoints.
+
+## BuscoCotxe limits
+
+- Only public `search` is supported.
+- The catalog is always Andorra in Catalan.
+- EUR is the only supported currency. No currency conversion occurs.
+- Prices exclude shipping and optional fees.
+- Page numbers start at 1. Page size 30 is required.
+- Filters, custom sorts, item details, and other capabilities are not supported.
+- Search results can include sold cars and cars with no stated price.
+- A request for a page after the last page returns `invalid_provider_result`.
