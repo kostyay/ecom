@@ -2,7 +2,7 @@
 
 ## 1. Goal
 
-Build `ecom` as a machine-readable CLI for product discovery on one commerce provider at a time. The compiled providers are Bike-Discount and Wallapop. Each provider can use a different website protocol while it exposes common operations where practical.
+Build `ecom` as a machine-readable CLI for product discovery on one commerce provider at a time. The compiled providers are Bike24, Bike-Discount, BuscoCotxe, and Wallapop. Each provider can use a different website protocol while it exposes common operations where practical.
 
 The principal agent workflow is:
 
@@ -236,8 +236,8 @@ providers:
 ```
 
 `pricing.include_shipping` is a global provider request policy. A provider must
-reject an unsupported value before it requests a website resource. The
-Bike-Discount and Wallapop support only `false`. They return displayed item prices without shipping or optional fees.
+reject an unsupported value before it requests a website resource.
+Bike-Discount, BuscoCotxe, and Wallapop support only `false`. They return displayed item prices without shipping or optional fees.
 
 The configured file remains in the operating system user configuration directory. Flags override environment variables, and environment variables override the file.
 
@@ -310,6 +310,12 @@ The provider can use normal browser headers, cookies, JavaScript, Playwright-com
 Wallapop supports public product search and item details. It uses the public search JSON endpoints and structured JSON from item pages through Core-owned HTTP transport. It supports coordinate, distance, price, and category search filters. It does not support categories, brands, deals, variants, browser transport, or provider-specific configuration.
 
 Wallapop search uses Andorra la Vella as its default center. It returns EUR prices without shipping or buyer fees. Page numbers are 1 to 10, and page size 40 is required. Later pages use temporary cursors that the provider gets from page 1.
+
+### BuscoCotxe
+
+BuscoCotxe supports public car text search through server-rendered HTML and Core-owned HTTP transport. It uses the Andorra catalog in Catalan and returns EUR prices without shipping or optional fees. Page numbers start at 1, and page size 30 is required. Search results can include sold cars and cars with no stated price. Filters, custom sorts, item details, and other capabilities are not supported.
+
+The website can return its last page for a higher page request without a redirect. The Provider compares the requested page with the page metadata and returns `invalid_provider_result` when they differ.
 
 ## 13. Test Strategy
 

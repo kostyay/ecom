@@ -43,13 +43,18 @@ func TestUserGuideDocumentsCurrentCommandsAndConfiguration(t *testing.T) {
 		"jsonpath=",
 		"--interactive",
 		"No currency conversion occurs.",
+		"ecom provider help buscocotxe",
+		"--provider buscocotxe --page 1 --page-size 30",
+		"Search results can include sold cars and cars with no stated price.",
 	} {
 		if !strings.Contains(guide, text) {
 			t.Errorf("user guide does not contain %q", text)
 		}
 	}
-	if !strings.Contains(readme, "docs/user-guide.md") || !strings.Contains(readme, "pricing:\n  include_shipping: false") {
-		t.Error("README does not link to the guide or show the default price policy")
+	for _, text := range []string{"docs/user-guide.md", "pricing:\n  include_shipping: false", "--provider buscocotxe --page 1 --page-size 30"} {
+		if !strings.Contains(readme, text) {
+			t.Errorf("README does not contain %q", text)
+		}
 	}
 }
 
