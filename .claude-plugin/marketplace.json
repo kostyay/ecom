@@ -1,0 +1,15 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "kostyay-ecom",
+  "description": "Claude Code plugins for the ecom repository.",
+  "owner": {
+    "name": "Kostyay",
+    "url": "https://github.com/kostyay"
+  },
+  "plugins": [
+    {
+      "name": "ecom",
+      "source": "./plugins/ecom"
+    }
+  ]
+}
