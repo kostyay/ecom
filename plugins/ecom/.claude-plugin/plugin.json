@@ -1,0 +1,16 @@
+{
+  "name": "ecom",
+  "version": "0.1.0",
+  "description": "Applies the ecom repository issue-tracking, triage, and domain-document workflow.",
+  "author": {
+    "name": "Kostyay"
+  },
+  "repository": "https://github.com/kostyay/ecom",
+  "license": "MIT",
+  "keywords": [
+    "ecom",
+    "workflow",
+    "issue-tracking",
+    "domain-modeling"
+  ]
+}
