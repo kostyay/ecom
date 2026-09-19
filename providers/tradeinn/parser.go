@@ -56,17 +56,15 @@ func parseProducts(document searchDocument, countryID, query string, page int, r
 		Page:  provider.PageInfo{Number: page, Size: pageSize, TotalItems: document.TotalSize, HasNext: new(document.NextPageToken != "")},
 	}
 	seen := make(map[string]bool)
-	skipped := 0
 	for _, raw := range document.Results {
 		item, ok := parseProduct(raw, countryID, retrievedAt)
 		if !ok || seen[item.ID] {
-			skipped++
 			continue
 		}
 		seen[item.ID] = true
 		result.Items = append(result.Items, item)
 	}
-	if skipped > 0 {
+	if len(result.Items) < len(document.Results) {
 		if len(result.Items) == 0 {
 			return provider.ProductPage{}, invalidResult("Tradeinn returned no valid products")
 		}
