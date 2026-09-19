@@ -2,7 +2,7 @@
 
 ## 1. Goal
 
-Build `ecom` as a machine-readable CLI for product discovery on one commerce provider at a time. The compiled providers are Bike24, Bike-Discount, BuscoCotxe, and Wallapop. Each provider can use a different website protocol while it exposes common operations where practical.
+Build `ecom` as a machine-readable CLI for product discovery on one commerce provider at a time. The compiled providers are Bike24, Bike-Discount, BuscoCotxe, Tradeinn, and Wallapop. Each provider can use a different website protocol while it exposes common operations where practical.
 
 The principal agent workflow is:
 
@@ -316,6 +316,12 @@ Wallapop search uses Andorra la Vella as its default center. It returns EUR pric
 BuscoCotxe supports public car text search through server-rendered HTML and Core-owned HTTP transport. It uses the Andorra catalog in Catalan and returns EUR prices without shipping or optional fees. Page numbers start at 1, and page size 30 is required. Search results can include sold cars and cars with no stated price. Filters, custom sorts, item details, and other capabilities are not supported.
 
 The website can return its last page for a higher page request without a redirect. The Provider compares the requested page with the page metadata and returns `invalid_provider_result` when they differ.
+
+### Tradeinn
+
+Tradeinn supports public text search across its shops, including Bikeinn. It uses form-encoded POST requests to `listado.php` through Core-owned HTTP transport. No account or browser is required. Prices use the selected country's catalog values: Germany and Andorra are supported in English with EUR prices, without shipping.
+
+Pages 1 to 10 use size 45. Later pages follow temporary tokens from page 1 through the Core cache. The sensitive request body has a stable hash as its cache partition. The Provider reports total items and `has_next`, but does not infer total pages. It strips internal product URL query values and warns when the site corrects or expands a query. Filters, custom sorts, and item details are not supported.
 
 ## 13. Test Strategy
 

@@ -16,6 +16,7 @@ The default configuration selects `bike-discount`. There is no command that sear
 ecom provider help bike-discount
 ecom provider help bike-discount -o table
 ecom provider help buscocotxe
+ecom provider help tradeinn
 ecom provider help wallapop
 ```
 
@@ -49,6 +50,15 @@ ecom search "gravel bike talla M" --provider wallapop
 ecom search "gravel bike" --provider wallapop \
   --filter latitude=42.5063 --filter longitude=1.5218
 ```
+
+Tradeinn searches across its shops, including Bikeinn. Use at least three search characters. Germany and Andorra are supported in English, with EUR prices:
+
+```sh
+ecom search "powertube" --provider tradeinn
+ECOM_MARKET_COUNTRY=AD ecom search "powertube" --provider tradeinn
+```
+
+Results keep the website order. Tradeinn can correct or expand a query; the Provider reports this with `search_semantics_unverified` and details in `provider_data.tradeinn`. Prices exclude shipping. `in_stock` is the search catalog status, not a promise of immediate warehouse stock or a delivery date. Filters, custom sorts, and item details are not supported.
 
 ### Categories
 
@@ -181,6 +191,8 @@ Wallapop supports these search filters:
 Wallapop supports `most_relevance`, `closest`, `newest`, `price_low_to_high`, and `price_high_to_low`. Pages start at 1, stop at 10, and use size 40. To get a later page, the provider follows temporary cursors from page 1.
 
 BuscoCotxe pages start at 1, and page size 30 is required. A nonempty result reports total items and total pages. An empty result reports the requested page and no total page count. The website can return its last page when a higher page is requested. The Provider detects this change and returns `invalid_provider_result`.
+
+Tradeinn pages start at 1, stop at 10, and use size 45. Later pages follow temporary tokens from page 1. The Core cache can reuse earlier requests. Read `page.has_next`; total pages are not inferred. A page after the last token returns no items. The site controls the actual item count per page.
 
 ## Output
 

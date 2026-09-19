@@ -9,6 +9,7 @@ import (
 	_ "github.com/kostyay/ecom/providers/bike24"
 	_ "github.com/kostyay/ecom/providers/bikediscount"
 	_ "github.com/kostyay/ecom/providers/buscocotxe"
+	_ "github.com/kostyay/ecom/providers/tradeinn"
 	_ "github.com/kostyay/ecom/providers/wallapop"
 )
 
