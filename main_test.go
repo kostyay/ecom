@@ -81,6 +81,81 @@ type commandResult struct {
 	stdout, stderr string
 }
 
+func TestTradeinnCLI(t *testing.T) {
+	directory := t.TempDir()
+	t.Setenv("ECOM_CACHE_PATH", filepath.Join(directory, "cache.db"))
+	t.Setenv("ECOM_MARKET_COUNTRY", "DE")
+	t.Setenv("ECOM_MARKET_LANGUAGE", "en")
+	t.Setenv("ECOM_MARKET_CURRENCY", "EUR")
+	transport := &tradeinnRoundTripper{t: t}
+	previousTransport := http.DefaultClient.Transport
+	http.DefaultClient.Transport = transport
+	t.Cleanup(func() { http.DefaultClient.Transport = previousTransport })
+	run := func(args ...string) string {
+		t.Helper()
+		args = append(args, "--provider", "tradeinn", "--log-file", filepath.Join(directory, "ecom.log"))
+		var stdout, stderr bytes.Buffer
+		if status := cli.Run(t.Context(), args, &stdout, &stderr); status != 0 || stderr.Len() != 0 {
+			t.Fatalf("status %d, stdout %q, stderr %q", status, stdout.String(), stderr.String())
+		}
+		return stdout.String()
+	}
+	if output := run("provider", "help", "tradeinn"); !strings.Contains(output, `"default_page_size":45`) {
+		t.Fatal(output)
+	}
+	if output := run("search", "powertube"); !strings.Contains(output, `"amount":"739.99"`) || !strings.Contains(output, `"total_items":48`) {
+		t.Fatal(output)
+	}
+	if output := run("search", "powertube", "-o", `jsonpath={.data.items[0].price.display}`); !strings.Contains(output, "739.99 €") {
+		t.Fatal(output)
+	}
+	if transport.calls.Load() != 1 {
+		t.Fatalf("cached search made %d requests", transport.calls.Load())
+	}
+	if output := run("search", "powertube", "--page", "2", "-o", "table"); !strings.Contains(output, "page 2, size 45") {
+		t.Fatal(output)
+	}
+	if transport.calls.Load() != 2 {
+		t.Fatalf("pagination made %d requests", transport.calls.Load())
+	}
+	t.Setenv("ECOM_MARKET_COUNTRY", "AD")
+	if output := run("search", "powertube"); !strings.Contains(output, `"amount":"675.99"`) {
+		t.Fatal(output)
+	}
+	if transport.calls.Load() != 3 {
+		t.Fatalf("market change made %d requests", transport.calls.Load())
+	}
+}
+
+type tradeinnRoundTripper struct {
+	t     *testing.T
+	calls atomic.Int64
+}
+
+func (transport *tradeinnRoundTripper) RoundTrip(request *http.Request) (*http.Response, error) {
+	transport.calls.Add(1)
+	if err := request.ParseForm(); err != nil {
+		return nil, err
+	}
+	if request.Method != http.MethodPost || request.URL.String() != "https://www.tradeinn.com/listado.php" || request.PostForm.Get("palabras") != "powertube" {
+		return nil, errors.New("unexpected Tradeinn request")
+	}
+	fixture := "search.json"
+	switch request.PostForm.Get("nextToken") {
+	case "null":
+	case "fixture-page-2":
+		fixture = "last.json"
+	default:
+		return nil, errors.New("unexpected Tradeinn token")
+	}
+	body, err := os.ReadFile(filepath.Join("providers", "tradeinn", "testdata", fixture))
+	if err != nil {
+		transport.t.Error(err)
+		return nil, err
+	}
+	return &http.Response{StatusCode: http.StatusOK, Header: make(http.Header), Body: io.NopCloser(bytes.NewReader(body)), Request: request}, nil
+}
+
 type buscoCotxeRoundTripper struct {
 	t     *testing.T
 	calls atomic.Int64

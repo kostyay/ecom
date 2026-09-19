@@ -4,7 +4,7 @@
 
 `ecom` is a command-line tool for product discovery on one commerce provider at a time. It gives stable JSON to agents and scripts. It can also give tables to people.
 
-The compiled providers are Bike24, Bike-Discount, BuscoCotxe, and Wallapop. `ecom` does not compare shops. Run one command for each shop and compare the results in your own program.
+The compiled providers are Bike24, Bike-Discount, BuscoCotxe, Tradeinn, and Wallapop. `ecom` does not compare providers. Run one command for each provider and compare the results in your own program.
 
 <p align="center">
   <img src="docs/demo.gif" alt="ecom CLI demo" width="700">
@@ -39,6 +39,8 @@ ecom provider help bike24 -o table
 ecom search "Garmin Edge" --provider bike24 --page 1 --page-size 30
 ecom provider help buscocotxe -o table
 ecom search "BMW X3" --provider buscocotxe --page 1 --page-size 30
+ecom provider help tradeinn -o table
+ecom search "powertube" --provider tradeinn
 ecom provider help wallapop -o table
 ecom search "gravel talla M" --provider wallapop --filter max_distance_km=100 --filter max_price=2000 --sort closest
 ```
@@ -55,6 +57,15 @@ The CLI does not include jq expressions or a pretty-JSON option. Pipe its compac
 The returned price is the item price that the site shows. Shipping and optional fees are not included by default. `ecom` does not convert currency.
 
 Bike24 supports public product search for the German market in English and EUR. Page size 30 is required. Filters, custom sorts, and item details are not supported. Bike24 can reject direct HTTP requests, so `ecom` can use browser or CDP transport as a fallback.
+
+Tradeinn searches across its shops, including Bikeinn, without an account or browser. It supports Germany and Andorra in English, with EUR prices. Use at least three search characters. Pages 1 to 10 use size 45; read `page.has_next` before requesting another page. Filters, custom sorts, and item details are not supported.
+
+```sh
+ecom search "powertube" --provider tradeinn --page 2
+ECOM_MARKET_COUNTRY=AD ecom search "powertube" --provider tradeinn -o table
+```
+
+Tradeinn prices depend on the selected country and exclude shipping. Query correction or expansion produces a `search_semantics_unverified` warning. Catalog stock status does not confirm immediate warehouse stock or a delivery date. See the [browser research](docs/providers/tradeinn-research.md) for the verified search API and limits.
 
 Wallapop supports public `search` and `item` requests without authentication or a browser. Search uses Andorra la Vella as its default center. You can set `latitude`, `longitude`, `max_distance_km`, `min_price`, `max_price`, and `category_id` filters. Run `ecom provider help wallapop` for current sort and paging limits. Wallapop can change or limit its public endpoints.
 
@@ -107,6 +118,7 @@ Flags override environment variables. Environment variables override the file. F
 
 Bike-Discount supports only `pricing.include_shipping: false`. It returns `invalid_provider_config` before a network request if this value is `true`.
 Bike24 also requires `pricing.include_shipping: false` and does not accept provider-specific configuration values.
+Tradeinn has the same price policy and does not accept provider-specific configuration values.
 Wallapop also requires `pricing.include_shipping: false` and does not accept provider-specific configuration values.
 BuscoCotxe has the same price policy and does not accept provider-specific configuration values.
 

@@ -1,0 +1,89 @@
+{
+  "results": [
+    {
+      "id": "139799568",
+      "product": {
+        "title": "Powertube+ Resistance Tube Hard",
+        "brands": [
+          "Ptp"
+        ],
+        "availability": "IN_STOCK",
+        "uri": "https://www.tradeinn.com/traininn/en/ptp-powertube--resistance-tube-hard/139799568/p?image_created=1",
+        "attributes": {
+          "shopId": {
+            "text": [
+              "13"
+            ]
+          },
+          "price_all_1_to_10": {
+            "text": [
+              "4:21.99"
+            ]
+          },
+          "price_all_71_to_80": {
+            "text": [
+              "75:23.49"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "139799567",
+      "product": {
+        "title": "Powertube+ extra hard resistance band",
+        "brands": [
+          "Ptp"
+        ],
+        "availability": "IN_STOCK",
+        "uri": "https://www.tradeinn.com/traininn/en/ptp-powertube--extra-hard-resistance-band/139799567/p?image_created=1",
+        "attributes": {
+          "shopId": {
+            "text": [
+              "13"
+            ]
+          },
+          "price_all_1_to_10": {
+            "text": [
+              "4:23.49"
+            ]
+          },
+          "price_all_71_to_80": {
+            "text": [
+              "75:24.99"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "139799564",
+      "product": {
+        "title": "Powertube Resistance Tube Hard",
+        "brands": [
+          "Ptp"
+        ],
+        "availability": "IN_STOCK",
+        "uri": "https://www.tradeinn.com/traininn/en/ptp-powertube-resistance-tube-hard/139799564/p?image_created=1",
+        "attributes": {
+          "shopId": {
+            "text": [
+              "13"
+            ]
+          },
+          "price_all_1_to_10": {
+            "text": [
+              "4:16.49"
+            ]
+          },
+          "price_all_71_to_80": {
+            "text": [
+              "75:17.99"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "totalSize": 48
+}
