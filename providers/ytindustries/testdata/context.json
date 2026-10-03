@@ -1,0 +1,5 @@
+{
+  "currency": {"isoCode": "EUR"},
+  "languageInfo": {"name": "English", "localeCode": "en-GB"},
+  "shippingLocation": {"country": {"iso": "DE"}}
+}

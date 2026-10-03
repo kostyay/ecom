@@ -2,7 +2,7 @@
 
 ## 1. Goal
 
-Build `ecom` as a machine-readable CLI for product discovery on one commerce provider at a time. The compiled providers are Bike24, Bike-Discount, BuscoCotxe, Tradeinn, and Wallapop. Each provider can use a different website protocol while it exposes common operations where practical.
+Build `ecom` as a machine-readable CLI for product discovery on one commerce provider at a time. The compiled providers are Bike24, Bike-Discount, BuscoCotxe, Canyon, Propain, Tradeinn, Wallapop, and YT Industries. Each provider can use a different website protocol while it exposes common operations where practical.
 
 The principal agent workflow is:
 
@@ -322,6 +322,18 @@ The website can return its last page for a higher page request without a redirec
 Tradeinn supports public text search across its shops, including Bikeinn. It uses form-encoded POST requests to `listado.php` through Core-owned HTTP transport. No account or browser is required. Prices use the selected country's catalog values: Germany and Andorra are supported in English with EUR prices, without shipping.
 
 Pages 1 to 10 use size 45. Later pages follow temporary tokens from page 1 through the Core cache. The sensitive request body has a stable hash as its cache partition. The Provider reports total items and `has_next`, but does not infer total pages. It strips internal product URL query values and warns when the site corrects or expands a query. Filters, custom sorts, and item details are not supported.
+
+### YT Industries, Propain, and Canyon
+
+These are search-only Providers with Core-owned transport. They share small private request-validation and parsing helpers under `providers/internal/shoputil`; this is not a new public SDK or a transport implementation.
+
+YT Industries discovers its public European storefront key, checks the anonymous DE/en/EUR market context, and posts JSON to the Shopware Store API. Money remains decimal text. The public key is sent as a sensitive header with a hashed cache partition; the Provider does not reuse anonymous context tokens or create session state. Raw responses still follow normal Core caching policy. Product-selecting `number` query values are preserved in canonical URLs.
+
+Propain reads English WooCommerce search HTML with Germany selected explicitly. Its public Store API is not used because it returns different catalog entries and prices. Native pages contain up to ten entries; current-page and next-link metadata are validated without inferring totals.
+
+Canyon reads the bikes tab of the English/Spain search HTML through HTTP, with browser/CDP fallback permitted. Its 24-product offsets are normalized to page numbers. Totals come from the selected bikes tab, not the cross-tab heading. Prices come from visible product amounts, not net analytics or monthly financing data.
+
+YT and Canyon use page size 24; all three cap page numbers at 1000 and expose `has_next`. Unsupported markets, filters, sorts, and shipping inclusion fail before resource requests. EUR prices and starting-price qualifications are preserved. See [discovery notes](providers/manufacturers-research.md).
 
 ## 13. Test Strategy
 

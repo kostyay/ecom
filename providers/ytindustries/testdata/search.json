@@ -1,0 +1,2294 @@
+{
+  "apiAlias": "product_listing",
+  "currentFilters": {
+    "manufacturer": [],
+    "price": {
+      "max": 0,
+      "min": 0
+    },
+    "properties": [],
+    "rating": null,
+    "search": "capra",
+    "shipping-free": false
+  },
+  "elements": [
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 34.9,
+            "tax": 5.57,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 34.9,
+        "unitPrice": 34.9,
+        "variantId": "018f0a8fb5f47205b57cdb09012b2e43"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 34.9,
+            "tax": 5.57,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 34.9,
+        "unitPrice": 34.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/15/e5/79/1716359749/cable plug set Jeffsy MK3 AL.png?ts=1716359749"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a8fb5f47205b57cdb09012b2e43",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "cable plug set JEFFSY MK3 AL \u0026 Capra MK3 AL",
+      "productNumber": "504346",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2026-05-19T07:13:05.918+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a8fb5f47205b57cdb09012b2e43",
+          "id": "019e3f14c38970c68adf34230d4cbd51",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a8fb5f47205b57cdb09012b2e43",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/cable-plug-set-JEFFSY-MK3-AL-Capra-MK3-AL/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 3999,
+            "tax": 638.5,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -1300,
+          "percentage": 24.53,
+          "price": 5299
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 3999,
+        "unitPrice": 3999,
+        "variantId": "018f0aa07ed471e0a049a8c32994ce63"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 3999,
+            "tax": 638.5,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -1300,
+          "percentage": 24.53,
+          "price": 5299
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 3999,
+        "unitPrice": 3999
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/fe/64/5f/1720512829/07_Capra_27_CF_Core4_Blackmagic_Side.png.png?ts=1720512829"
+        }
+      },
+      "extensions": {
+        "availability": null
+      },
+      "id": "018f09ee9c9c7242a6553852339fe290",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Capra MX CORE 4",
+      "productNumber": "101267",
+      "seoUrls": []
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 2799,
+            "tax": 446.9,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -700,
+          "percentage": 20.01,
+          "price": 3499
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 2799,
+        "unitPrice": 2799,
+        "variantId": "01921f4a36b371d8997a9fefddf4eb21"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 2799,
+            "tax": 446.9,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -700,
+          "percentage": 20.01,
+          "price": 3499
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 2799,
+        "unitPrice": 2799
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/65/85/71/1732717050/CAPRA-MX-AL-MY25-Core2-MachineGrey-front_w.png.png?ts=1732717050"
+        }
+      },
+      "extensions": {
+        "availability": null
+      },
+      "id": "01921defc9e2710d8c3f2135310861f6",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Capra MX CORE 2 AL",
+      "productNumber": "103473",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2026-08-11T09:38:03.405+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "01921defc9e2710d8c3f2135310861f6",
+          "id": "019ff02faa1b73b3ad4600aa3ff56580",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/01921defc9e2710d8c3f2135310861f6",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Bikes/Enduro-Capra/CORE-2/CORE-2-AL/?number=103473",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 4499,
+            "tax": 718.33,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -1500,
+          "percentage": 25,
+          "price": 5999
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 4499,
+        "unitPrice": 4499,
+        "variantId": "01921f4103ba71b88ea32de793515cee"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 4499,
+            "tax": 718.33,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -1500,
+          "percentage": 25,
+          "price": 5999
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 4499,
+        "unitPrice": 4499
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/16/f3/f5/1732717005/CAPRA-29-CF-MY25-Core4-DeepGreen-front_w.png.png?ts=1732717005"
+        }
+      },
+      "extensions": {
+        "availability": null
+      },
+      "id": "01921def681f73a48d3c6484b4b2c9e0",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Capra 29 CORE 4 CF",
+      "productNumber": "103451",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2026-07-26T20:07:03.225+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "01921def681f73a48d3c6484b4b2c9e0",
+          "id": "019fa009c7657037a87716bb5f52c47f",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/01921def681f73a48d3c6484b4b2c9e0",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Bikes/Enduro-Capra/CORE-4/?number=103451",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 3599,
+            "tax": 574.63,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -900,
+          "percentage": 20,
+          "price": 4499
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 3599,
+        "unitPrice": 3599,
+        "variantId": "01921f3aa1d77350bd7a3aee59ae56c2"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 3599,
+            "tax": 574.63,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -900,
+          "percentage": 20,
+          "price": 4499
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 3599,
+        "unitPrice": 3599
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/f0/34/22/1732716947/CAPRA-29-AL-MY25-Core3-DripYellow-front_w.png.png?ts=1732716947"
+        }
+      },
+      "extensions": {
+        "availability": null
+      },
+      "id": "01921def308371b1a76133ebb3b673e3",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Capra 29 CORE 3 AL",
+      "productNumber": "103440",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2026-09-15T09:03:02.256+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "01921def308371b1a76133ebb3b673e3",
+          "id": "01a0a44e2ea5711e9325df513971d496",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/01921def308371b1a76133ebb3b673e3",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Bikes/Enduro-Capra/CORE-3/Core-3-AL/?number=103440",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 3599,
+            "tax": 574.63,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -900,
+          "percentage": 20,
+          "price": 4499
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 3599,
+        "unitPrice": 3599,
+        "variantId": "01921f5360dd72e0979375c9e85c10f6"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 3599,
+            "tax": 574.63,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -900,
+          "percentage": 20,
+          "price": 4499
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 3599,
+        "unitPrice": 3599
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/d7/74/c2/1732717085/CAPRA-MX-AL-MY25-Core3-DripYellow-front_w.png.png?ts=1732717085"
+        }
+      },
+      "extensions": {
+        "availability": null
+      },
+      "id": "01921df025ab70c58dbd84d76e9ec53c",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Capra MX CORE 3 AL",
+      "productNumber": "103495",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-06-09T09:50:15.918+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "01921df025ab70c58dbd84d76e9ec53c",
+          "id": "0197541907cb7061bb86463665bc19af",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/01921df025ab70c58dbd84d76e9ec53c",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Bikes/Enduro-Capra/CORE-3/Core-3-AL/?number=103495",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 3999,
+            "tax": 638.5,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -1000,
+          "percentage": 20,
+          "price": 4999
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 3999,
+        "unitPrice": 3999,
+        "variantId": "01921f5c7cb873f8acbfbd588aa94f7a"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 3999,
+            "tax": 638.5,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -1000,
+          "percentage": 20,
+          "price": 4999
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 3999,
+        "unitPrice": 3999
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/c3/89/d9/1732716983/CAPRA-29-CF-MY25-Core3-ElectricBlue-front_w.png.png?ts=1732716983"
+        }
+      },
+      "extensions": {
+        "availability": null
+      },
+      "id": "01921df08a8d726fa70d096e5bc023ea",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Capra 29 CORE 3 CF",
+      "productNumber": "103761",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-12-26T23:30:02.828+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "01921df08a8d726fa70d096e5bc023ea",
+          "id": "019b5cff6fd873a7b6c7c2e989da5387",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/01921df08a8d726fa70d096e5bc023ea",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Bikes/Enduro-Capra/CORE-3/Core-3-CF/?number=103761",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 3999,
+            "tax": 638.5,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -1000,
+          "percentage": 20,
+          "price": 4999
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 3999,
+        "unitPrice": 3999,
+        "variantId": "01921f5f225f73c5b28d61c9d4cfcb58"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 3999,
+            "tax": 638.5,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -1000,
+          "percentage": 20,
+          "price": 4999
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 3999,
+        "unitPrice": 3999
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/7d/16/d7/1732717102/CAPRA-MX-CF-MY25-Core3-ElectricBlue-front_w.png.png?ts=1732717102"
+        }
+      },
+      "extensions": {
+        "availability": null
+      },
+      "id": "01921df0b85a70b79f3bfa782de62829",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Capra MX CORE 3 CF",
+      "productNumber": "103772",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2026-09-04T14:01:02.713+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "01921df0b85a70b79f3bfa782de62829",
+          "id": "01a06cb9104171d5ac6082e229b770a5",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/01921df0b85a70b79f3bfa782de62829",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Bikes/Enduro-Capra/CORE-3/Core-3-CF/?number=103772",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 1999,
+            "tax": 319.17,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -2000,
+          "percentage": 50.01,
+          "price": 3999
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 1999,
+        "unitPrice": 1999,
+        "variantId": "018f0b1bb55f73b498a4917cfafadcf0"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 1999,
+            "tax": 319.17,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -2000,
+          "percentage": 50.01,
+          "price": 3999
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 1999,
+        "unitPrice": 1999
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/d5/ff/30/1720599861/CAPRA-29-CF-Core3-MY24-LavaRed_Front.png.png?ts=1720599861"
+        }
+      },
+      "extensions": {
+        "availability": null
+      },
+      "id": "018f0a0cbc8b72189579c3eab37425c2",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Capra 29 CORE 3",
+      "productNumber": "102383",
+      "seoUrls": []
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 2249,
+            "tax": 359.08,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -550,
+          "percentage": 19.65,
+          "price": 2799
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 2249,
+        "unitPrice": 2249,
+        "variantId": "01921f2ebdee7075a7dc4e17bfab8662"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 2249,
+            "tax": 359.08,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -550,
+          "percentage": 19.65,
+          "price": 2799
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 2249,
+        "unitPrice": 2249
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/24/ef/ea/1732716869/CAPRA-29-AL-MY25-Core1-SludgeGreen-front_w.png.png?ts=1732716869"
+        }
+      },
+      "extensions": {
+        "availability": null
+      },
+      "id": "01921dee5e59724ea17969981b3f7bf3",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Capra 29 CORE 1 AL",
+      "productNumber": "103407",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2026-01-18T23:26:02.700+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "01921dee5e59724ea17969981b3f7bf3",
+          "id": "019bd36e09f97368afdf9d48c94cd2c3",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/01921dee5e59724ea17969981b3f7bf3",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Bikes/Enduro-Capra/CORE-1/?number=103407",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 2799,
+            "tax": 446.9,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -700,
+          "percentage": 20.01,
+          "price": 3499
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 2799,
+        "unitPrice": 2799,
+        "variantId": "01921f31ae7d73b0a61ebf46a04d1717"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 2799,
+            "tax": 446.9,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -700,
+          "percentage": 20.01,
+          "price": 3499
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 2799,
+        "unitPrice": 2799
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/1d/9e/e5/1732716900/CAPRA-29-AL-MY25-Core2-MachineGrey-front_w.png.png?ts=1732716900"
+        }
+      },
+      "extensions": {
+        "availability": null
+      },
+      "id": "01921deeb21672d4a22ac6b018e5b581",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Capra 29 CORE 2 AL",
+      "productNumber": "103418",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-02-20T13:34:33.343+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "01921deeb21672d4a22ac6b018e5b581",
+          "id": "01952391337f70ca999eda22da9a272f",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": true,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/01921deeb21672d4a22ac6b018e5b581",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Bikes/Enduro-Capra/CORE-2/?number=103418",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 2999,
+            "tax": 478.83,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -1000,
+          "percentage": 25.01,
+          "price": 3999
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 2999,
+        "unitPrice": 2999,
+        "variantId": "01921f37ebe9729c97e2c8b263dd4e87"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 2999,
+            "tax": 478.83,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -1000,
+          "percentage": 25.01,
+          "price": 3999
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 2999,
+        "unitPrice": 2999
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/9b/27/b2/1732716934/CAPRA-29-CF-MY25-Core2-BloodRed-front_w.png.png?ts=1732716934"
+        }
+      },
+      "extensions": {
+        "availability": null
+      },
+      "id": "01921deef0347183b8040afdbcc54446",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Capra 29 CORE 2 CF",
+      "productNumber": "103429",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2026-08-10T10:30:02.342+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "01921deef0347183b8040afdbcc54446",
+          "id": "019feb38e5987094bc5d9e129b452226",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/01921deef0347183b8040afdbcc54446",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Bikes/Enduro-Capra/CORE-2/CORE-2-CF/?number=103429",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 2249,
+            "tax": 359.08,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -550,
+          "percentage": 19.65,
+          "price": 2799
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 2249,
+        "unitPrice": 2249,
+        "variantId": "01921f43ed9c71cdae9ab974b3757119"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 2249,
+            "tax": 359.08,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -550,
+          "percentage": 19.65,
+          "price": 2799
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 2249,
+        "unitPrice": 2249
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/2e/28/20/1732717039/CAPRA-MX-AL-MY25-Core1-SludgeGreen-front_w.png.png?ts=1732717039"
+        }
+      },
+      "extensions": {
+        "availability": null
+      },
+      "id": "01921def9dc3727690200d4c2ef735a4",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Capra MX CORE 1 AL",
+      "productNumber": "103462",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2026-09-08T11:51:02.459+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "01921def9dc3727690200d4c2ef735a4",
+          "id": "01a080db7a6d70479394135b3f9bebbb",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/01921def9dc3727690200d4c2ef735a4",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Bikes/Enduro-Capra/CORE-1/?number=103462",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 2999,
+            "tax": 478.83,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -1000,
+          "percentage": 25.01,
+          "price": 3999
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 2999,
+        "unitPrice": 2999,
+        "variantId": "01921f4d64da727da9ec5771c115c1f1"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 2999,
+            "tax": 478.83,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -1000,
+          "percentage": 25.01,
+          "price": 3999
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 2999,
+        "unitPrice": 2999
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/d9/5e/df/1732717070/CAPRA-MX-CF-MY25-Core2-BloodRed-front_w.png.png?ts=1732717070"
+        }
+      },
+      "extensions": {
+        "availability": null
+      },
+      "id": "01921deff5937030b2d561edb3704f2e",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Capra MX CORE 2 CF",
+      "productNumber": "103484",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-12-08T00:19:02.715+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "01921deff5937030b2d561edb3704f2e",
+          "id": "019afb5377c670d1ac7685cfaeea34fc",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/01921deff5937030b2d561edb3704f2e",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Bikes/Enduro-Capra/CORE-2/CORE-2-CF/?number=103484",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 4499,
+            "tax": 718.33,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -1500,
+          "percentage": 25,
+          "price": 5999
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 4499,
+        "unitPrice": 4499,
+        "variantId": "01921f565d3c7015a16dfd4f951216f1"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 4499,
+            "tax": 718.33,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": {
+          "apiAlias": "cart_list_price",
+          "discount": -1500,
+          "percentage": 25,
+          "price": 5999
+        },
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 4499,
+        "unitPrice": 4499
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/a8/1e/a5/1732717117/CAPRA-MX-CF-MY25-Core4-DeepGreen-front_w.png.png?ts=1732717117"
+        }
+      },
+      "extensions": {
+        "availability": null
+      },
+      "id": "01921df0530570848620fb9ac2a40118",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Capra MX CORE 4 CF",
+      "productNumber": "103506",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2026-09-18T09:21:02.755+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "01921df0530570848620fb9ac2a40118",
+          "id": "01a0b3d1bf5e711fac56cc3674c510a3",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/01921df0530570848620fb9ac2a40118",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Bikes/Enduro-Capra/CORE-4/?number=103506",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 29.9,
+            "tax": 4.77,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 29.9,
+        "unitPrice": 29.9,
+        "variantId": "018f0a7d018e73159bb2aa4e4297bf59"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 29.9,
+            "tax": 4.77,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 29.9,
+        "unitPrice": 29.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/bd/88/c2/1716898599/ISCG05_adapter_Capra_MK1_CF_TUES_MK2_CF.png?ts=1716898599"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a7d018e73159bb2aa4e4297bf59",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "ISCG05 adapter Capra MK1 CF \u0026 TUES MK2 CF",
+      "productNumber": "500045",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:31.288+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a7d018e73159bb2aa4e4297bf59",
+          "id": "0194a85e2b4a712590373c8233326129",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a7d018e73159bb2aa4e4297bf59",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/ISCG05-adapter-Capra-MK1-CF-TUES-MK2-CF/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9,
+        "variantId": "018f0a7ff08272ba9f51b6a3e7b35f73"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/03/e9/23/1715082593/rockerarm screw and spacer set Capra MK1 - front.png?ts=1715082593"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a7ff08272ba9f51b6a3e7b35f73",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "rockerarm screw and spacer set Capra MK1 - front",
+      "productNumber": "500211",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:33.010+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a7ff08272ba9f51b6a3e7b35f73",
+          "id": "0194a85e320f706ebbb6ae344c15ed09",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a7ff08272ba9f51b6a3e7b35f73",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/rockerarm-screw-and-spacer-set-Capra-MK1-front/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9,
+        "variantId": "018f0a80318970c2b987fb1a919570c8"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/8a/0a/28/1715082593/rockerarm and seat stay screw set Capra MK1 - rear.png?ts=1715082593"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a80318970c2b987fb1a919570c8",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "rockerarm and seat stay screw set Capra MK1 - rear",
+      "productNumber": "500212",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:33.010+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a80318970c2b987fb1a919570c8",
+          "id": "0194a85e320f706ebbb6ae344c572002",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a80318970c2b987fb1a919570c8",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/rockerarm-and-seat-stay-screw-set-Capra-MK1-rear/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 19.9,
+            "tax": 3.18,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 19.9,
+        "unitPrice": 19.9,
+        "variantId": "018f0c05972671ceaca77e92df1df8ae"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 19.9,
+            "tax": 3.18,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 19.9,
+        "unitPrice": 19.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/72/39/21/1724150801/YT-Graphic-Dad-Cap.png.png?ts=1724150801"
+        }
+      },
+      "extensions": {
+        "availability": null
+      },
+      "id": "018f0a49d11573f1aed93ae8a1f8ce7c",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "YT Graphic Dad Cap / One Size",
+      "productNumber": "701726",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-24T13:45:28.816+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a49d11573f1aed93ae8a1f8ce7c",
+          "id": "0194988f801c73dbb1f4bd12387fe5e0",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a49d11573f1aed93ae8a1f8ce7c",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Clothing/Street-Wear/YT-Graphic-Dad-Cap-One-Size/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9,
+        "variantId": "018f0a773b3b721993491491f2af88b3"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/54/59/dc/1715081984/shock bolt set Capra MK1.png?ts=1715081984"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a773b3b721993491491f2af88b3",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "shock bolt set Capra MK1",
+      "productNumber": "500008",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-02-17T12:55:13.037+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a773b3b721993491491f2af88b3",
+          "id": "019513fa1b9a70209aeaf2f7d155f3c5",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a773b3b721993491491f2af88b3",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/shock-bolt-set-Capra-MK1/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9,
+        "variantId": "018f0a783ff8711c9cd6ba6434a47904"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/e4/e9/cc/1715169559/shock bolt set Capra MK2.png?ts=1715169559"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "out of stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a783ff8711c9cd6ba6434a47904",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "shock bolt set CAPRA MK2",
+      "productNumber": "500012",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-02-17T12:55:35.324+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a783ff8711c9cd6ba6434a47904",
+          "id": "019513fa72a972d1b3017e470cc406c7",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a783ff8711c9cd6ba6434a47904",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/shock-bolt-set-CAPRA-MK2/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 49.9,
+            "tax": 7.97,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 49.9,
+        "unitPrice": 49.9,
+        "variantId": "018f0a79685e71cd9d4881a1354d4a2c"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 49.9,
+            "tax": 7.97,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 49.9,
+        "unitPrice": 49.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/06/2a/ce/1715082820/frame bearing set Capra Mk2.png?ts=1715082820"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "out of stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a79685e71cd9d4881a1354d4a2c",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "frame bearing set CAPRA MK2",
+      "productNumber": "500020",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-02-17T12:56:00.317+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a79685e71cd9d4881a1354d4a2c",
+          "id": "019513fad44b72de9c57dece95ddc24b",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a79685e71cd9d4881a1354d4a2c",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/frame-bearing-set-CAPRA-MK2/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 19.9,
+            "tax": 3.18,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 19.9,
+        "unitPrice": 19.9,
+        "variantId": "018f0a7a897471dbb2fca27f7a386523"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 19.9,
+            "tax": 3.18,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 19.9,
+        "unitPrice": 19.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/14/5f/1a/1715170002/main pivot axle set Capra MK2.png?ts=1715170002"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a7a897471dbb2fca27f7a386523",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "main pivot axle set CAPRA MK2",
+      "productNumber": "500026",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:31.288+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a7a897471dbb2fca27f7a386523",
+          "id": "0194a85e2b4971e78bebf453e4c9e6bd",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a7a897471dbb2fca27f7a386523",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/main-pivot-axle-set-CAPRA-MK2/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 19.9,
+            "tax": 3.18,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 19.9,
+        "unitPrice": 19.9,
+        "variantId": "018f0a7ae7c371458aec4d4af1804fb0"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 19.9,
+            "tax": 3.18,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 19.9,
+        "unitPrice": 19.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/07/73/65/1715170108/main pivot axle set Jeffsy MK2, MK3; Primus MK1; Tues MK3, MK4; Capra MK3.png?ts=1715170108"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a7ae7c371458aec4d4af1804fb0",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "main pivot axle set Jeffsy MK2, 3 \u0026 Primus MK1 \u0026 TUES MK3 \u0026 CAPRA MK3",
+      "productNumber": "500028",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:31.288+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a7ae7c371458aec4d4af1804fb0",
+          "id": "0194a85e2b4971e78bebf453e500a51b",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a7ae7c371458aec4d4af1804fb0",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/main-pivot-axle-set-Jeffsy-MK2-3-Primus-MK1-TUES-MK3-CAPRA-MK3/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    }
+  ],
+  "limit": 24,
+  "page": 1,
+  "total": 57
+}

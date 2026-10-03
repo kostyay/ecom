@@ -39,7 +39,7 @@ test-unit:
 	go test ./internal/... ./provider/... ./providers/...
 
 fixtures:
-	go test ./provider/conformance ./providers/bikediscount
+	go test ./provider/conformance ./providers/...
 
 doc-test:
 	go test ./provider -run '^TestProviderAuthorGuideExampleCompiles$$'

@@ -17,6 +17,9 @@ ecom provider help bike-discount
 ecom provider help bike-discount -o table
 ecom provider help buscocotxe
 ecom provider help tradeinn
+ecom provider help yt-industries
+ecom provider help propain
+ecom provider help canyon
 ecom provider help wallapop
 ```
 
@@ -59,6 +62,18 @@ ECOM_MARKET_COUNTRY=AD ecom search "powertube" --provider tradeinn
 ```
 
 Results keep the website order. Tradeinn can correct or expand a query; the Provider reports this with `search_semantics_unverified` and details in `provider_data.tradeinn`. Prices exclude shipping. `in_stock` is the search catalog status, not a promise of immediate warehouse stock or a delivery date. Filters, custom sorts, and item details are not supported.
+
+YT Industries and Propain search their Germany/English storefronts, including bikes, parts, and clothing. Canyon searches the **bikes tab only** on its English/Spain storefront, including outlet bikes:
+
+```sh
+ecom search "capra" --provider yt-industries
+ecom search "tyee" --provider propain
+ECOM_MARKET_COUNTRY=ES ecom search "spectral" --provider canyon
+```
+
+These Providers return EUR prices excluding shipping. Other requested currencies produce `currency_unavailable`; no conversion is performed. Starting prices have `starting_price: true` under the item's provider namespace in `provider_data`. They do not represent a final configured bike price. Listing stock does not guarantee availability of a selected size or color. YT products without a published SEO link can have an ID and price but no URL.
+
+All three support search only: no filters, custom sorts, categories, deals, item details, or variant selection. YT and Propain use direct HTTP. Canyon also permits browser/CDP fallback if direct access is blocked. See the [manufacturer research](providers/manufacturers-research.md) for verified sources and fixture notes.
 
 ### Categories
 
@@ -193,6 +208,8 @@ Wallapop supports `most_relevance`, `closest`, `newest`, `price_low_to_high`, an
 BuscoCotxe pages start at 1, and page size 30 is required. A nonempty result reports total items and total pages. An empty result reports the requested page and no total page count. The website can return its last page when a higher page is requested. The Provider detects this change and returns `invalid_provider_result`.
 
 Tradeinn pages start at 1, stop at 10, and use size 45. Later pages follow temporary tokens from page 1. The Core cache can reuse earlier requests. Read `page.has_next`; total pages are not inferred. A page after the last token returns no items. The site controls the actual item count per page.
+
+YT Industries and Canyon use page size 24. Propain uses 10. All three accept pages 1–1000 and report `has_next`; follow it rather than requesting out-of-range pages. YT and Canyon report product totals and total pages. Propain does not infer totals from its pagination links. Unsupported page sizes and mismatched returned page metadata fail explicitly.
 
 ## Output
 

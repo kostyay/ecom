@@ -1,0 +1,874 @@
+{
+  "apiAlias": "product_listing",
+  "currentFilters": {
+    "manufacturer": [],
+    "price": {
+      "max": 0,
+      "min": 0
+    },
+    "properties": [],
+    "rating": null,
+    "search": "capra",
+    "shipping-free": false
+  },
+  "elements": [
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9,
+        "variantId": "018f0a80dc7572a6a83025eb7fc466e3"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/94/31/d0/1715082768/mech hanger Capra MK2 and Jeffsy MK1.png?ts=1715082768"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "out of stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a80dc7572a6a83025eb7fc466e3",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "mech hanger CAPRA MK2 \u0026 JEFFSY MK1",
+      "productNumber": "500768",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:33.010+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a80dc7572a6a83025eb7fc466e3",
+          "id": "0194a85e320f706ebbb6ae344d6c01c5",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a80dc7572a6a83025eb7fc466e3",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/mech-hanger-CAPRA-MK2-JEFFSY-MK1/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9,
+        "variantId": "018f0a830dce727791ee186e94536fe0"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/78/ed/bf/1715082388/mech hanger Capra MK1 - 2014 only.png?ts=1715082388"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "out of stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a830dce727791ee186e94536fe0",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "mech hanger CAPRA MK1 - 2014 only",
+      "productNumber": "500806",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:33.010+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a830dce727791ee186e94536fe0",
+          "id": "0194a85e321071fd894a26a2f348844a",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a830dce727791ee186e94536fe0",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/mech-hanger-CAPRA-MK1-2014-only/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9,
+        "variantId": "018f0a833100734b88d5add8b78018ab"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/05/c2/87/1715082388/mech hanger Capra MK1 from 2015.png?ts=1715082388"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a833100734b88d5add8b78018ab",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "mech hanger CAPRA MK1 from 2015",
+      "productNumber": "500849",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:33.010+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a833100734b88d5add8b78018ab",
+          "id": "0194a85e3211707c882a3fba3e007cde",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a833100734b88d5add8b78018ab",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/mech-hanger-CAPRA-MK1-from-2015/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 19.9,
+            "tax": 3.18,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 19.9,
+        "unitPrice": 19.9,
+        "variantId": "018f0a840a3573fb9a2c0f3d0c8b2ed9"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 19.9,
+            "tax": 3.18,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 19.9,
+        "unitPrice": 19.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/6c/93/4f/1715082768/mech hanger set Capra MK2 and Jeffsy MK1.png?ts=1715082768"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a840a3573fb9a2c0f3d0c8b2ed9",
+      "manufacturer": {
+        "name": "Kinesis"
+      },
+      "name": "Mech Hanger Set CAPRA MK2 \u0026 JEFFSY MK1",
+      "productNumber": "501743",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-03-20T15:45:03.810+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a840a3573fb9a2c0f3d0c8b2ed9",
+          "id": "0195b43abf4d701da9a21e389f75562d",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a840a3573fb9a2c0f3d0c8b2ed9",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/Mech-Hanger-Set-CAPRA-MK2-JEFFSY-MK1/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 29.9,
+            "tax": 4.77,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 29.9,
+        "unitPrice": 29.9,
+        "variantId": "018f0a7c665d73c795bd14546e24c498"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 29.9,
+            "tax": 4.77,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 29.9,
+        "unitPrice": 29.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/04/26/f4/1715082130/horst link screw and cap set Capra MK1.png?ts=1715082130"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a7c665d73c795bd14546e24c498",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "horst link screw and cap set Capra MK1",
+      "productNumber": "500041",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:31.288+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a7c665d73c795bd14546e24c498",
+          "id": "0194a85e2b4a712590373c823139b45d",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a7c665d73c795bd14546e24c498",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/horst-link-screw-and-cap-set-Capra-MK1/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 24.9,
+            "tax": 3.98,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 24.9,
+        "unitPrice": 24.9,
+        "variantId": "018f0a91e705731c8fc2755f154877fa"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 24.9,
+            "tax": 3.98,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 24.9,
+        "unitPrice": 24.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/68/10/8f/1715954522/Stash-Tube-Kit_0016_w_1280x1280.png?ts=1715954757"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a91e705731c8fc2755f154877fa",
+      "manufacturer": {
+        "name": "Crankbrothers"
+      },
+      "name": "Crankbrothers SOS TS2 Tube Stash",
+      "productNumber": "504912",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-04-01T14:49:03.618+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a91e705731c8fc2755f154877fa",
+          "id": "0195f1d3c9ac7053ba1ebc8a49479187",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a91e705731c8fc2755f154877fa",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Accessories/Crankbrothers-SOS-TS2-Tube-Stash/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 24.9,
+            "tax": 3.98,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 24.9,
+        "unitPrice": 24.9,
+        "variantId": "01910dc695f173c6b79769d5acd314fe"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 24.9,
+            "tax": 3.98,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 24.9,
+        "unitPrice": 24.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/5a/fa/07/1716364195/Thirstmaster 6000_1.png?ts=1716364195"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "01910dc695f173c6b79769d5acd314fe",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Thirstmaster 6000 YT logo bottle set",
+      "productNumber": "700824",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-03-26T10:31:30.247+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "01910dc695f173c6b79769d5acd314fe",
+          "id": "0195d201d4f37082ac98609eec8dba01",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/01910dc695f173c6b79769d5acd314fe",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Accessories/Thirstmaster-6000-YT-logo-bottle-set/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 12.9,
+            "tax": 2.06,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 12.9,
+        "unitPrice": 12.9,
+        "variantId": "018f0a8cd6c2728e822224f14b603704"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 12.9,
+            "tax": 2.06,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 12.9,
+        "unitPrice": 12.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/33/cc/0b/1715335308/mech hanger set Sram UDH.png?ts=1715335309"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a8cd6c2728e822224f14b603704",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "mech hanger set SRAM UDH",
+      "productNumber": "503130",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-24T13:45:36.758+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a8cd6c2728e822224f14b603704",
+          "id": "0194988f9f1d7036aa34f48910b2c567",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a8cd6c2728e822224f14b603704",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/mech-hanger-set-SRAM-UDH/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9,
+        "variantId": "018f0a941022725b9c92b4bed29a5a07"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/5a/fa/07/1716364195/Thirstmaster 6000_1.png?ts=1716364195"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a941022725b9c92b4bed29a5a07",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Thirstmaster 6000 bottle only",
+      "productNumber": "700820",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2026-05-29T11:33:12.840+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a941022725b9c92b4bed29a5a07",
+          "id": "019e7382801472a3bee91b8f704a596d",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a941022725b9c92b4bed29a5a07",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Accessories/Thirstmaster-6000-bottle-only/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    }
+  ],
+  "limit": 24,
+  "page": 3,
+  "total": 57
+}
