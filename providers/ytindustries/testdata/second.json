@@ -1,0 +1,2299 @@
+{
+  "apiAlias": "product_listing",
+  "currentFilters": {
+    "manufacturer": [],
+    "price": {
+      "max": 0,
+      "min": 0
+    },
+    "properties": [],
+    "rating": null,
+    "search": "capra",
+    "shipping-free": false
+  },
+  "elements": [
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9,
+        "variantId": "018f0a7c348871c1b15b05a48b034b1b"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/73/5d/89/1715082059/main pivot axle set Capra MK1.png?ts=1715082060"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a7c348871c1b15b05a48b034b1b",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "main pivot axle set Capra MK1",
+      "productNumber": "500040",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:31.288+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a7c348871c1b15b05a48b034b1b",
+          "id": "0194a85e2b4a712590373c823121e671",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a7c348871c1b15b05a48b034b1b",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/main-pivot-axle-set-Capra-MK1/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 2.9,
+            "tax": 0.46,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 2.9,
+        "unitPrice": 2.9,
+        "variantId": "018f0a7c90e17362845e302239324229"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 2.9,
+            "tax": 0.46,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 2.9,
+        "unitPrice": 2.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/ed/77/d9/1715082305/downtube lower cable clamp and screw set Capra MK1 CF.png?ts=1715082305"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a7c90e17362845e302239324229",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "downtube lower cable clamp and screw set Capra MK1 CF",
+      "productNumber": "500042",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:31.288+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a7c90e17362845e302239324229",
+          "id": "0194a85e2b4a712590373c82315df155",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a7c90e17362845e302239324229",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/downtube-lower-cable-clamp-and-screw-set-Capra-MK1-CF/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 2.9,
+            "tax": 0.46,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 2.9,
+        "unitPrice": 2.9,
+        "variantId": "018f0a7cb50d736c8d8d9e04425355d9"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 2.9,
+            "tax": 0.46,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 2.9,
+        "unitPrice": 2.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/1e/a9/9e/1715082305/downtube lower cable clamp and screw set Capra MK1 AL.png?ts=1715082305"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a7cb50d736c8d8d9e04425355d9",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "downtube lower cable clamp and screw set Capra MK1 AL",
+      "productNumber": "500043",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:31.288+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a7cb50d736c8d8d9e04425355d9",
+          "id": "0194a85e2b4a712590373c8232510b13",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a7cb50d736c8d8d9e04425355d9",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/downtube-lower-cable-clamp-and-screw-set-Capra-MK1-AL/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 2.9,
+            "tax": 0.46,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 2.9,
+        "unitPrice": 2.9,
+        "variantId": "018f0a7cdacc7169817def0fef7ac681"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 2.9,
+            "tax": 0.46,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 2.9,
+        "unitPrice": 2.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/33/50/b6/1715082305/downtube upper cable clamp and screw set Capra MK1 AL.png?ts=1715082305"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a7cdacc7169817def0fef7ac681",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "downtube upper cable clamp and screw set Capra MK1 AL",
+      "productNumber": "500044",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:31.288+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a7cdacc7169817def0fef7ac681",
+          "id": "0194a85e2b4a712590373c8232d51099",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a7cdacc7169817def0fef7ac681",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/downtube-upper-cable-clamp-and-screw-set-Capra-MK1-AL/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 29.9,
+            "tax": 4.77,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 29.9,
+        "unitPrice": 29.9,
+        "variantId": "018f0a7dfa4d71a6ab47471cabfc1c46"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 29.9,
+            "tax": 4.77,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 29.9,
+        "unitPrice": 29.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/30/e8/a5/1715169750/horst link bolt and nut set Capra MK2.png?ts=1715169750"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a7dfa4d71a6ab47471cabfc1c46",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "horst link bolt and nut set CAPRA MK2",
+      "productNumber": "500056",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:33.010+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a7dfa4d71a6ab47471cabfc1c46",
+          "id": "0194a85e320e73bd8977ab2db1dc4647",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a7dfa4d71a6ab47471cabfc1c46",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/horst-link-bolt-and-nut-set-CAPRA-MK2/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9,
+        "variantId": "018f0a7f14fc7346bbc97e32b93dcc53"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/a9/b2/ec/1715082593/rockerarm screw and bolt set Capra MK1 - front.png?ts=1715082593"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "out of stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a7f14fc7346bbc97e32b93dcc53",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "rockerarm screw and bolt set Capra MK1 - front",
+      "productNumber": "500206",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:33.010+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a7f14fc7346bbc97e32b93dcc53",
+          "id": "0194a85e320e73bd8977ab2db2067adf",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a7f14fc7346bbc97e32b93dcc53",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/rockerarm-screw-and-bolt-set-Capra-MK1-front/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 19.9,
+            "tax": 3.18,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 19.9,
+        "unitPrice": 19.9,
+        "variantId": "018f0a7f6f417146b3c383c40aa69cb1"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 19.9,
+            "tax": 3.18,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 19.9,
+        "unitPrice": 19.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/da/0a/61/1715169701/rockerarm bolt and screw set Capra MK2.png?ts=1715169701"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a7f6f417146b3c383c40aa69cb1",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "rockerarm bolt and screw set CAPRA MK2",
+      "productNumber": "500208",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:33.010+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a7f6f417146b3c383c40aa69cb1",
+          "id": "0194a85e320e73bd8977ab2db2977f35",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a7f6f417146b3c383c40aa69cb1",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/rockerarm-bolt-and-screw-set-CAPRA-MK2/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 49.9,
+            "tax": 7.97,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 49.9,
+        "unitPrice": 49.9,
+        "variantId": "018f0a81530971e9bee93ccc2219edc1"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 49.9,
+            "tax": 7.97,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 49.9,
+        "unitPrice": 49.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/63/f2/da/1715169670/distance disc and sleeve set Capra Mk2.png?ts=1715169670"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a81530971e9bee93ccc2219edc1",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "distance disc and sleeve set CAPRA MK2",
+      "productNumber": "500786",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:33.010+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a81530971e9bee93ccc2219edc1",
+          "id": "0194a85e320f706ebbb6ae344e222cc0",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a81530971e9bee93ccc2219edc1",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/distance-disc-and-sleeve-set-CAPRA-MK2/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9,
+        "variantId": "018f0a81864470ba948d52fcc8d307f4"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/19/9a/47/1715169632/O-Ring Set Capra MK2.png?ts=1715169632"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a81864470ba948d52fcc8d307f4",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "O-Ring Set CAPRA MK2",
+      "productNumber": "500787",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:33.010+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a81864470ba948d52fcc8d307f4",
+          "id": "0194a85e320f706ebbb6ae344efcc67c",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a81864470ba948d52fcc8d307f4",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/O-Ring-Set-CAPRA-MK2/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9,
+        "variantId": "018f0a82636b705f84eb574922eb8831"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/c1/a6/53/1715866857/cable guide Jeffsy MK2 CF and Capra MK3 CF.png?ts=1715866857"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a82636b705f84eb574922eb8831",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "cable guide Jeffsy MK2 CF \u0026 CAPRA MK3 CF",
+      "productNumber": "500793",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-27T15:25:33.010+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a82636b705f84eb574922eb8831",
+          "id": "0194a85e321071fd894a26a2f20284fd",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a82636b705f84eb574922eb8831",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/cable-guide-Jeffsy-MK2-CF-CAPRA-MK3-CF/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 29.9,
+            "tax": 4.77,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 29.9,
+        "unitPrice": 29.9,
+        "variantId": "018f0a8490147051a1b9a6f21e448197"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 29.9,
+            "tax": 4.77,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 29.9,
+        "unitPrice": 29.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/fa/53/0e/1727184499/horst_link_bolt_and_screw_set_Jeffsy_MK2_MK3_Primus_MK1_Tues_MK3_MK4_Capra_MK3_Decoy_MK1_MK2.png?ts=1727184500"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a8490147051a1b9a6f21e448197",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Horst Link and Screw Set JEFFSY, PRIMUS, TUES, CAPRA, DECOY, DECOY SN, Decoy X AL MK1",
+      "productNumber": "501747",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2026-04-15T08:44:03.899+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a8490147051a1b9a6f21e448197",
+          "id": "019d904fd3c67173a9dbbca801640f99",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a8490147051a1b9a6f21e448197",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/Horst-Link-and-Screw-Set-JEFFSY-PRIMUS-TUES-CAPRA-DECOY-DECOY-SN-Decoy-X-AL-MK1/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 39.9,
+            "tax": 6.37,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 39.9,
+        "unitPrice": 39.9,
+        "variantId": "018f0a88c86e7145a2f1ccc3dbbeb533"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 39.9,
+            "tax": 6.37,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 39.9,
+        "unitPrice": 39.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/eb/12/54/1716463953/replacement rear axle Decoy MK2, Capra MK3, Izzo MK1 Core 2 UDH.png?ts=1783931715"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "out of stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a88c86e7145a2f1ccc3dbbeb533",
+      "manufacturer": {
+        "name": "DT Swiss"
+      },
+      "name": "Replacement Rear Axle – DECOY MK2, CAPRA MK3, JEFFSY MK3, IZZO MK1 CORE 2 - UDH",
+      "productNumber": "502401",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-05-13T09:24:25.351+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a88c86e7145a2f1ccc3dbbeb533",
+          "id": "0196c8f5aa8f7306b809952eceb687b1",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a88c86e7145a2f1ccc3dbbeb533",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/Replacement-Rear-Axle-DECOY-MK2-CAPRA-MK3-JEFFSY-MK3-IZZO-MK1-CORE-2-UDH/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 14.9,
+            "tax": 2.38,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 14.9,
+        "unitPrice": 14.9,
+        "variantId": "018f0a8aa4527325a52bd3156ff90e55"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 14.9,
+            "tax": 2.38,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 14.9,
+        "unitPrice": 14.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/b2/f5/29/1715333203/shock bolt set Capra MK3.png?ts=1715333203"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a8aa4527325a52bd3156ff90e55",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Shock Bolt Set Capra MK3, DECOY SN MK1, Decoy X AL MK1",
+      "productNumber": "502902",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2026-04-15T08:44:14.176+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a8aa4527325a52bd3156ff90e55",
+          "id": "019d904ffbeb714f9a7829be38fa8d36",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a8aa4527325a52bd3156ff90e55",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/Shock-Bolt-Set-Capra-MK3-DECOY-SN-MK1-Decoy-X-AL-MK1/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": false,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 49.9,
+            "tax": 7.97,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 49.9,
+        "unitPrice": 49.9,
+        "variantId": "018f0a8ac9fd70068bbd86de0902bc4b"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 49.9,
+            "tax": 7.97,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 49.9,
+        "unitPrice": 49.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/08/8b/3a/1715333189/frame bearing set Capra MK3.png?ts=1715333189"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "out of stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a8ac9fd70068bbd86de0902bc4b",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Frame Bearing Set Capra MK3, DECOY SN MK1, Decoy X AL MK1",
+      "productNumber": "502903",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2026-04-15T08:40:03.864+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a8ac9fd70068bbd86de0902bc4b",
+          "id": "019d904c2a2371bebdb01cda47258909",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a8ac9fd70068bbd86de0902bc4b",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/Frame-Bearing-Set-Capra-MK3-DECOY-SN-MK1-Decoy-X-AL-MK1/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9,
+        "variantId": "018f0a8af06172128d55680a65eaf8be"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/5d/2c/d8/1715171336/distance sleeves set Capra MK3.png?ts=1715171336"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a8af06172128d55680a65eaf8be",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "distance sleeves set CAPRA MK3",
+      "productNumber": "502904",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-02-17T13:15:25.531+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a8af06172128d55680a65eaf8be",
+          "id": "0195140c9bea73de822a6d62342a54e4",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a8af06172128d55680a65eaf8be",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/distance-sleeves-set-CAPRA-MK3/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 14.9,
+            "tax": 2.38,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 14.9,
+        "unitPrice": 14.9,
+        "variantId": "018f0a8b242570368d3ad436b160749e"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 14.9,
+            "tax": 2.38,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 14.9,
+        "unitPrice": 14.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/c1/6c/17/1715171313/lower link pivot axle set Capra MK3.png?ts=1715171313"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a8b242570368d3ad436b160749e",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Lower Link pivot Axle Set Capra MK3",
+      "productNumber": "502905",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-24T13:45:36.758+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a8b242570368d3ad436b160749e",
+          "id": "0194988f9f1c71218af332d973195cfa",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a8b242570368d3ad436b160749e",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/Lower-Link-pivot-Axle-Set-Capra-MK3/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 29.9,
+            "tax": 4.77,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 29.9,
+        "unitPrice": 29.9,
+        "variantId": "018f0a8b4a8970c59eb826f18bff79bd"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 29.9,
+            "tax": 4.77,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 29.9,
+        "unitPrice": 29.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/bc/99/af/1715171291/washer and seals set Capra MK3.png?ts=1715171291"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a8b4a8970c59eb826f18bff79bd",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Washer and Seals Set Capra MK3",
+      "productNumber": "502906",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-24T13:45:36.758+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a8b4a8970c59eb826f18bff79bd",
+          "id": "0194988f9f1c71218af332d973affbdc",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a8b4a8970c59eb826f18bff79bd",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/Washer-and-Seals-Set-Capra-MK3/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 14.9,
+            "tax": 2.38,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 14.9,
+        "unitPrice": 14.9,
+        "variantId": "018f0a8b6f767116b7d8591625c0cec9"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 14.9,
+            "tax": 2.38,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 14.9,
+        "unitPrice": 14.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/b0/38/c4/1715170933/upper link and yoke bolts set Capra MK3.png?ts=1715170933"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a8b6f767116b7d8591625c0cec9",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Upper Link and Yoke Bolts Set Capra MK3",
+      "productNumber": "502907",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-24T13:45:36.758+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a8b6f767116b7d8591625c0cec9",
+          "id": "0194988f9f1c71218af332d9747ae5fa",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a8b6f767116b7d8591625c0cec9",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/Upper-Link-and-Yoke-Bolts-Set-Capra-MK3/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 29.9,
+            "tax": 4.77,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 29.9,
+        "unitPrice": 29.9,
+        "variantId": "018f0a8d2c3b71c5bb301d786fd1cb8f"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 29.9,
+            "tax": 4.77,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 29.9,
+        "unitPrice": 29.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/d6/46/d6/1715170868/protection set Capra AL MK3.png?ts=1715170868"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a8d2c3b71c5bb301d786fd1cb8f",
+      "manufacturer": {
+        "name": "Velo"
+      },
+      "name": "Protection Set Capra MX \u0026 29 AL MK3",
+      "productNumber": "503278",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-24T13:45:36.758+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a8d2c3b71c5bb301d786fd1cb8f",
+          "id": "0194988f9f1d7036aa34f4891196a3d4",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a8d2c3b71c5bb301d786fd1cb8f",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/Protection-Set-Capra-MX-29-AL-MK3/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 29.9,
+            "tax": 4.77,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 29.9,
+        "unitPrice": 29.9,
+        "variantId": "018f0a8d56a472b090fd8b3b6017de17"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 29.9,
+            "tax": 4.77,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 29.9,
+        "unitPrice": 29.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/19/fe/7a/1715170868/protection set Capra 29 CF MK3.png?ts=1715170868"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a8d56a472b090fd8b3b6017de17",
+      "manufacturer": {
+        "name": "Velo"
+      },
+      "name": "Protection Set Capra 29 CF MK3",
+      "productNumber": "503279",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-24T13:45:36.758+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a8d56a472b090fd8b3b6017de17",
+          "id": "0194988f9f1d7036aa34f48911f0228e",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a8d56a472b090fd8b3b6017de17",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/Protection-Set-Capra-29-CF-MK3/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 29.9,
+            "tax": 4.77,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 29.9,
+        "unitPrice": 29.9,
+        "variantId": "018f0a8d7c97737eaa22a241430a60e5"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 29.9,
+            "tax": 4.77,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 29.9,
+        "unitPrice": 29.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/8f/45/1a/1715170868/protection set Capra MX CF MK3.png?ts=1715170868"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a8d7c97737eaa22a241430a60e5",
+      "manufacturer": {
+        "name": "Velo"
+      },
+      "name": "Protection Set Capra MX CF MK3",
+      "productNumber": "503280",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-24T13:45:36.758+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a8d7c97737eaa22a241430a60e5",
+          "id": "0194988f9f1d7036aa34f4891224b6da",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a8d7c97737eaa22a241430a60e5",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/Protection-Set-Capra-MX-CF-MK3/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 39.9,
+            "tax": 6.37,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 39.9,
+        "unitPrice": 39.9,
+        "variantId": "019eb60d901173438939a43214e745ff"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 39.9,
+            "tax": 6.37,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 39.9,
+        "unitPrice": 39.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/b2/2e/91/1781102978/ART_500036.png?ts=1783931749"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "019eb60d901173438939a43214e745ff",
+      "manufacturer": {
+        "name": "DT Swiss"
+      },
+      "name": "Replacement Rear Axle - Capra MK2, Jeffsy MK1",
+      "productNumber": "500036",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2026-06-23T08:44:02.002+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "019eb60d901173438939a43214e745ff",
+          "id": "019ef3a6985d718fb6e78e44093ae1e6",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/019eb60d901173438939a43214e745ff",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/Replacement-Rear-Axle-Capra-MK2-Jeffsy-MK1/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 39.9,
+            "tax": 6.37,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 39.9,
+        "unitPrice": 39.9,
+        "variantId": "019eb62908ea724da580fa06cd3e2764"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 39.9,
+            "tax": 6.37,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 39.9,
+        "unitPrice": 39.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/54/52/73/1787228574/Achse_PNG.png?ts=1787228574"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "019eb62908ea724da580fa06cd3e2764",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Replacement Rear Axle incl. Lever - Tues MK4, Decoy MK3, Decoy MK2, Decoy SN, Capra MK3, Jeffsy MK3, Izzo MK1",
+      "productNumber": "507042",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2026-06-17T09:03:01.764+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "019eb62908ea724da580fa06cd3e2764",
+          "id": "019ed4d1d48e708482836052c4c12c6e",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/019eb62908ea724da580fa06cd3e2764",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/Replacement-Rear-Axle-incl.-Lever-Tues-MK4-Decoy-MK3-Decoy-MK2-Decoy-SN-Capra-MK3-Jeffsy-MK3-Izzo-MK1/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    },
+    {
+      "available": true,
+      "calculatedCheapestPrice": {
+        "apiAlias": "calculated_cheapest_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "hasRange": false,
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9,
+        "variantId": "018f0a8bb276709fbe033446d2a0db12"
+      },
+      "calculatedPrice": {
+        "apiAlias": "calculated_price",
+        "calculatedTaxes": [
+          {
+            "apiAlias": "cart_tax_calculated",
+            "price": 9.9,
+            "tax": 1.58,
+            "taxRate": 19
+          }
+        ],
+        "listPrice": null,
+        "quantity": 1,
+        "referencePrice": null,
+        "regulationPrice": null,
+        "taxRules": [
+          {
+            "apiAlias": "cart_tax_rule",
+            "percentage": 100,
+            "taxRate": 19
+          }
+        ],
+        "totalPrice": 9.9,
+        "unitPrice": 9.9
+      },
+      "cover": {
+        "media": {
+          "url": "https://www.yt-industries.com/media/92/eb/57/1715169544/cable plug set Capra MK2 and MK3.png?ts=1715169544"
+        }
+      },
+      "extensions": {
+        "availability": {
+          "apiAlias": "yt_product_availability",
+          "availability": "in stock",
+          "emwa": false,
+          "extensions": [],
+          "preorder": false,
+          "preorderDate": null
+        }
+      },
+      "id": "018f0a8bb276709fbe033446d2a0db12",
+      "manufacturer": {
+        "name": "YT"
+      },
+      "name": "Cable Plug Set Capra MK2 \u0026 MK3",
+      "productNumber": "502908",
+      "seoUrls": [
+        {
+          "apiAlias": "seo_url",
+          "createdAt": "2025-01-24T13:45:36.758+00:00",
+          "customFields": null,
+          "error": null,
+          "foreignKey": "018f0a8bb276709fbe033446d2a0db12",
+          "id": "0194988f9f1c71218af332d975088a04",
+          "isCanonical": true,
+          "isDeleted": false,
+          "isModified": false,
+          "languageId": "2fbb5fe2e29a4d70aa5854ce7ce3e20b",
+          "pathInfo": "/detail/018f0a8bb276709fbe033446d2a0db12",
+          "routeName": "frontend.detail.page",
+          "salesChannelId": "018e847573bd71fab4c639906bdf1982",
+          "seoPathInfo": "Parts-Accessories/Parts/Cable-Plug-Set-Capra-MK2-MK3/",
+          "translated": [],
+          "updatedAt": null,
+          "url": null
+        }
+      ]
+    }
+  ],
+  "limit": 24,
+  "page": 2,
+  "total": 57
+}

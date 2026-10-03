@@ -1,0 +1,18 @@
+{
+  "apiAlias": "product_listing",
+  "currentFilters": {
+    "manufacturer": [],
+    "price": {
+      "max": 0,
+      "min": 0
+    },
+    "properties": [],
+    "rating": null,
+    "search": "zzzxxyy987654321",
+    "shipping-free": false
+  },
+  "elements": [],
+  "limit": 24,
+  "page": 1,
+  "total": 0
+}

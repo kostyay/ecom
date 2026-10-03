@@ -4,7 +4,7 @@
 
 `ecom` is a command-line tool for product discovery on one commerce provider at a time. It gives stable JSON to agents and scripts. It can also give tables to people.
 
-The compiled providers are Bike24, Bike-Discount, BuscoCotxe, Tradeinn, and Wallapop. `ecom` does not compare providers. Run one command for each provider and compare the results in your own program.
+The compiled providers are Bike24, Bike-Discount, BuscoCotxe, Canyon, Propain, Tradeinn, Wallapop, and YT Industries. `ecom` does not compare providers. Run one command for each provider and compare the results in your own program.
 
 <p align="center">
   <img src="docs/demo.gif" alt="ecom CLI demo" width="700">
@@ -67,6 +67,16 @@ ECOM_MARKET_COUNTRY=AD ecom search "powertube" --provider tradeinn -o table
 
 Tradeinn prices depend on the selected country and exclude shipping. Query correction or expansion produces a `search_semantics_unverified` warning. Catalog stock status does not confirm immediate warehouse stock or a delivery date. See the [browser research](docs/providers/tradeinn-research.md) for the verified search API and limits.
 
+YT Industries and Propain support public product search for Germany in English, with EUR prices. Canyon supports bike search on its English/Spain storefront, including outlet bikes:
+
+```sh
+ecom search "capra" --provider yt-industries
+ecom search "tyee" --provider propain
+ECOM_MARKET_COUNTRY=ES ecom search "spectral" --provider canyon
+```
+
+YT Industries and Canyon use page size 24; Propain uses 10. Read `page.has_next` before requesting another page. All three are search-only: filters, custom sorts, item details, and variant selection are not supported. Starting prices are marked in `provider_data`; they are not quotes for a configured bike. Shipping is excluded. See the [manufacturer research](docs/providers/manufacturers-research.md) for sources, market limits, and price handling.
+
 Wallapop supports public `search` and `item` requests without authentication or a browser. Search uses Andorra la Vella as its default center. You can set `latitude`, `longitude`, `max_distance_km`, `min_price`, `max_price`, and `category_id` filters. Run `ecom provider help wallapop` for current sort and paging limits. Wallapop can change or limit its public endpoints.
 
 BuscoCotxe supports public car search without authentication or a browser. It uses the Andorra catalog in Catalan and returns 30 cars on a full page. Results can include sold cars and cars with no stated price. Filters, custom sorts, and item details are not supported.
@@ -121,6 +131,7 @@ Bike24 also requires `pricing.include_shipping: false` and does not accept provi
 Tradeinn has the same price policy and does not accept provider-specific configuration values.
 Wallapop also requires `pricing.include_shipping: false` and does not accept provider-specific configuration values.
 BuscoCotxe has the same price policy and does not accept provider-specific configuration values.
+YT Industries, Propain, and Canyon also require `pricing.include_shipping: false` and do not accept provider-specific configuration values.
 
 ## Develop
 
